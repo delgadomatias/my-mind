@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Providers } from "../Providers";
 import { NoteSection } from "../components/NoteSection";
 import "./../globals.css";
 
@@ -19,8 +20,10 @@ export default function RootLayout({
     <html lang="en" className="bg-[#F0F2F5]">
       <body className={inter.className}>
         <main>
-          <NoteSection />
-          {children}
+          <Providers>
+            <NoteSection />
+            {children}
+          </Providers>
         </main>
       </body>
     </html>
