@@ -13,3 +13,8 @@ div[contentEditable] {
 .non-editable {
   @apply pointer-events-none;
 }
+
+#command-key::before {
+  content: "Press ⌘ + Enter to save";
+  @apply uppercase text-white;
+}
