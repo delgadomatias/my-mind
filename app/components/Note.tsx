@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useNoteContext } from "../context/notes";
-import { ForwardRefEditor } from "./editor/ForwardRefEditor";
+import { MarkdownEditor } from "./editor/MarkdownEditor";
 
 export const Note = () => {
   const { notes } = useNoteContext();
@@ -22,7 +22,7 @@ export const Note = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <ForwardRefEditor
+              <MarkdownEditor
                 markdown={note.content}
                 className="p-6 bg-white rounded-md shadow-md max-w-fit non-editable hover:bg-red-500 "
               />

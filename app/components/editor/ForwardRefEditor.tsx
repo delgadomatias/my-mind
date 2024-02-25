@@ -1,23 +1,28 @@
 "use client";
 
-import { MDXEditorMethods, MDXEditorProps } from "@mdxeditor/editor";
+import {
+  MDXEditorMethods,
+  MDXEditorProps,
+  headingsPlugin,
+} from "@mdxeditor/editor";
 import dynamic from "next/dynamic";
-import { forwardRef } from "react";
-import styles from "./editor.module.css";
+import { FC } from "react";
 
-const Editor = dynamic(() => import("./InitializedMDXEditor"), {
-  ssr: false,
-  loading: () => <div className="h-[84px]"></div>,
-});
+const NewMdxEditor = dynamic(() => import("./NewMdxEditor"), { ssr: false });
 
-export const ForwardRefEditor = forwardRef<MDXEditorMethods, MDXEditorProps>(
-  (props, ref) => (
-    <Editor
-      {...props}
-      editorRef={ref}
-      className={`${styles.editor} ${props.className}`}
+interface EditorProps extends MDXEditorProps {
+  editorRef?: React.MutableRefObject<MDXEditorMethods | null>;
+}
+
+const Editor: FC<EditorProps> = ({ markdown, editorRef, onChange }) => {
+  return (
+    <NewMdxEditor
+      editorRef={editorRef}
+      markdown={markdown}
+      onChange={onChange}
+      plugins={[headingsPlugin()]}
     />
-  )
-);
+  );
+};
 
-ForwardRefEditor.displayName = "ForwardRefEditor";
+export default Editor;
