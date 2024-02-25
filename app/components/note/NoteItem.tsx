@@ -21,7 +21,7 @@ export const NoteItem = ({ note }: Props) => {
       >
         <MarkdownEditor
           markdown={content}
-          className="p-6 bg-white rounded-md shadow-md max-w-fit non-editable hover:bg-red-500 "
+          className="p-6 bg-white rounded-md max-w-fit non-editable hover:bg-red-500 shadow-[10px_10px_30px_rgb(0_0_0_/_8%)]"
         />
       </motion.div>
     </Link>

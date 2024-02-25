@@ -42,19 +42,57 @@ const NoteDetail = ({ params }: Props) => {
 
   return (
     <>
+      <button
+        className="absolute top-0 w-full h-[5%] flex items-center justify-center"
+        id="close-backdrop"
+        style={{
+          zIndex: 100,
+        }}
+        onClick={() => router.back()}
+      >
+        <div className="hidden text-white opacity-60" id="close-backdrop-label">
+          ESC to close card
+        </div>
+      </button>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="fixed inset-0 z-50 bg-black bg-opacity-80 h-screen"
+        id="backdrop-shadow"
       ></motion.div>
-      <div className="h-screen fixed inset-0 z-50 flex items-center justify-center">
+
+      <div
+        className="h-screen sticky inset-0 z-50 flex items-center justify-center group"
+        id="backdrop-container"
+      >
         <motion.div
-          className="p-6 bg-white w-[90%] h-[90%] rounded-md shadow-md"
+          className="p-2 bg-white w-[95%] h-[90%] rounded-lg shadow-md flex items-center transition-transform ease-linear duration-100"
+          id="backdrop"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <MarkdownEditor markdown={note.content} />
+          <div className="flex-1 flex items-center justify-center">
+            <MarkdownEditor
+              markdown={note.content}
+              className="max-w-2xl 2xl:max-w-4xl"
+            />
+          </div>
+          <div className="bg-[#F0F2F5] h-full w-[400px] rounded-lg">
+            <header
+              className="h-24 py-5 px-7 rounded-lg rounded-bl-none rounded-br-none"
+              style={{
+                background:
+                  "linear-gradient(180deg, #D1D9E6 0%, #EAEDF1 105%, #EAEDF1 105%)",
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Title goes here"
+                className="text-[#505864] bg-transparent w-full text-ellipsis border-none text-3xl font-light focus:outline-none focus:text-black"
+              />
+            </header>
+          </div>
         </motion.div>
       </div>
     </>

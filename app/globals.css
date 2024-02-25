@@ -18,3 +18,19 @@ div[contentEditable] {
   content: "Press ⌘ + Enter to save";
   @apply uppercase text-white;
 }
+
+#close-backdrop:hover {
+  height: calc(5% + 1.45rem) !important;
+}
+
+#close-backdrop:hover + #backdrop-shadow {
+  @apply !opacity-90;
+}
+
+#close-backdrop:hover #close-backdrop-label {
+  display: block;
+}
+
+#close-backdrop:hover + #backdrop-shadow + #backdrop-container #backdrop {
+  @apply !scale-[0.99] !translate-y-5;
+}

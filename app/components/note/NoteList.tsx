@@ -9,7 +9,7 @@ export const NoteList = () => {
   const sortedNotes = getSortedNotes(notes);
 
   return (
-    <div className="my-4 flex gap-2 flex-wrap">
+    <div className="my-4 flex gap-x-6 gap-y-4 flex-wrap">
       {sortedNotes.map((note) => {
         return <NoteItem note={note} key={note.id} />;
       })}
