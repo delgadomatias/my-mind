@@ -17,13 +17,14 @@ interface EditorProps extends MDXEditorProps {
   editorRef?: React.MutableRefObject<MDXEditorMethods | null>;
 }
 
-const Editor: FC<EditorProps> = ({ markdown, editorRef, ...rest }) => {
+const AddEditor: FC<EditorProps> = ({ markdown, editorRef, ...rest }) => {
   return (
     <MDXEditor
       ref={editorRef}
       markdown={markdown}
       {...rest}
       className={`${rest.className} ${styles.editor}`}
+      contentEditableClassName="contentEditable"
       plugins={[
         headingsPlugin(),
         listsPlugin(),
@@ -34,4 +35,4 @@ const Editor: FC<EditorProps> = ({ markdown, editorRef, ...rest }) => {
   );
 };
 
-export default Editor;
+export default AddEditor;

@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 
 const EditorComp = dynamic(
-  () => import("@/app/components/editor/EditorComponent"),
+  () => import("@/app/components/editor/AddEditorComponent"),
   {
     ssr: false,
     loading: () => <div className="h-[84px]"></div>,
@@ -63,8 +63,31 @@ export const AddNoteEditor = ({ isInEditor }: Props) => {
     key: "Enter",
     callback: (e: KeyboardEvent) => {
       if (e.ctrlKey && isInEditor && rawMarkdown.length > 0) {
+        let newMarkdown = rawMarkdown;
+        let unExpectedListEnd = "*\n";
+        let unExpectedOrderedList = ".";
+        const lastChar = newMarkdown.slice(-1);
+
+        // This is for remove the (*) from the end of the Markdown
+        if (unExpectedListEnd.includes(lastChar)) {
+          newMarkdown = newMarkdown.slice(0, -1).trimEnd();
+        }
+
+        // This is for remove the (Number.) from the end of the Markdown
+        if (unExpectedOrderedList.includes(lastChar)) {
+          const regexOfOrderedList = /^\d+\./;
+          const markdownSplit = newMarkdown.split("\n");
+          const lastItem = markdownSplit[markdownSplit.length - 1];
+
+          if (markdownSplit.length < 1) return;
+
+          if (regexOfOrderedList.test(lastItem)) {
+            newMarkdown = markdownSplit.slice(0, -1).join("\n");
+          }
+        }
+
         const newNote = {
-          content: rawMarkdown,
+          content: newMarkdown,
           id: Date.now().toString(),
           createdAt: new Date(),
         };
@@ -85,7 +108,7 @@ export const AddNoteEditor = ({ isInEditor }: Props) => {
         editorRef={editorRef}
         markdown={rawMarkdown}
         onChange={handleOnChange}
-        className="mr-20 add-note-editor"
+        className="mr-20"
       />
       <motion.div
         className="sticky top-full h-full transition-all duration-800 ease-in w-full text-center "
@@ -113,7 +136,7 @@ export const AddNoteEditor = ({ isInEditor }: Props) => {
         transition={{ duration: 0.2 }}
       >
         <div className="h-full w-full bg-[#ff5924] flex items-center justify-center p-1 rounded-md">
-          <p className="text-md  text-white">I'll remember this for you</p>
+          <p className="text-md  text-white">I&apos;ll remember this for you</p>
         </div>
       </motion.div>
     </>

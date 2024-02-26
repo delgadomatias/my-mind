@@ -22,7 +22,6 @@
   @apply text-4xl;
 }
 
-/* Estila las ul y las li */
 .editor ul {
   @apply list-inside list-disc !m-0 !p-0;
 }
@@ -36,7 +35,6 @@
   margin-left: -2.5rem;
 }
 
-/* Ahora estila las listas ordenadas */
 .editor ol {
   @apply list-inside list-decimal;
 }

@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 
 const EditorComp = dynamic(() => import("./EditorComponent"), {
   ssr: false,
+  loading: () => <div className="size-96"></div>,
 });
 
 interface Props extends MDXEditorProps {
