@@ -9,7 +9,7 @@ import {
   markdownShortcutPlugin,
   quotePlugin,
 } from "@mdxeditor/editor";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import styles from "./editor.module.css";
 
@@ -18,6 +18,36 @@ interface EditorProps extends MDXEditorProps {
 }
 
 const Editor: FC<EditorProps> = ({ markdown, editorRef, ...rest }) => {
+  useEffect(() => {
+    const editor = document.querySelector(
+      ".add-note-editor .mdxeditor-root-contenteditable"
+    ) as HTMLElement;
+
+    const contentEditable = editor.querySelector(
+      'div[contenteditable="true"]'
+    ) as HTMLElement | null;
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (contentEditable) {
+          contentEditable.innerHTML = contentEditable.innerHTML.replace(
+            /<p><br \/><\/p>/g,
+            ""
+          );
+
+          contentEditable.innerHTML += "<p><br /></p>";
+        }
+      }
+    }
+
+    editor.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      editor.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <MDXEditor
       ref={editorRef}

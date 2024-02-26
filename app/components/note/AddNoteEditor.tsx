@@ -85,7 +85,7 @@ export const AddNoteEditor = ({ isInEditor }: Props) => {
         editorRef={editorRef}
         markdown={rawMarkdown}
         onChange={handleOnChange}
-        className="mr-20"
+        className="mr-20 add-note-editor"
       />
       <motion.div
         className="sticky top-full h-full transition-all duration-800 ease-in w-full text-center "

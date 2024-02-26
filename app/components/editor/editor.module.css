@@ -9,3 +9,34 @@
 .editor h2 {
   @apply text-7xl;
 }
+
+.editor h3 {
+  @apply text-6xl;
+}
+
+.editor h4 {
+  @apply text-5xl;
+}
+
+.editor h5 {
+  @apply text-4xl;
+}
+
+/* Estila las ul y las li */
+.editor ul {
+  @apply list-inside list-disc !m-0 !p-0;
+}
+
+.editor li {
+  @apply text-6xl;
+}
+
+.editor ul li:before {
+  content: "";
+  margin-left: -2.5rem;
+}
+
+/* Ahora estila las listas ordenadas */
+.editor ol {
+  @apply list-inside list-decimal;
+}
