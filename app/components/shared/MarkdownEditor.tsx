@@ -1,11 +1,10 @@
 "use client";
 
+import { useNoteContext } from "@/context/notes";
+import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, Extension, useEditor } from "@tiptap/react";
-
-import Link from "@tiptap/extension-link";
 import StarterKit from "@tiptap/starter-kit";
-import { useNoteContext } from "../context/notes";
 
 interface Props {
   content?: string;
@@ -16,7 +15,7 @@ interface Props {
   onFocus?: () => void;
 }
 
-const Tiptap = ({
+const MarkdownEditor = ({
   content = "",
   editable = false,
   onAddNote,
@@ -26,7 +25,7 @@ const Tiptap = ({
 }: Props) => {
   const { addNote } = useNoteContext();
 
-  const PreventLineBreak = Extension.create({
+  const AddNoteExtension = Extension.create({
     addKeyboardShortcuts() {
       return {
         "Ctrl-Enter": () => {
@@ -54,11 +53,11 @@ const Tiptap = ({
       Placeholder.configure({
         placeholder: "Start typing here...",
       }),
-      PreventLineBreak,
+      AddNoteExtension,
       Link.configure({
-        protocols: ["http", "https"],
-        openOnClick: false,
         autolink: true,
+        openOnClick: false,
+        protocols: ["http", "https"],
       }),
     ],
     content,
@@ -85,4 +84,4 @@ const Tiptap = ({
   return <EditorContent editor={editor} />;
 };
 
-export default Tiptap;
+export default MarkdownEditor;

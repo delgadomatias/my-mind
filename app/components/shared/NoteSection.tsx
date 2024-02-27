@@ -1,5 +1,5 @@
-import { NoteContainer } from "./NoteContainer";
-import { NoteList } from "./note/NoteList";
+import { NoteContainer } from "../features/notes/NoteContainer";
+import { NoteList } from "../features/notes/NoteList";
 
 export const NoteSection = () => {
   return (

@@ -4,14 +4,13 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-const TipTapComponent = dynamic(() => import("./TipTapEditor"), {
+const MarkdownEditor = dynamic(() => import("../../shared/MarkdownEditor"), {
   ssr: false,
   loading: () => <div className="h-[56px] w-full"></div>,
 });
 
 const DEFAULT_NOTE = "<p></p>";
 
-// Add note component
 export const NoteContainer = () => {
   const [noteContent, setNoteContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -55,7 +54,7 @@ export const NoteContainer = () => {
     <div className="relative">
       {/* Change this padding on Mobile */}
       <div className="pr-40">
-        <TipTapComponent
+        <MarkdownEditor
           content={noteContent}
           editable
           onAddNote={onAddNote}

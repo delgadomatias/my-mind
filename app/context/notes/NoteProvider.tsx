@@ -21,7 +21,19 @@ export const NoteProvider = ({ children }: React.PropsWithChildren) => {
   }
 
   function updateNote(note: Note) {
-    throw new Error("Not implemented");
+    dispatch({ type: "note/update", payload: note });
+    const previousNotes = JSON.parse(getItem("notes") || "[]");
+    const updatedNotes = previousNotes.map((n: Note) =>
+      n.id === note.id ? note : n
+    );
+    setItem("notes", JSON.stringify(updatedNotes));
+  }
+
+  function deleteNote(noteId: string) {
+    dispatch({ type: "note/delete", payload: noteId });
+    const previousNotes = JSON.parse(getItem("notes") || "[]");
+    const updatedNotes = previousNotes.filter((n: Note) => n.id !== noteId);
+    setItem("notes", JSON.stringify(updatedNotes));
   }
 
   useEffect(() => {
@@ -36,6 +48,7 @@ export const NoteProvider = ({ children }: React.PropsWithChildren) => {
         ...state,
         addNote,
         updateNote,
+        deleteNote,
       }}
     >
       {children}

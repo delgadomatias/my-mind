@@ -6,33 +6,9 @@ div[contentEditable] {
   @apply px-0 py-3;
 }
 
-.mdxeditor-popup-container {
-  @apply hidden;
-}
-
-.non-editable {
-  @apply pointer-events-none;
-}
-
 #command-key::before {
   content: "Press ⌘ + Enter to save";
   @apply uppercase text-white;
-}
-
-#close-backdrop:hover {
-  height: calc(5% + 1.45rem) !important;
-}
-
-#close-backdrop:hover + #backdrop-shadow {
-  @apply !opacity-90;
-}
-
-#close-backdrop:hover #close-backdrop-label {
-  display: block;
-}
-
-#close-backdrop:hover + #backdrop-shadow + #backdrop-container #backdrop {
-  @apply !scale-[0.99] !translate-y-5;
 }
 
 /* Placeholder (at the top) */
@@ -45,24 +21,24 @@ div[contentEditable] {
 }
 
 .tiptap p {
-  @apply text-xl md:text-2xl text-pretty;
+  @apply text-xl md:text-5xl text-pretty;
 }
 
 .tiptap h1 {
-  @apply text-3xl md:text-4xl text-pretty;
+  @apply text-3xl md:text-7xl text-pretty;
 }
 
 .tiptap h2 {
-  @apply text-2xl md:text-3xl text-pretty;
+  @apply text-2xl md:text-6xl text-pretty;
 }
 
 .tiptap h3 {
-  @apply text-xl md:text-2xl text-pretty;
+  @apply text-xl md:text-5xl text-pretty;
 }
 
 .tiptap ul li {
   padding-left: 25px;
-  margin-top: 10px;
+  margin-top: 0px;
   font-size: 16px;
   line-height: 24px;
   list-style-type: none;
@@ -123,4 +99,18 @@ div[contentEditable] {
 
 .note-long p {
   @apply text-lg;
+}
+
+.note-long h1 {
+  @apply text-3xl;
+}
+
+/* For the NoteDetails */
+
+#backdrop-shadow:hover + #backdrop-container #backdrop-item {
+  @apply !scale-[0.99] !translate-y-2;
+}
+
+#backdrop-shadow:hover #backdrop-button-close {
+  display: block;
 }
