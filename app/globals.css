@@ -71,14 +71,14 @@ div[contentEditable] {
 }
 
 .tiptap ul li::before {
-  width: 9px;
-  height: 9px;
+  width: 12px;
+  height: 2px;
   background-color: #748297;
-  border-radius: 375px;
+  /* border-radius: 375px; */
   content: "";
   position: absolute;
   left: 0;
-  top: 11px;
+  top: 16px;
   display: flex;
 }
 
@@ -122,5 +122,5 @@ div[contentEditable] {
 }
 
 .note-long p {
-  @apply text-xl;
+  @apply text-lg;
 }

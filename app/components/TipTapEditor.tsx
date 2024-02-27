@@ -3,6 +3,7 @@
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, Extension, useEditor } from "@tiptap/react";
 
+import Link from "@tiptap/extension-link";
 import StarterKit from "@tiptap/starter-kit";
 import { useNoteContext } from "../context/notes";
 
@@ -54,6 +55,11 @@ const Tiptap = ({
         placeholder: "Start typing here...",
       }),
       PreventLineBreak,
+      Link.configure({
+        protocols: ["http", "https"],
+        openOnClick: false,
+        autolink: true,
+      }),
     ],
     content,
     editorProps: {
