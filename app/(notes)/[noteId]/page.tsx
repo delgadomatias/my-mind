@@ -1,10 +1,14 @@
 "use client";
 
-import { MarkdownEditor } from "@/app/components/editor/MarkdownEditor";
 import { useNoteContext } from "@/app/context/notes";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
+
+const TipTapComponent = dynamic(() => import("@/components/TipTapEditor"), {
+  ssr: false,
+});
 
 interface Props {
   params: {
@@ -66,17 +70,25 @@ const NoteDetail = ({ params }: Props) => {
         id="backdrop-container"
       >
         <motion.div
-          className="p-2 bg-white w-[95%] h-[90%] rounded-lg shadow-md flex items-center transition-transform ease-linear duration-100"
+          className="p-2 bg-white w-[95%] h-[90%] rounded-lg shadow-md flex  items-center transition-transform ease-linear duration-100"
           id="backdrop"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex-1 flex items-center justify-center">
-            <MarkdownEditor
-              markdown={note.content}
-              className="max-w-2xl 2xl:max-w-4xl"
-            />
+          <div
+            className="flex-1 flex items-center justify-center overflow-y-scroll py-12 mr-2 max-h-[90%]"
+            style={{
+              scrollbarColor: "#D0D8E5 transparent",
+              overflowX: "hidden",
+              overscrollBehaviorY: "contain",
+              flexFlow: "column",
+              scrollbarGutter: "stable",
+            }}
+          >
+            <div className="max-w-2xl 2xl:max-w-4xl max-h-full ">
+              <TipTapComponent content={note.content} editable />
+            </div>
           </div>
           <div className="bg-[#F0F2F5] h-full w-[400px] rounded-lg">
             <header

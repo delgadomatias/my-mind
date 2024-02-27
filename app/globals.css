@@ -34,3 +34,93 @@ div[contentEditable] {
 #close-backdrop:hover + #backdrop-shadow + #backdrop-container #backdrop {
   @apply !scale-[0.99] !translate-y-5;
 }
+
+/* Placeholder (at the top) */
+.tiptap .is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.tiptap p {
+  @apply text-xl md:text-2xl text-pretty;
+}
+
+.tiptap h1 {
+  @apply text-3xl md:text-4xl text-pretty;
+}
+
+.tiptap h2 {
+  @apply text-2xl md:text-3xl text-pretty;
+}
+
+.tiptap h3 {
+  @apply text-xl md:text-2xl text-pretty;
+}
+
+.tiptap ul li {
+  padding-left: 25px;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 24px;
+  list-style-type: none;
+  position: relative;
+  word-break: break-all;
+}
+
+.tiptap ul li::before {
+  width: 9px;
+  height: 9px;
+  background-color: #748297;
+  border-radius: 375px;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  display: flex;
+}
+
+.tiptap ol {
+  counter-reset: li;
+}
+
+.tiptap ol li {
+  padding-left: 25px;
+  margin-top: 0;
+  font-size: 16px;
+  line-height: 24px;
+  list-style-type: none;
+  position: relative;
+  word-break: break-all;
+  position: relative;
+}
+
+.tiptap ol li::before {
+  content: counter(li) ".";
+  counter-increment: li;
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #748297;
+  @apply text-2xl;
+}
+
+.note-long::after {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0%) 0%, #fff 100%);
+  height: 120px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+}
+
+.note-long p {
+  @apply text-xl;
+}

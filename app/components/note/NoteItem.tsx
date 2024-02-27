@@ -1,6 +1,11 @@
 import { Note } from "@/interfaces/note.interface";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { MarkdownEditor } from "../editor/MarkdownEditor";
+
+const TipTapComponent = dynamic(() => import("./../TipTapEditor"), {
+  ssr: false,
+  loading: () => <div className="h-[200px] w-[200px]"></div>,
+});
 
 interface Props {
   note: Note;
@@ -8,15 +13,25 @@ interface Props {
 
 export const NoteItem = ({ note }: Props) => {
   const { id, content } = note;
+  const longStyles = {
+    maxHeight: "min(30vh, 295px)",
+    overflow: "hidden",
+    contain: "paint",
+  };
+
   return (
     <Link
-      className="hover:border-[#B8C3D3] max-w-full rounded-md flex hover:border-4 border-4 border-transparent transition-all duration-50 ease-linear h-fit"
+      className="hover:border-[#B8C3D3] max-w-full rounded-md flex hover:border-4 border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid"
       href={id}
     >
-      <MarkdownEditor
-        markdown={content}
-        className="p-6 bg-white rounded-md w-full max-w-full non-editable hover:bg-red-500 shadow-[10px_10px_30px_rgb(0_0_0_/_8%)]"
-      />
+      <div
+        className={`bg-white shadow-xl rounded-lg w-full px-6 py-4 ${
+          content.length > 350 ? "note-long" : ""
+        }`}
+        style={content.length > 350 ? longStyles : {}}
+      >
+        <TipTapComponent content={content} />
+      </div>
     </Link>
   );
 };

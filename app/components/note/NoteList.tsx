@@ -1,7 +1,6 @@
 "use client";
 
 import { getSortedNotes } from "@/app/utils/getSortedNotes";
-import Masonry from "@mui/lab/Masonry";
 import { motion } from "framer-motion";
 import { useNoteContext } from "../../context/notes";
 import { NoteItem } from "./NoteItem";
@@ -12,24 +11,14 @@ export const NoteList = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 100 }}
+      className="columns-1 md:columns-2 lg:columns-3 gap-y-4"
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-      className="overflow-hidden"
+      transition={{ duration: 0.7 }}
     >
-      <Masonry
-        columns={4}
-        spacing={1}
-        sequential
-        defaultColumns={4}
-        defaultSpacing={1}
-        defaultHeight={250}
-        className="transition-all duration-75"
-      >
-        {sortedNotes.map((note) => {
-          return <NoteItem note={note} key={note.id} />;
-        })}
-      </Masonry>
+      {sortedNotes.map((note) => {
+        return <NoteItem note={note} key={note.id} />;
+      })}
     </motion.div>
   );
 };
