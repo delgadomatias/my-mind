@@ -1,5 +1,6 @@
 "use client";
 
+import { DEFAULT_NOTE_CONTENT } from "@/app/utils/constants";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -9,8 +10,6 @@ const MarkdownEditor = dynamic(() => import("../../shared/MarkdownEditor"), {
   loading: () => <div className="h-[56px] w-full"></div>,
 });
 
-const DEFAULT_NOTE = "<p></p>";
-
 export const NoteContainer = () => {
   const [noteContent, setNoteContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -19,7 +18,7 @@ export const NoteContainer = () => {
   function handleOnChange(richText: string) {
     setNoteContent(richText);
 
-    if (richText === DEFAULT_NOTE) {
+    if (richText === DEFAULT_NOTE_CONTENT) {
       setIsTyping(false);
       return;
     }
@@ -45,7 +44,7 @@ export const NoteContainer = () => {
   }
 
   function onFocus() {
-    if (noteContent.length > 0 && noteContent !== DEFAULT_NOTE) {
+    if (noteContent.length > 0 && noteContent !== DEFAULT_NOTE_CONTENT) {
       setIsTyping(true);
     }
   }
@@ -68,7 +67,7 @@ export const NoteContainer = () => {
 
       {/* Div for show the tooltip for save */}
       <motion.div
-        className="absolute right-0 top-0 h-full transition-all duration-800 ease-in w-40 text-center p-2"
+        className="absolute top-0 right-0 w-40 h-full p-2 text-center transition-all ease-in duration-800"
         initial={{ opacity: 0 }}
         animate={{ opacity: isTyping ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -81,7 +80,7 @@ export const NoteContainer = () => {
 
       {/* Div for show a message */}
       <motion.div
-        className="absolute inset-0 transition-all duration-800 ease-in w-full text-center"
+        className="absolute inset-0 w-full text-center transition-all ease-in duration-800"
         style={{
           zIndex: isSaving ? 100 : -1,
         }}
@@ -94,7 +93,7 @@ export const NoteContainer = () => {
         transition={{ duration: 0.2 }}
       >
         <div className="h-full w-full bg-[#ff5924] flex items-center justify-center p-1 rounded-md">
-          <p className="text-md  text-white">I&apos;ll remember this for you</p>
+          <p className="text-white text-md">I&apos;ll remember this for you</p>
         </div>
       </motion.div>
     </div>

@@ -19,12 +19,12 @@ export const BackdropShadow = ({ onUpdateNote }: Props) => {
 
   return (
     <div
-      className="fixed h-screen w-full inset-0 bg-black/80 hover:bg-black/70 transition-all duration-100 ease-linear"
+      className="fixed inset-0 w-full h-screen transition-all duration-100 ease-linear bg-black/80 hover:bg-black/70"
       id="backdrop-shadow"
     >
-      <button className="w-full h-full relative" onClick={handleBackdropClose}>
+      <button className="relative w-full h-full" onClick={handleBackdropClose}>
         <p
-          className="text-white opacity-60 absolute w-full text-center pt-5 top-0 hidden transition-all duration-100 ease-linear  cursor-pointer"
+          className="absolute top-0 hidden w-full pt-5 text-center text-white transition-all duration-100 ease-linear cursor-pointer opacity-60"
           id="backdrop-button-close"
         >
           ESC to close card

@@ -8,7 +8,7 @@ div[contentEditable] {
 
 #command-key::before {
   content: "Press ⌘ + Enter to save";
-  @apply uppercase text-white;
+  @apply text-white uppercase;
 }
 
 /* Placeholder (at the top) */
@@ -21,19 +21,26 @@ div[contentEditable] {
 }
 
 .tiptap p {
-  @apply text-xl md:text-5xl text-pretty;
+  @apply text-lg text-pretty;
 }
 
 .tiptap h1 {
-  @apply text-3xl md:text-7xl text-pretty;
+  @apply mt-4 mb-6 text-3xl font-bold md:text-4xl text-pretty;
+}
+.tiptap h1:first-child {
+  margin-top: 0;
+}
+
+.tiptap h2:first-child {
+  margin-top: 0;
 }
 
 .tiptap h2 {
-  @apply text-2xl md:text-6xl text-pretty;
+  @apply my-4 text-2xl font-bold md:text-3xl text-pretty;
 }
 
 .tiptap h3 {
-  @apply text-xl md:text-5xl text-pretty;
+  @apply text-xl font-semibold md:text-xl text-pretty;
 }
 
 .tiptap ul li {
@@ -48,13 +55,13 @@ div[contentEditable] {
 
 .tiptap ul li::before {
   width: 12px;
-  height: 2px;
+  height: 1px;
   background-color: #748297;
   /* border-radius: 375px; */
   content: "";
   position: absolute;
   left: 0;
-  top: 16px;
+  top: 14px;
   display: flex;
 }
 

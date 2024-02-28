@@ -24,9 +24,9 @@ export const NoteItem = ({ note }: Props) => {
     >
       <div
         className={`bg-white shadow-xl rounded-lg w-full px-6 py-4 ${
-          content.length > 200 ? "note-long" : ""
+          content.length > 300 ? "note-long" : ""
         }`}
-        style={content.length > 200 ? longStyles : {}}
+        style={content.length > 300 ? longStyles : {}}
       >
         <MarkdownEditor content={content} />
       </div>

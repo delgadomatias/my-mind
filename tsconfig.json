@@ -24,7 +24,8 @@
       "@/types/*": ["./app/types/*"],
       "@/interfaces/*": ["./app/interfaces/*"],
       "@/hooks/*": ["./app/hooks/*"],
-      "@/context/*": ["./app/context/*"]
+      "@/context/*": ["./app/context/*"],
+      "@/utils/*": ["./app/utils/*"]
     }
   },
   "include": [
