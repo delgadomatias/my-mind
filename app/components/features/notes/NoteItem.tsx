@@ -1,8 +1,9 @@
 "use client";
 
-import MarkdownEditor from "@/components/shared/MarkdownEditor";
 import { Note } from "@/interfaces/note.interface";
 import Link from "next/link";
+import { NoteImage } from "./NoteImage";
+import { NoteText } from "./NoteText";
 
 interface Props {
   note: Note;
@@ -10,26 +11,15 @@ interface Props {
 
 export const NoteItem = ({ note }: Props) => {
   const { id, content } = note;
-
-  const longStyles = {
-    maxHeight: "min(30vh, 295px)",
-    overflow: "hidden",
-    contain: "paint",
-  };
+  const isImageInContent = Boolean(content.match(/<img[^>]*>/g));
 
   return (
     <Link
       className="hover:border-[#B8C3D3] max-w-full rounded-md flex hover:border-4 border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid  "
       href={id}
     >
-      <div
-        className={`bg-white shadow-xl rounded-lg w-full px-6 py-4 ${
-          content.length > 300 ? "note-long" : ""
-        }`}
-        style={content.length > 300 ? longStyles : {}}
-      >
-        <MarkdownEditor content={content} />
-      </div>
+      {isImageInContent && <NoteImage content={content} />}
+      {!isImageInContent && <NoteText content={content} />}
     </Link>
   );
 };

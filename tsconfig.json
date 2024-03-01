@@ -3,6 +3,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "downlevelIteration": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -23,7 +24,7 @@
       "@/styles/*": ["./app/styles/*"],
       "@/types/*": ["./app/types/*"],
       "@/interfaces/*": ["./app/interfaces/*"],
-      "@/hooks/*": ["./app/hooks/*"],
+      "@/hooks/*": ["app/hooks/*"],
       "@/context/*": ["./app/context/*"],
       "@/utils/*": ["./app/utils/*"]
     }

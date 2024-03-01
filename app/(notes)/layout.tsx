@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
 import { Providers } from "../Providers";
+import { MyDropzone } from "../components/features/drag-and-drop/DragAndDrop";
 import { NoteSection } from "../components/shared/NoteSection";
 import "./../globals.css";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <main>
           <Providers>
             <NoteSection />
+            <MyDropzone />
             {children}
           </Providers>
         </main>

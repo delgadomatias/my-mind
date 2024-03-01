@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/kbd": "^2.0.25",
     "@tiptap/extension-bullet-list": "^2.2.4",
+    "@tiptap/extension-image": "^2.2.4",
     "@tiptap/extension-link": "^2.2.4",
     "@tiptap/extension-list-item": "^2.2.4",
     "@tiptap/extension-placeholder": "^2.2.4",
@@ -20,7 +21,8 @@
     "framer-motion": "^11.0.6",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
     "@types/node": "^20",

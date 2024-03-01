@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-div[contentEditable] {
+/* div[contentEditable] {
   @apply px-0 py-3;
-}
+} */
 
 #command-key::before {
   content: "Press ⌘ + Enter to save";
@@ -18,6 +18,10 @@ div[contentEditable] {
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+.tiptap img {
+  @apply w-full h-full aspect-video object-cover rounded-md;
 }
 
 .tiptap p {

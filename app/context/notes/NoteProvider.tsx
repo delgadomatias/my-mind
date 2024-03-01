@@ -36,9 +36,16 @@ export const NoteProvider = ({ children }: React.PropsWithChildren) => {
     setItem("notes", JSON.stringify(updatedNotes));
   }
 
+  function addMultipleNotes(notes: Note[]) {
+    dispatch({ type: "note/addMultiple", payload: notes });
+    const previousNotes = JSON.parse(getItem("notes") || "[]");
+    setItem("notes", JSON.stringify([...previousNotes, ...notes]));
+  }
+
   useEffect(() => {
     const notes = JSON.parse(getItem("notes") || "[]");
     dispatch({ type: "note/load", payload: notes });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,6 +56,7 @@ export const NoteProvider = ({ children }: React.PropsWithChildren) => {
         addNote,
         updateNote,
         deleteNote,
+        addMultipleNotes,
       }}
     >
       {children}

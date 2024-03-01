@@ -1,6 +1,7 @@
 "use client";
 
 import { useNoteContext } from "@/context/notes";
+import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, Extension, Extensions, useEditor } from "@tiptap/react";
@@ -14,6 +15,7 @@ interface Props {
   onChange?: (richText: string) => void;
   onFocus?: () => void;
   supportAddNote?: boolean;
+  className?: string;
 }
 
 const MarkdownEditor = ({
@@ -24,6 +26,7 @@ const MarkdownEditor = ({
   onChange,
   onFocus,
   supportAddNote = false,
+  className = "",
 }: Props) => {
   const { addNote } = useNoteContext();
 
@@ -51,6 +54,7 @@ const MarkdownEditor = ({
   let extensions: Extensions = [
     StarterKit,
     Placeholder.configure({ placeholder: "Start typing here..." }),
+    Image,
     Link.configure({
       autolink: true,
       openOnClick: false,
@@ -68,7 +72,7 @@ const MarkdownEditor = ({
     content,
     editorProps: {
       attributes: {
-        class: "outline-none",
+        class: "outline-none " + className,
       },
     },
     onUpdate: ({ editor }) => {
@@ -86,7 +90,7 @@ const MarkdownEditor = ({
     return null;
   }
 
-  return <EditorContent editor={editor} />;
+  return <EditorContent editor={editor} className="w-full" />;
 };
 
 export default MarkdownEditor;
