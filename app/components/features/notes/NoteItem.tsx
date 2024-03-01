@@ -1,8 +1,8 @@
 "use client";
 
+import MarkdownEditor from "@/components/shared/MarkdownEditor";
 import { Note } from "@/interfaces/note.interface";
 import Link from "next/link";
-import MarkdownEditor from "../../shared/MarkdownEditor";
 
 interface Props {
   note: Note;

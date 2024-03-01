@@ -3,7 +3,7 @@
 import { useNoteContext } from "@/context/notes";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
-import { EditorContent, Extension, useEditor } from "@tiptap/react";
+import { EditorContent, Extension, Extensions, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
   onBlur?: () => void;
   onChange?: (richText: string) => void;
   onFocus?: () => void;
+  supportAddNote?: boolean;
 }
 
 const MarkdownEditor = ({
@@ -22,6 +23,7 @@ const MarkdownEditor = ({
   onBlur,
   onChange,
   onFocus,
+  supportAddNote = false,
 }: Props) => {
   const { addNote } = useNoteContext();
 
@@ -46,20 +48,23 @@ const MarkdownEditor = ({
     },
   });
 
+  let extensions: Extensions = [
+    StarterKit,
+    Placeholder.configure({ placeholder: "Start typing here..." }),
+    Link.configure({
+      autolink: true,
+      openOnClick: false,
+      protocols: ["http", "https"],
+    }),
+  ];
+
+  if (supportAddNote) {
+    extensions = [...extensions, AddNoteExtension];
+  }
+
   const editor = useEditor({
     editable,
-    extensions: [
-      StarterKit,
-      Placeholder.configure({
-        placeholder: "Start typing here...",
-      }),
-      AddNoteExtension,
-      Link.configure({
-        autolink: true,
-        openOnClick: false,
-        protocols: ["http", "https"],
-      }),
-    ],
+    extensions,
     content,
     editorProps: {
       attributes: {

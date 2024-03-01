@@ -60,6 +60,7 @@ export const NoteContainer = () => {
           onBlur={onBlur}
           onChange={handleOnChange}
           onFocus={onFocus}
+          supportAddNote
         />
       </div>
 

@@ -40,7 +40,11 @@ div[contentEditable] {
 }
 
 .tiptap h3 {
-  @apply text-xl font-semibold md:text-xl text-pretty;
+  @apply text-xl font-semibold md:text-xl text-pretty my-2;
+}
+
+.tiptap h3:first-child {
+  margin-top: 0;
 }
 
 .tiptap ul li {
@@ -91,7 +95,7 @@ div[contentEditable] {
   display: flex;
   align-items: center;
   color: #748297;
-  @apply text-2xl;
+  @apply text-lg;
 }
 
 .note-long::after {
