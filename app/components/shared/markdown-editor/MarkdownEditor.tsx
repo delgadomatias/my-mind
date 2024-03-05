@@ -93,7 +93,7 @@ const MarkdownEditor = ({
                       src: readerEvent.target?.result,
                     });
                     const transaction = view.state.tr.insert(
-                      coordinates.pos,
+                      coordinates!.pos,
                       node
                     );
                     view.dispatch(transaction);
