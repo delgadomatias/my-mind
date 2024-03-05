@@ -47,7 +47,14 @@ export const NoteDetails = ({ noteId }: Props) => {
     }
 
     // There are cases: the updated note is the same as the original note, then we don't need to update. Another case is when the note is undefined, then we don't need to update.
-    if (note?.content === updatedNote.content || !note) return;
+    if (
+      (note?.content === updatedNote.content &&
+        note?.title === updatedNote.title) ||
+      !note
+    ) {
+      return;
+    }
+
     updateNote(updatedNote);
   }
 
@@ -58,12 +65,29 @@ export const NoteDetails = ({ noteId }: Props) => {
     });
   }
 
+  function onTitleChange(title: string) {
+    setUpdatedNote({
+      ...updatedNote,
+      title: title,
+    });
+  }
+
+  function onDeleteNote(id: string) {
+    deleteNote(id);
+  }
+
   if (!note) return;
 
   return (
     <div>
       <BackdropShadow onUpdateNote={onUpdateNote} />
-      <NoteModal onNoteChange={onNoteChange} note={note} isImage={isImage} />
+      <NoteModal
+        isImage={isImage}
+        note={note}
+        onNoteChange={onNoteChange}
+        onTitleChange={onTitleChange}
+        onDeleteNote={onDeleteNote}
+      />
     </div>
   );
 };
