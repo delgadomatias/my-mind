@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/image": "^2.0.24",
     "@nextui-org/kbd": "^2.0.25",
+    "@tiptap/core": "^2.2.4",
     "@tiptap/extension-bullet-list": "^2.2.4",
     "@tiptap/extension-image": "^2.2.4",
     "@tiptap/extension-link": "^2.2.4",

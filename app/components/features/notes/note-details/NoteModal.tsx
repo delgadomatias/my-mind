@@ -52,9 +52,7 @@ export const NoteModal = ({
         {!isImage && (
           <ModalTextDetail onNoteChange={handleNoteChange} note={note} />
         )}
-        {isImage && (
-          <ModalImageDetail onNoteChange={handleNoteChange} note={note} />
-        )}
+        {isImage && <ModalImageDetail note={note} />}
 
         {/* Right side */}
         <div className="bg-[#F0F2F5] h-full w-[400px] rounded-lg flex flex-col justify-between">

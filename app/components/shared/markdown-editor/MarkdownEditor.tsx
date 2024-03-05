@@ -2,11 +2,11 @@
 
 import { useNoteContext } from "@/context/notes";
 import Image from "@tiptap/extension-image";
-import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, Extension, Extensions, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Plugin } from "prosemirror-state";
+import { RichTextLink } from "./extensions/RichLink";
 import styles from "./markdown-editor.module.css";
 
 export interface MarkdownEditorProps {
@@ -151,10 +151,12 @@ const MarkdownEditor = ({
       allowBase64: true,
     }),
     AddImageToNoteExtension,
-    Link.configure({
+    RichTextLink.configure({
       HTMLAttributes: {
         target: "_blank",
         rel: "noopener noreferrer",
+        class: "underline text-blue-500",
+        spellcheck: "false",
       },
     }),
   ];
