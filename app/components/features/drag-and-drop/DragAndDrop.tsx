@@ -47,10 +47,12 @@ export function MyDropzone() {
   });
 
   return (
-    <div {...getRootProps()} className="w-full h-screen absolute top-0 -z-10">
+    <div {...getRootProps()} className="w-full h-screen fixed top-0">
       <div className="absolute bottom-4 right-6">
         {isUploading && (
-          <h3 className="text-2xl">We&apos;re remembering the image...</h3>
+          <div className="bg-white px-8 py-4 rounded-full border-[#B8C3D3] border-2 animate-pulse z-50">
+            <h3 className="text-2xl">We&apos;re remembering the image...</h3>
+          </div>
         )}
       </div>
     </div>

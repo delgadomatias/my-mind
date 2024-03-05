@@ -55,7 +55,7 @@ export const NoteContainer = () => {
   return (
     <div className="relative">
       {/* Change this padding on Mobile */}
-      <div className="pr-40">
+      <div className="pr-40 z-10 relative mb-5 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] pl-6 py-2">
         <EditableMarkdownEditor
           content={noteContent}
           onAddNote={onAddNote}
@@ -65,7 +65,7 @@ export const NoteContainer = () => {
         />
       </div>
 
-      <hr className="mt-2 mb-5 border-[1px] border-black/10" />
+      {/* <hr className="mt-2 mb-5 border-[1px] border-black/10" /> */}
 
       {/* Div for show the tooltip for save */}
       <motion.div

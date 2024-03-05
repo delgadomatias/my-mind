@@ -15,7 +15,7 @@ export const NoteText = ({ content }: Props) => {
 
   return (
     <div
-      className={`w-full ${length > 300 ? "note-long" : ""}`}
+      className={`w-full -z-10 ${length > 300 ? "note-long" : ""}`}
       style={length > 300 ? longStyles : {}}
     >
       <MarkdownEditor

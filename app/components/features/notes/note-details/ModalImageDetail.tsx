@@ -1,19 +1,13 @@
 import { Note } from "@/app/interfaces";
+import { Image } from "@nextui-org/image";
 import { usePalette } from "color-thief-react";
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useEffect, useMemo } from "react";
 
 interface Props {
   note: Note;
-  onNoteChange: (richText: string) => void;
 }
 
-const ReadonlyMarkdownEditor = dynamic(
-  () => import("@/app/components/shared/markdown-editor/ReadonlyMarkdownEditor")
-);
-
-export const ModalImageDetail = ({ note, onNoteChange }: Props) => {
+export const ModalImageDetail = ({ note }: Props) => {
   const imageSrc = useMemo(() => {
     const imgSrcRegex =
       /<img\s+[^>]*?src\s*=\s*(["'])(.*?)\1|<img\s+[^>]*?src\s*=\s*([^ >]*)/;
@@ -38,13 +32,11 @@ export const ModalImageDetail = ({ note, onNoteChange }: Props) => {
     <div className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-auto overscroll-behavior-y-contain scrollbar-gutter-stable">
       <Image
         alt="Image"
-        className="object-contain w-full aspect-video"
+        className="object-contain w-full h-full aspect-square"
         height={800}
-        quality={100}
         src={imageSrc}
         width={800}
       />
-      {/* <ReadonlyMarkdownEditor content={note?.content} onChange={onNoteChange} /> */}
     </div>
   );
 };

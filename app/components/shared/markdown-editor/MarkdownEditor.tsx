@@ -57,9 +57,10 @@ const MarkdownEditor = ({
     Placeholder.configure({ placeholder: "Start typing here..." }),
     Image,
     Link.configure({
-      autolink: true,
-      openOnClick: false,
-      protocols: ["http", "https"],
+      HTMLAttributes: {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
     }),
   ];
 

@@ -6,8 +6,12 @@
   @apply py-3;
 }
 
+.editor a {
+  @apply text-blue-500 cursor-pointer;
+}
+
 .editor img {
-  @apply object-cover w-full h-full rounded-md aspect-video;
+  @apply object-cover w-full h-full rounded-md aspect-auto;
 }
 
 .editor p {

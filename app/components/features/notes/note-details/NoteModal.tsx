@@ -40,13 +40,13 @@ export const NoteModal = ({
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="absolute inset-0 m-12"
+      className="absolute inset-0 m-12 z-50"
       id="backdrop-container"
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
     >
       <div
-        className="z-50 flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
+        className="flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
         id="backdrop-item"
       >
         {!isImage && (

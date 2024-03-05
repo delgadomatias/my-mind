@@ -16,7 +16,7 @@ export const NoteItem = ({ note }: Props) => {
 
   return (
     <Link
-      className="hover:border-[#B8C3D3] max-w-full rounded-md flex hover:border-4 border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid  "
+      className="hover:border-[#B8C3D3] max-w-full rounded-md flex hover:border-4 border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid z-10 relative"
       href={id}
     >
       {isImage && <NoteImage content={content} />}
