@@ -1,5 +1,6 @@
 "use client";
 
+import { isImageInContent } from "@/app/utils/isImageInContent";
 import { useNoteContext } from "@/context/notes";
 import { Note, NoteId } from "@/interfaces/note.interface";
 import { DEFAULT_NOTE_CONTENT } from "@/utils/constants";
@@ -17,6 +18,11 @@ export const NoteDetails = ({ noteId }: Props) => {
     () => notes.find((n) => n.id === noteId),
     [notes, noteId]
   );
+  const isImage = useMemo(() => {
+    if (!note) return false;
+    return isImageInContent(note.content);
+  }, [note]);
+
   const [updatedNote, setUpdatedNote] = useState({} as Note);
 
   useEffect(() => {
@@ -57,7 +63,7 @@ export const NoteDetails = ({ noteId }: Props) => {
   return (
     <div>
       <BackdropShadow onUpdateNote={onUpdateNote} />
-      <NoteModal onNoteChange={onNoteChange} note={note} />
+      <NoteModal onNoteChange={onNoteChange} note={note} isImage={isImage} />
     </div>
   );
 };

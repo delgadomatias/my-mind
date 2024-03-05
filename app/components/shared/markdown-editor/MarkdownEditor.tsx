@@ -6,8 +6,9 @@ import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, Extension, Extensions, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import styles from "./markdown-editor.module.css";
 
-interface Props {
+export interface MarkdownEditorProps {
   content?: string;
   editable?: boolean;
   onAddNote?: () => void;
@@ -27,7 +28,7 @@ const MarkdownEditor = ({
   onFocus,
   supportAddNote = false,
   className = "",
-}: Props) => {
+}: MarkdownEditorProps) => {
   const { addNote } = useNoteContext();
 
   const AddNoteExtension = Extension.create({
@@ -72,11 +73,12 @@ const MarkdownEditor = ({
     content,
     editorProps: {
       attributes: {
-        class: "outline-none " + className,
+        class: `${styles.editor} ${className}`,
       },
     },
     onUpdate: ({ editor }) => {
-      onChange && onChange(editor.getHTML());
+      const richText = editor.getHTML();
+      onChange && onChange(richText);
     },
     onBlur: () => {
       onBlur && onBlur();

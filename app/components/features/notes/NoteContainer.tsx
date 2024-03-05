@@ -5,10 +5,13 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-const MarkdownEditor = dynamic(() => import("../../shared/MarkdownEditor"), {
-  ssr: false,
-  loading: () => <div className="h-[56px] w-full"></div>,
-});
+const EditableMarkdownEditor = dynamic(
+  () => import("@/components/shared/markdown-editor/EditableMarkdownEditor"),
+  {
+    ssr: false,
+    loading: () => <div className="h-[56px] w-full"></div>,
+  }
+);
 
 export const NoteContainer = () => {
   const [noteContent, setNoteContent] = useState("");
@@ -53,14 +56,12 @@ export const NoteContainer = () => {
     <div className="relative">
       {/* Change this padding on Mobile */}
       <div className="pr-40">
-        <MarkdownEditor
+        <EditableMarkdownEditor
           content={noteContent}
-          editable
           onAddNote={onAddNote}
           onBlur={onBlur}
           onChange={handleOnChange}
           onFocus={onFocus}
-          supportAddNote
         />
       </div>
 

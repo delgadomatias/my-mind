@@ -2,6 +2,7 @@ export interface Note {
   id: NoteId;
   content: string;
   createdAt: Date;
+  title?: string;
 }
 
 export type NoteId = string;

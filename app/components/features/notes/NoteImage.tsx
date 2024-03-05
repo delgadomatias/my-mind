@@ -1,4 +1,4 @@
-import MarkdownEditor from "@/components/shared/MarkdownEditor";
+import MarkdownEditor from "@/app/components/shared/markdown-editor/MarkdownEditor";
 
 interface Props {
   content: string;
@@ -9,7 +9,7 @@ export const NoteImage = ({ content }: Props) => {
   return (
     <MarkdownEditor
       content={content}
-      className="bg-white shadow-xl rounded-lg w-full"
+      className="w-full bg-white rounded-lg shadow-xl"
     />
   );
 };

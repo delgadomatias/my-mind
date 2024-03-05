@@ -1,17 +1,17 @@
 "use client";
 
-import MarkdownEditor from "@/components/shared/MarkdownEditor";
 import { Note } from "@/interfaces/note.interface";
 import { motion } from "framer-motion";
+import { ModalImageDetail } from "./ModalImageDetail";
+import { ModalTextDetail } from "./ModalTextDetail";
 
 interface Props {
   note: Note;
   onNoteChange: (richText: string) => void;
+  isImage: boolean;
 }
 
-export const NoteModal = ({ note, onNoteChange }: Props) => {
-  const noteLength = note.content.length;
-
+export const NoteModal = ({ note, onNoteChange, isImage }: Props) => {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
@@ -21,26 +21,15 @@ export const NoteModal = ({ note, onNoteChange }: Props) => {
       transition={{ duration: 0.5 }}
     >
       <div
-        className="z-50 flex w-full h-full p-2 transition-all duration-100 bg-white"
+        className="z-50 flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
         id="backdrop-item"
       >
-        <div
-          className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-scroll overscroll-behavior-y-contain scrollbar-gutter-stable"
-          style={{
-            scrollbarColor: "#D0D8E5 transparent",
-            marginRight: noteLength > 200 ? "0.5rem" : "0",
-          }}
-        >
-          <div className="max-w-3xl max-h-full 2xl:max-w-4xl">
-            <div className="py-12">
-              <MarkdownEditor
-                content={note?.content}
-                editable
-                onChange={onNoteChange}
-              />
-            </div>
-          </div>
-        </div>
+        {!isImage && (
+          <ModalTextDetail onNoteChange={onNoteChange} note={note} />
+        )}
+        {isImage && (
+          <ModalImageDetail onNoteChange={onNoteChange} note={note} />
+        )}
 
         {/* Right side */}
         <div className="bg-[#F0F2F5] h-full w-[400px] rounded-lg">

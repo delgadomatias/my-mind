@@ -4,7 +4,7 @@ import { NoteDetails } from "@/app/components/features/notes/note-details/NoteDe
 import dynamic from "next/dynamic";
 
 const MarkdownEditor = dynamic(
-  () => import("@/app/components/shared/MarkdownEditor"),
+  () => import("@/app/components/shared/markdown-editor/MarkdownEditor"),
   {
     ssr: false,
   }
