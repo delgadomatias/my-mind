@@ -11,7 +11,7 @@
 }
 
 .editor img {
-  @apply object-cover w-full h-full rounded-md aspect-auto;
+  @apply object-cover w-full h-full max-w-full rounded-md aspect-auto sm:max-w-96;
 }
 
 .editor p {
