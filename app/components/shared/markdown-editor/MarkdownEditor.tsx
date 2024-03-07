@@ -18,6 +18,7 @@ export interface MarkdownEditorProps {
   onFocus?: () => void;
   supportAddNote?: boolean;
   className?: string;
+  autoFocus?: boolean;
 }
 
 const MarkdownEditor = ({
@@ -29,6 +30,7 @@ const MarkdownEditor = ({
   onFocus,
   supportAddNote = false,
   className = "",
+  autoFocus = false,
 }: MarkdownEditorProps) => {
   const { addNote } = useNoteContext();
 
@@ -65,7 +67,7 @@ const MarkdownEditor = ({
                   event.dataTransfer.files &&
                   event.dataTransfer.files.length;
 
-                if (!hasFiles) {
+                if (!hasFiles || !this.props.editable) {
                   return;
                 }
 
@@ -92,10 +94,12 @@ const MarkdownEditor = ({
                     const node = schema.nodes.image.create({
                       src: readerEvent.target?.result,
                     });
-                    const transaction = view.state.tr.insert(
-                      coordinates!.pos,
-                      node
-                    );
+                    const paragraph = schema.node("paragraph");
+
+                    const transaction = view.state.tr
+                      .insert(coordinates!.pos, node)
+                      .insert(coordinates!.pos + 1, paragraph);
+
                     view.dispatch(transaction);
                   };
                   reader.readAsDataURL(image);
@@ -147,10 +151,9 @@ const MarkdownEditor = ({
   let extensions: Extensions = [
     StarterKit,
     Placeholder.configure({ placeholder: "Start typing here..." }),
-    Image.configure({
-      allowBase64: true,
-    }),
+    Image.configure({ allowBase64: true }),
     AddImageToNoteExtension,
+
     RichTextLink.configure({
       HTMLAttributes: {
         target: "_blank",
@@ -169,6 +172,7 @@ const MarkdownEditor = ({
     editable,
     extensions,
     content,
+    autofocus: autoFocus,
     editorProps: {
       attributes: {
         class: `${styles.editor} ${className}`,

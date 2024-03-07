@@ -1,7 +1,12 @@
 "use client";
 
+import { NextUIProvider } from "@nextui-org/react";
 import { NoteProvider } from "./context/notes/NoteProvider";
 
 export const Providers = ({ children }: React.PropsWithChildren) => {
-  return <NoteProvider>{children}</NoteProvider>;
+  return (
+    <NextUIProvider>
+      <NoteProvider>{children}</NoteProvider>;
+    </NextUIProvider>
+  );
 };

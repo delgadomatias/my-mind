@@ -15,12 +15,12 @@ export const NoteText = ({ content }: Props) => {
 
   return (
     <div
-      className={`w-full -z-10 ${length > 300 ? "note-long" : ""}`}
-      style={length > 300 ? longStyles : {}}
+      className={`w-full -z-10 ${length > 800 ? "note-long" : ""}`}
+      style={length > 800 ? longStyles : {}}
     >
       <MarkdownEditor
         content={content}
-        className="bg-white shadow-xl rounded-lg w-full px-6 py-4"
+        className="w-full px-6 py-4 bg-white rounded-lg shadow-xl"
       />
     </div>
   );

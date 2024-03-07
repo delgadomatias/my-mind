@@ -2,18 +2,23 @@
 
 import { UploadAction } from "@/app/actions/upload.action";
 import { useNoteContext } from "@/app/context/notes";
+import { AnimatePresence } from "framer-motion";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { DragError } from "./drag-error/DragError";
+import { FileLoading } from "./file-loading/FileLoading";
 
 export function MyDropzone() {
   const { addNote } = useNoteContext();
   const [isUploading, setIsUploading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [file, setFile] = useState<File>();
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      setIsUploading(true);
-
       acceptedFiles.map(async (file) => {
+        setFile(file);
         const form = new FormData();
         form.append("file", file);
 
@@ -27,9 +32,12 @@ export function MyDropzone() {
             createdAt: created_at,
             id: Date.now() + public_id,
           };
+
           addNote(newNote);
         } catch (error) {
           console.error("Error:", error);
+          setIsError(true);
+          setIsUploading(false);
         }
       });
     },
@@ -44,17 +52,44 @@ export function MyDropzone() {
       "image/webp": [".webp"],
     },
     noClick: true,
+    onDropRejected: () => {
+      setIsError(true);
+      setTimeout(() => {
+        setIsError(false);
+        setIsDragOver(false);
+      }, 2500);
+    },
+    onDropAccepted: () => {
+      setIsError(false);
+      setIsUploading(true);
+      setIsDragOver(false);
+    },
+    onDragOver: () => {
+      setIsDragOver(true);
+    },
+    onDragLeave: () => {
+      setIsDragOver(false);
+    },
   });
 
   return (
-    <div {...getRootProps()} className="w-full h-screen fixed top-0">
-      <div className="absolute bottom-4 right-6">
-        {isUploading && (
-          <div className="bg-white px-8 py-4 rounded-full border-[#B8C3D3] border-2 animate-pulse z-50">
-            <h3 className="text-2xl">We&apos;re remembering the image...</h3>
-          </div>
-        )}
+    <>
+      <div
+        {...getRootProps()}
+        className="fixed top-0 w-full h-screen"
+        style={{
+          backgroundColor: isDragOver ? "rgba(0, 0, 0, 0.3)" : "transparent",
+          zIndex: isDragOver ? 50 : "unset",
+        }}
+      ></div>
+
+      <div className="fixed z-50 bottom-4 right-6">
+        <AnimatePresence>
+          {isUploading && file && <FileLoading file={file} />}
+        </AnimatePresence>
+
+        <AnimatePresence>{isError && <DragError />}</AnimatePresence>
       </div>
-    </div>
+    </>
   );
 }
