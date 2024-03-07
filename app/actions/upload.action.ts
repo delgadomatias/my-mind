@@ -1,6 +1,10 @@
 "use server";
 
-export const UploadAction = async (form: FormData) => {
+import { CloudinaryResponse } from "../interfaces/cloudinary-response.interface";
+
+export async function UploadImageAction(
+  form: FormData
+): Promise<CloudinaryResponse> {
   form.append("upload_preset", "abgtsn7m");
   form.append("api_key", "697916892814597");
 
@@ -12,6 +16,6 @@ export const UploadAction = async (form: FormData) => {
     }
   );
 
-  const data = await response.json();
+  const data = (await response.json()) as CloudinaryResponse;
   return data;
-};
+}

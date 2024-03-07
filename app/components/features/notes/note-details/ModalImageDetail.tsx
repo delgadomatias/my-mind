@@ -32,10 +32,13 @@ export const ModalImageDetail = ({ note }: Props) => {
     <div className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-auto overscroll-behavior-y-contain scrollbar-gutter-stable">
       <Image
         alt="Image"
-        className="object-contain w-full h-full aspect-square"
         height={800}
         src={imageSrc}
         width={800}
+        className="object-cover w-full h-full aspect-square max-w-full max-h-full"
+        classNames={{
+          wrapper: "h-full",
+        }}
       />
     </div>
   );
