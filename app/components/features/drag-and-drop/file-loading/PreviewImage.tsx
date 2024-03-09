@@ -9,10 +9,10 @@ export const PreviewImage = ({ src }: Props) => {
   return (
     <Image
       alt="Image to upload"
-      className="h-full !rounded-tr-none !rounded-br-none rounded-xl"
+      className="h-full w-[120px] !rounded-tr-none !rounded-br-none rounded-xl"
       height={80}
       src={src}
-      width={80}
+      width={120}
     />
   );
 };
