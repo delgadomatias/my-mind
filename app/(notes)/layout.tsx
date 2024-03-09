@@ -1,6 +1,6 @@
 import { Providers } from "@/app/Providers";
 import "@/app/globals.css";
-import { NewDragAndDrop } from "@/components/NewDragAndDrop";
+import { DragAndDrop } from "@/components/features/drag-and-drop/DragAndDrop";
 import { NoteSection } from "@/components/shared/NoteSection";
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
@@ -24,7 +24,7 @@ export default function RootLayout({
         <main>
           <Providers>
             <NoteSection />
-            <NewDragAndDrop />
+            <DragAndDrop />
             {children}
           </Providers>
         </main>
