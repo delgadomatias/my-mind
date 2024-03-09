@@ -40,7 +40,7 @@ export const FileLoading = ({ files }: Props) => {
               width={"100%"}
               height="100%"
               alt="Test"
-              className={`h-full object-cover ${isFirstImage ? "rounded-tl-xl" : ""} ${isLastImage ? "rounded-bl-xl" : ""}`}
+              className={`h-full object-cover ${isFirstImage ? "rounded-tl-xl" : ""} ${isLastImage && !isFilesNumberEven ? "rounded-bl-xl" : ""}`}
               classNames={{
                 wrapper: `${!isFilesNumberEven && isLastImage ? "col-span-full" : "col-span-1"} `,
               }}
