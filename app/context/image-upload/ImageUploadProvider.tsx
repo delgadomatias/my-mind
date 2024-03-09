@@ -1,3 +1,4 @@
+import { checkValidFiles } from "@/app/utils/checkValidFiles";
 import { uploadFiles } from "@/components/features/drag-and-drop/uploadFiles";
 import { imageUploadReducer } from "@/context/image-upload/imageUploadReducer";
 import { useNoteContext } from "@/context/notes";
@@ -34,6 +35,10 @@ export const ImageUploadProvider = ({ children }: Props) => {
     dispatch({ type: "imageUpload/set_isUploading", payload });
   }
 
+  function setIsError(payload: boolean) {
+    dispatch({ type: "imageUpload/set_isError", payload });
+  }
+
   useEffect(() => {
     const body = document.body;
     body.addEventListener("dragover", handleDragOver);
@@ -63,8 +68,21 @@ export const ImageUploadProvider = ({ children }: Props) => {
       // Get the files and update the state
       const { files } = event.dataTransfer;
       const arrayFiles = Array.from(files);
-      setFiles(arrayFiles);
 
+      // Check type files
+      const isValidFiles = checkValidFiles(arrayFiles);
+      if (!isValidFiles) {
+        setIsError(true);
+        setIsUploading(false);
+
+        setTimeout(() => {
+          setIsError(false);
+        }, 2000);
+
+        return;
+      }
+
+      setFiles(arrayFiles);
       await uploadFiles({ addNote, files: arrayFiles });
       setIsUploading(false);
     }
@@ -94,6 +112,7 @@ export const ImageUploadProvider = ({ children }: Props) => {
       value={{
         setDragOver,
         setFiles,
+        setIsError,
         setIsUploading,
         ...state,
       }}

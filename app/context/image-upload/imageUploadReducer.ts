@@ -12,6 +12,10 @@ type ImageUploadActions =
   | {
       type: "imageUpload/set_isUploading";
       payload: boolean;
+    }
+  | {
+      type: "imageUpload/set_isError";
+      payload: boolean;
     };
 
 interface Reducer {
@@ -38,6 +42,12 @@ export const imageUploadReducer: Reducer = (state, action) => {
       return {
         ...state,
         isUploading: action.payload,
+      };
+    }
+    case "imageUpload/set_isError": {
+      return {
+        ...state,
+        isError: action.payload,
       };
     }
     default: {
