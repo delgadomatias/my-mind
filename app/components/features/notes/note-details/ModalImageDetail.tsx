@@ -37,7 +37,7 @@ export const ModalImageDetail = ({ note }: Props) => {
         width={800}
         className="object-cover w-full h-full aspect-square max-w-full max-h-full"
         classNames={{
-          wrapper: "h-full",
+          wrapper: "h-[80%]",
         }}
       />
     </div>

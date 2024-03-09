@@ -2,19 +2,23 @@ import { UploadImageAction } from "@/app/actions/upload.action";
 import { Note } from "@/app/interfaces";
 
 interface Props {
-  form: FormData;
+  files: File[];
   addNote: (note: Note) => void;
 }
 
-export async function uploadFiles({ addNote, form }: Props) {
-  const data = await UploadImageAction(form);
+export async function uploadFiles({ addNote, files }: Props) {
+  for (const file of files) {
+    const form = new FormData();
+    form.append("file", file);
 
-  const { secure_url, public_id, created_at } = data;
-  const newNote = {
-    content: "<img src=" + secure_url + " />",
-    createdAt: created_at,
-    id: Date.now() + public_id,
-  };
+    const data = await UploadImageAction(form);
+    const { secure_url, public_id, created_at } = data;
 
-  addNote(newNote);
+    const newNote = {
+      content: "<img src=" + secure_url + " />",
+      createdAt: created_at,
+      id: Date.now() + public_id,
+    };
+    addNote(newNote);
+  }
 }
