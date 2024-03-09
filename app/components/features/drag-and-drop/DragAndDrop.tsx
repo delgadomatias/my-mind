@@ -33,7 +33,7 @@ export function Dropzone() {
         }, 1500);
       });
     },
-    [addNote]
+    [addNote],
   );
 
   const { getRootProps } = useDropzone({
