@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #command-key::before {
-  content: "Press ⌘ + Enter to save";
+  content: "Press CTRL + Enter to save";
   @apply text-white uppercase;
 }
 

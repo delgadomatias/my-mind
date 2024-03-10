@@ -4,6 +4,7 @@ import { DEFAULT_NOTE_CONTENT } from "@/app/utils/constants";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import AddNoteEditor from "../../shared/markdown-editor/AddNoteEditor";
 
 const EditableMarkdownEditor = dynamic(
   () => import("@/components/shared/markdown-editor/EditableMarkdownEditor"),
@@ -31,6 +32,7 @@ export const NoteContainer = () => {
 
   function onAddNote() {
     setNoteContent("");
+    setIsTyping(false);
 
     // Only for animation purposes
     setTimeout(() => {
@@ -40,10 +42,6 @@ export const NoteContainer = () => {
     setTimeout(() => {
       setIsSaving(false);
     }, 1500);
-  }
-
-  function onBlur() {
-    setIsTyping(false);
   }
 
   function onFocus() {
@@ -56,10 +54,10 @@ export const NoteContainer = () => {
     <div className="relative">
       {/* Change this padding on Mobile */}
       <div className="pr-40 z-10 relative mb-5 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] pl-6 py-2">
-        <EditableMarkdownEditor
+        <AddNoteEditor
           content={noteContent}
+          isTyping={isTyping}
           onAddNote={onAddNote}
-          onBlur={onBlur}
           onChange={handleOnChange}
           onFocus={onFocus}
         />
@@ -68,7 +66,7 @@ export const NoteContainer = () => {
       {/* <hr className="mt-2 mb-5 border-[1px] border-black/10" /> */}
 
       {/* Div for show the tooltip for save */}
-      <motion.div
+      {/* <motion.div
         className="absolute top-0 right-0 w-40 h-full p-2 text-center transition-all ease-in duration-800"
         initial={{ opacity: 0 }}
         animate={{ opacity: isTyping ? 1 : 0 }}
@@ -78,7 +76,7 @@ export const NoteContainer = () => {
         <div className="h-full w-full bg-[#ff5924] flex items-center justify-center px-4 rounded-md">
           <span className="text-sm" id="command-key"></span>
         </div>
-      </motion.div>
+      </motion.div> */}
 
       {/* Div for show a message */}
       <motion.div
