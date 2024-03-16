@@ -1,7 +1,5 @@
 import { Providers } from "@/app/Providers";
 import "@/app/globals.css";
-import { DragAndDrop } from "@/components/features/drag-and-drop/DragAndDrop";
-import { NoteSection } from "@/components/shared/NoteSection";
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
 
@@ -23,8 +21,8 @@ export default function RootLayout({
       <body className={nunito.className}>
         <main>
           <Providers>
-            <NoteSection />
-            <DragAndDrop />
+            {/* <NoteSection />
+            <DragAndDrop /> */}
             {children}
           </Providers>
         </main>
