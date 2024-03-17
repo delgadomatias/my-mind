@@ -1,6 +1,5 @@
 "use client";
 
-import { useNoteContext } from "@/context/notes";
 import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, Extension, Extensions, useEditor } from "@tiptap/react";
@@ -32,29 +31,6 @@ const MarkdownEditor = ({
   className = "",
   autoFocus = false,
 }: MarkdownEditorProps) => {
-  const { addNote } = useNoteContext();
-
-  const AddNoteExtension = Extension.create({
-    addKeyboardShortcuts() {
-      return {
-        "Ctrl-Enter": () => {
-          onAddNote && onAddNote();
-          const content = this.editor.getHTML();
-
-          addNote({
-            content,
-            createdAt: new Date(),
-            id: Date.now().toString(),
-          });
-
-          this.editor.commands.clearContent();
-          this.editor.commands.blur();
-          return true;
-        },
-      };
-    },
-  });
-
   const AddImageToNoteExtension = Extension.create({
     addProseMirrorPlugins() {
       return [
@@ -163,10 +139,6 @@ const MarkdownEditor = ({
       },
     }),
   ];
-
-  if (supportAddNote) {
-    extensions = [...extensions, AddNoteExtension];
-  }
 
   const editor = useEditor({
     editable,

@@ -14,6 +14,7 @@ export const IMAGE_UPLOAD_INITIAL_STATE: ImageUploadState = {
   isDragOver: false,
   isUploading: false,
   files: [],
+  isError: false,
 };
 
 export const ImageUploadProvider = ({ children }: Props) => {
@@ -83,7 +84,7 @@ export const ImageUploadProvider = ({ children }: Props) => {
       }
 
       setFiles(arrayFiles);
-      await uploadFiles({ addNote, files: arrayFiles });
+      await uploadFiles({ files: arrayFiles });
       setIsUploading(false);
     }
 

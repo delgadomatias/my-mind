@@ -26,7 +26,8 @@
       "@/interfaces/*": ["./app/interfaces/*"],
       "@/hooks/*": ["./app/hooks/*"],
       "@/context/*": ["./app/context/*"],
-      "@/utils/*": ["./app/utils/*"]
+      "@/utils/*": ["./app/utils/*"],
+      "@/database/*": ["./app/database/*"]
     }
   },
   "include": [

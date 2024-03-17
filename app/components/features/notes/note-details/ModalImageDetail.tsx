@@ -1,45 +1,94 @@
+"use client";
+
+import { NoteActions } from "@/app/actions";
+import { TrashIcon } from "@/app/components/shared/icons/TrashIcon";
 import { Note } from "@/app/interfaces";
 import { Image } from "@nextui-org/image";
-import { usePalette } from "color-thief-react";
-import { useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
+import { Dispatch, SetStateAction } from "react";
 
 interface Props {
+  dominantColor: string;
   note: Note;
+  setUpdatedNote: Dispatch<SetStateAction<Note>>;
+  src: string;
 }
 
-export const ModalImageDetail = ({ note }: Props) => {
-  const imageSrc = useMemo(() => {
-    const imgSrcRegex =
-      /<img\s+[^>]*?src\s*=\s*(["'])(.*?)\1|<img\s+[^>]*?src\s*=\s*([^ >]*)/;
-    const match = note.content.match(imgSrcRegex);
-    return match ? (match[2] ? match[2] : match[3]) : "";
-  }, [note.content]);
+export const ModalImageDetail = ({
+  dominantColor,
+  note,
+  setUpdatedNote,
+  src,
+}: Props) => {
+  function handleNoteTitleChange(title: string) {
+    setUpdatedNote((prev) => ({
+      ...prev,
+      title,
+    }));
+  }
 
-  const { data } = usePalette(imageSrc, 2, "hex", {
-    crossOrigin: "Anonymous",
-  });
-
-  useEffect(() => {
-    if (!data) return;
-
-    const backdropDiv = document.getElementById("backdrop-item");
-    if (backdropDiv) {
-      backdropDiv.style.backgroundColor = data[0];
-    }
-  }, [data]);
+  async function handleDeleteNote() {
+    await NoteActions.deleteNote(note.id);
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-auto overscroll-behavior-y-contain scrollbar-gutter-stable">
-      <Image
-        alt="Image"
-        height={800}
-        src={imageSrc}
-        width={800}
-        className="object-cover w-full h-full aspect-square max-w-full max-h-full"
-        classNames={{
-          wrapper: "h-[80%]",
+    <motion.div
+      animate={{ opacity: 1, y: 0 }}
+      className="absolute inset-0 m-12 z-50"
+      id="backdrop-container"
+      initial={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div
+        className="flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
+        id="backdrop-item"
+        style={{
+          backgroundColor: dominantColor,
         }}
-      />
-    </div>
+      >
+        {/* Modal image detail */}
+        <div className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-auto overscroll-behavior-y-contain scrollbar-gutter-stable">
+          <Image
+            alt="Image"
+            height={800}
+            src={src}
+            width={800}
+            className="object-cover w-full h-full aspect-square max-w-full max-h-full"
+            classNames={{
+              wrapper: "h-[80%]",
+            }}
+          />
+        </div>
+
+        {/* Right side */}
+        <div className="bg-[#F0F2F5] h-full w-[400px] rounded-lg flex flex-col justify-between">
+          <header
+            className="h-24 py-5 rounded-lg rounded-bl-none rounded-br-none px-7"
+            style={{
+              background:
+                "linear-gradient(180deg, #D1D9E6 0%, #EAEDF1 105%, #EAEDF1 105%)",
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Title goes here"
+              className="text-[#505864] bg-transparent w-full text-ellipsis border-none text-3xl font-light focus:outline-none focus:text-black"
+              onChange={(e) => handleNoteTitleChange(e.target.value)}
+              value={note.title}
+            />
+          </header>
+
+          <div className="flex items-center justify-center w-full p-5">
+            <button
+              className="p-3 bg-white rounded-full hover:bg-[#748297] group transition-all ease-linear"
+              onClick={handleDeleteNote}
+              title="Delete card"
+            >
+              <TrashIcon className="group-hover:fill-white" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };

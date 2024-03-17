@@ -2,9 +2,7 @@
 
 import { CloudinaryResponse } from "@/interfaces/cloudinary-response.interface";
 
-export async function UploadImageAction(
-  form: FormData,
-): Promise<CloudinaryResponse> {
+export async function uploadImage(form: FormData): Promise<CloudinaryResponse> {
   if (
     !process.env.CLOUDINARY_UPLOAD_PRESET ||
     !process.env.CLOUDINARY_API_KEY
@@ -20,7 +18,7 @@ export async function UploadImageAction(
     {
       method: "POST",
       body: form,
-    },
+    }
   );
 
   return (await response.json()) as CloudinaryResponse;

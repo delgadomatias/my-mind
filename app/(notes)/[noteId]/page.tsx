@@ -1,3 +1,4 @@
+import { NoteActions } from "@/app/actions";
 import { NoteDetails } from "@/app/components/features/notes/note-details/NoteDetails";
 
 interface Props {
@@ -6,8 +7,9 @@ interface Props {
   };
 }
 
-const NoteDetail = ({ params }: Props) => {
-  return <NoteDetails noteId={params.noteId} />;
+const NoteDetail = async ({ params }: Props) => {
+  const note = await NoteActions.getNoteById(params.noteId);
+  return <NoteDetails note={note} />;
 };
 
 export default NoteDetail;

@@ -4,13 +4,12 @@ import { DEFAULT_NOTE_CONTENT } from "@/app/utils/constants";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import AddNoteEditor from "../../shared/markdown-editor/AddNoteEditor";
 
-const EditableMarkdownEditor = dynamic(
-  () => import("@/components/shared/markdown-editor/EditableMarkdownEditor"),
+const AddNoteEditor = dynamic(
+  () => import("@/components/shared/markdown-editor/AddNoteEditor"),
   {
     ssr: false,
-    loading: () => <div className="h-[56px] w-full"></div>,
+    loading: () => <div className="h-[54px] w-full"></div>,
   }
 );
 
@@ -62,21 +61,6 @@ export const NoteContainer = () => {
           onFocus={onFocus}
         />
       </div>
-
-      {/* <hr className="mt-2 mb-5 border-[1px] border-black/10" /> */}
-
-      {/* Div for show the tooltip for save */}
-      {/* <motion.div
-        className="absolute top-0 right-0 w-40 h-full p-2 text-center transition-all ease-in duration-800"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isTyping ? 1 : 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-      >
-        <div className="h-full w-full bg-[#ff5924] flex items-center justify-center px-4 rounded-md">
-          <span className="text-sm" id="command-key"></span>
-        </div>
-      </motion.div> */}
 
       {/* Div for show a message */}
       <motion.div

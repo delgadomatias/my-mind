@@ -1,7 +1,7 @@
 export interface Note {
   id: NoteId;
   content: string;
-  createdAt: Date;
+  created_at: Date;
   title?: string;
 }
 

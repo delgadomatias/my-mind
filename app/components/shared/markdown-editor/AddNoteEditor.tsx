@@ -1,6 +1,6 @@
 "use client";
 
-import { useNoteContext } from "@/app/context/notes";
+import { NoteActions } from "@/app/actions";
 import { Extension, Extensions } from "@tiptap/core";
 import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -21,7 +21,9 @@ const AddNoteEditor = ({
 }: MarkdownEditorProps & {
   isTyping: boolean;
 }) => {
-  const { addNote } = useNoteContext();
+  async function onCreateNote(content: string) {
+    await NoteActions.createNote({ content });
+  }
 
   const AddNoteExtension = Extension.create({
     addKeyboardShortcuts() {
@@ -29,12 +31,7 @@ const AddNoteEditor = ({
         "Ctrl-Enter": () => {
           onAddNote && onAddNote();
           const content = this.editor.getHTML();
-
-          addNote({
-            content,
-            createdAt: new Date(),
-            id: Date.now().toString(),
-          });
+          onCreateNote(content);
 
           this.editor.commands.clearContent();
           this.editor.commands.blur();
@@ -84,11 +81,9 @@ const AddNoteEditor = ({
     e.preventDefault();
     const newNote = {
       content: editor?.getHTML() || "",
-      createdAt: new Date(),
-      id: Date.now().toString(),
     };
 
-    addNote(newNote);
+    NoteActions.createNote(newNote);
     editor?.commands.clearContent();
     editor?.commands.blur();
     onAddNote && onAddNote();

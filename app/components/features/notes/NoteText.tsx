@@ -1,4 +1,4 @@
-import MarkdownEditor from "@/app/components/shared/markdown-editor/MarkdownEditor";
+import MarkdownEditor from "@/components/shared/markdown-editor/MarkdownEditor";
 
 interface Props {
   content: string;
