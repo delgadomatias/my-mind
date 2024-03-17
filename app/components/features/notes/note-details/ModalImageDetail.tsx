@@ -53,7 +53,7 @@ export const ModalImageDetail = ({
             height={800}
             src={src}
             width={800}
-            className="object-cover w-full h-full max-w-full max-h-full aspect-square"
+            className="object-cover w-full h-full max-w-full max-h-full aspect-square opacity-100"
             classNames={{
               wrapper: "h-[80%]",
             }}
@@ -74,7 +74,7 @@ export const ModalImageDetail = ({
               placeholder="Title goes here"
               className="text-[#505864] bg-transparent w-full text-ellipsis border-none text-3xl font-light focus:outline-none focus:text-black"
               onChange={(e) => handleNoteTitleChange(e.target.value)}
-              value={note.title}
+              value={note.title || ""}
             />
           </header>
 

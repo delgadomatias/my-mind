@@ -14,10 +14,11 @@ export const NoteItem = ({ note }: Props) => {
 
   return (
     <Link
-      className="hover:border-[#B8C3D3]  rounded-md flex hover:border-4 border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid z-10 relative max-w-full sm:max-w-[800px]"
+      className="rounded-md flex border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid z-10  max-w-full sm:max-w-[800px] relative group"
       href={id}
       key={id + content}
     >
+      <div className="border-4 border-[#B8C3D3] absolute inset-0 z-50 rounded-md group-hover:opacity-100 opacity-0  transition-opacity duration-75 ease-in scale-[1.02]"></div>
       {isImage && <NoteImage content={content} />}
       {!isImage && <NoteText content={content} />}
     </Link>
