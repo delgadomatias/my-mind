@@ -34,13 +34,13 @@ export const ModalImageDetail = ({
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="absolute inset-0 m-12 z-50"
+      className="absolute inset-0 z-50 m-12"
       id="backdrop-container"
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
     >
       <div
-        className="flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
+        className="relative flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
         id="backdrop-item"
         style={{
           backgroundColor: dominantColor,
@@ -53,7 +53,7 @@ export const ModalImageDetail = ({
             height={800}
             src={src}
             width={800}
-            className="object-cover w-full h-full aspect-square max-w-full max-h-full"
+            className="object-cover w-full h-full max-w-full max-h-full aspect-square"
             classNames={{
               wrapper: "h-[80%]",
             }}

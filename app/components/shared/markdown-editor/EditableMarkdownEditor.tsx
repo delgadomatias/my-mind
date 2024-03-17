@@ -7,7 +7,7 @@ const EditableMarkdownEditor = (props: MarkdownEditorProps) => {
       {...props}
       supportAddNote
       editable
-      className={styles.editableMarkdownEditor}
+      className={styles.editableMarkdownEditor + " " + props.className}
     />
   );
 };

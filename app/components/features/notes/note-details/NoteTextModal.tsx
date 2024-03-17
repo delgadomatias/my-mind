@@ -3,9 +3,11 @@
 import { NoteActions } from "@/app/actions";
 import { Note } from "@/app/interfaces";
 import { DEFAULT_NOTE_CONTENT } from "@/app/utils/constants";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { BackdropShadow } from "./BackdropShadow";
 import { ModalTextDetail } from "./ModalTextDetail";
+import { FocusMode } from "./focus-mode/FocusMode";
 
 interface Props {
   note: Note;
@@ -13,6 +15,8 @@ interface Props {
 
 export const NoteTextModal = ({ note }: Props) => {
   const [updatedNote, setUpdatedNote] = useState(note);
+  const searchParams = useSearchParams();
+  const focusMode = searchParams.get("focus");
 
   // Necesito Handlear todo desde este componente asi me comunico con el
   function handleUpdateNote() {
@@ -30,6 +34,15 @@ export const NoteTextModal = ({ note }: Props) => {
     NoteActions.updateNote({
       ...updatedNote,
     });
+  }
+
+  if (focusMode) {
+    return (
+      <>
+        <BackdropShadow onUpdateNote={handleUpdateNote} />
+        <FocusMode note={note} />
+      </>
+    );
   }
 
   return (

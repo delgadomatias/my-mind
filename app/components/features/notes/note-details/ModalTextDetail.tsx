@@ -5,6 +5,7 @@ import { TrashIcon } from "@/app/components/shared/icons/TrashIcon";
 import EditableMarkdownEditor from "@/app/components/shared/markdown-editor/EditableMarkdownEditor";
 import { Note } from "@/app/interfaces";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
@@ -36,7 +37,7 @@ export const ModalTextDetail = ({ note, setUpdatedNote }: Props) => {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="absolute inset-0 m-12 z-50"
+      className="absolute inset-0 z-50 m-12"
       id="backdrop-container"
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
@@ -45,6 +46,13 @@ export const ModalTextDetail = ({ note, setUpdatedNote }: Props) => {
         className="flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
         id="backdrop-item"
       >
+        <div className="absolute top-0 left-0 w-10 h-10 p-6">
+          <div className="w-full h-full bg-red-500">
+            <Link href={`/${note.id}?focus=true`} prefetch>
+              Focus
+            </Link>
+          </div>
+        </div>
         <div
           className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-auto overscroll-behavior-y-contain scrollbar-gutter-stable"
           style={{
