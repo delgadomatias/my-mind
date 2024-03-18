@@ -14,11 +14,7 @@ export const NoteItem = ({ note }: Props) => {
 
   return (
     <Link
-<<<<<<< HEAD
-      className="rounded-md flex border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid z-10  max-w-full sm:max-w-[800px] relative group"
-=======
       className="hover:border-[#B8C3D3]  rounded-md flex hover:border-4 border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid z-10  max-w-full sm:max-w-[800px] relative"
->>>>>>> 30cb5e8 (update)
       href={id}
       key={id + content}
     >
