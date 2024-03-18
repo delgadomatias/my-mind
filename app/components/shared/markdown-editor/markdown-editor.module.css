@@ -91,3 +91,11 @@
   color: #748297;
   @apply text-lg;
 }
+
+.editor code {
+  @apply font-monoLisa;
+}
+
+.editor em {
+  @apply font-louize;
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import Code from "@tiptap/extension-code";
 import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, Extension, Extensions, useEditor } from "@tiptap/react";
@@ -138,6 +139,7 @@ const MarkdownEditor = ({
         spellcheck: "false",
       },
     }),
+    Code,
   ];
 
   const editor = useEditor({

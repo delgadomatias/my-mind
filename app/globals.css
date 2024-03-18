@@ -1,6 +1,14 @@
+@import url(https://fonts.cdnfonts.com/css/monolisa);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Louize";
+  src: url("/fonts/louize-italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
 
 #command-key::before {
   content: "Press CTRL + Enter to save";
