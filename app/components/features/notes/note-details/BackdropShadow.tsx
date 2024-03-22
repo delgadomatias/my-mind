@@ -5,12 +5,17 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   onUpdateNote: () => void;
+  closeOnEscape?: boolean;
 }
 
-export const BackdropShadow = ({ onUpdateNote }: Props) => {
+export const BackdropShadow = ({
+  onUpdateNote,
+  closeOnEscape = false,
+}: Props) => {
   const router = useRouter();
 
   function handleBackdropClose() {
+    if (!closeOnEscape) return;
     router.back();
     onUpdateNote();
   }
@@ -19,7 +24,7 @@ export const BackdropShadow = ({ onUpdateNote }: Props) => {
 
   return (
     <div
-      className="fixed inset-0 w-full h-screen transition-all duration-100 ease-linear bg-black/80 hover:bg-black/70 z-40"
+      className="fixed inset-0 z-40 w-full h-screen transition-all duration-100 ease-linear bg-black/80 hover:bg-black/70"
       id="backdrop-shadow"
     >
       <button className="relative w-full h-full" onClick={handleBackdropClose}>

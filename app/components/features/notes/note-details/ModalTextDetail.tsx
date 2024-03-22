@@ -4,9 +4,11 @@ import { NoteActions } from "@/app/actions";
 import { TrashIcon } from "@/app/components/shared/icons/TrashIcon";
 import EditableMarkdownEditor from "@/app/components/shared/markdown-editor/EditableMarkdownEditor";
 import { Note } from "@/app/interfaces";
+import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface Props {
   note: Note;
@@ -15,6 +17,7 @@ interface Props {
 
 export const ModalTextDetail = ({ note, setUpdatedNote }: Props) => {
   const noteLength = note.content.length;
+  const router = useRouter();
 
   function handleNoteContentChange(richText: string) {
     setUpdatedNote((prev) => ({
@@ -34,6 +37,20 @@ export const ModalTextDetail = ({ note, setUpdatedNote }: Props) => {
     await NoteActions.deleteNote(note.id);
   }
 
+  useEffect(() => {
+    function handleFocusModeWithKeys(e: KeyboardEvent) {
+      if (e.ctrlKey && e.key === "f") {
+        e.preventDefault();
+        router.push(`/${note.id}?focus=true`);
+      }
+    }
+    document.addEventListener("keydown", handleFocusModeWithKeys);
+
+    return () => {
+      document.removeEventListener("keydown", handleFocusModeWithKeys);
+    };
+  }, [note.id, router]);
+
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
@@ -41,17 +58,33 @@ export const ModalTextDetail = ({ note, setUpdatedNote }: Props) => {
       id="backdrop-container"
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
+      key={note.id + note.content + note.title}
     >
       <div
         className="flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
         id="backdrop-item"
       >
-        <div className="absolute top-0 left-0 w-10 h-10 p-6">
-          <div className="w-full h-full bg-red-500">
-            <Link href={`/${note.id}?focus=true`} prefetch>
-              Focus
-            </Link>
-          </div>
+        <div className="absolute top-0 left-0 inline-flex gap-4 p-6">
+          <Link
+            href={`/${note.id}?focus=true`}
+            className="inline-flex items-center gap-2 group"
+          >
+            <Image
+              src="https://static.accelerator.net/134/0.27.1/icons/focus-circle-light.png"
+              alt="Toggle Focus Mode"
+              height={24}
+              width={24}
+              className="opacity-100 blur-[2px] hover:blur-0 transition-all duration-150 ease-linear hover:animate-spin "
+            />
+            <div
+              className="px-4 py-1 text-sm bg-[#F0F2F5] rounded-lg text-black font-medium !pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-150 ease-linear"
+              style={{
+                boxShadow: "10px 10px 20px rgb(0 0 0 / 10%)",
+              }}
+            >
+              Focus (Ctrl + F)
+            </div>
+          </Link>
         </div>
         <div
           className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-auto overscroll-behavior-y-contain scrollbar-gutter-stable"
@@ -61,7 +94,7 @@ export const ModalTextDetail = ({ note, setUpdatedNote }: Props) => {
           }}
         >
           <div className="w-full max-w-3xl max-h-full 2xl:max-w-4xl">
-            <div className="py-12">
+            <div className="px-6 py-12">
               <EditableMarkdownEditor
                 content={note.content}
                 onChange={handleNoteContentChange}

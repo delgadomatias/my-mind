@@ -8,6 +8,7 @@ import { useState } from "react";
 import { BackdropShadow } from "./BackdropShadow";
 import { ModalTextDetail } from "./ModalTextDetail";
 import { FocusMode } from "./focus-mode/FocusMode";
+import { LoadingFocusMode } from "./focus-mode/LoadingFocusMode";
 
 interface Props {
   note: Note;
@@ -38,7 +39,8 @@ export const NoteTextModal = ({ note }: Props) => {
   if (focusMode) {
     return (
       <>
-        <BackdropShadow onUpdateNote={handleUpdateNote} />
+        {/* <BackdropShadow onUpdateNote={handleUpdateNote} /> */}
+        <LoadingFocusMode />
         <FocusMode note={note} />
       </>
     );
@@ -46,7 +48,7 @@ export const NoteTextModal = ({ note }: Props) => {
 
   return (
     <div>
-      <BackdropShadow onUpdateNote={handleUpdateNote} />
+      <BackdropShadow onUpdateNote={handleUpdateNote} closeOnEscape />
       <ModalTextDetail note={note} setUpdatedNote={setUpdatedNote} />
     </div>
   );

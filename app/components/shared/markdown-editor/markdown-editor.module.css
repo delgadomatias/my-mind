@@ -15,29 +15,27 @@
 }
 
 .editor p {
-  @apply text-lg text-pretty;
+  @apply text-lg text-pretty !leading-[1.5];
 }
 
 .editor h1 {
-  @apply mt-4 mb-6 text-3xl font-bold md:text-4xl text-pretty;
-}
-.editor h1:first-child {
-  margin-top: 0;
-}
-
-.editor h2:first-child {
-  margin-top: 0;
+  @apply mt-4 mb-6 text-3xl font-bold md:text-4xl text-pretty !leading-[1.5];
 }
 
 .editor h2 {
-  @apply my-4 text-2xl font-bold md:text-3xl text-pretty;
+  @apply my-4 text-2xl font-bold md:text-3xl text-pretty !leading-[1.5];
 }
 
 .editor h3 {
-  @apply my-2 text-xl font-semibold md:text-xl text-pretty;
+  @apply my-2 text-xl font-semibold md:text-xl text-pretty !leading-[1.5];
 }
 
-.editor h3:first-child {
+.editor h3:first-child,
+.editor h1:first-child,
+.editor h2:first-child,
+.editor h4:first-child,
+.editor h5:first-child,
+.editor h6:first-child {
   margin-top: 0;
 }
 

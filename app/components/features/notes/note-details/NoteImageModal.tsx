@@ -27,7 +27,7 @@ export const NoteImageModal = ({ note, dominantColor, imageSrc }: Props) => {
 
   return (
     <div>
-      <BackdropShadow onUpdateNote={handleUpdateNote} />
+      <BackdropShadow onUpdateNote={handleUpdateNote} closeOnEscape />
       <ModalImageDetail
         dominantColor={dominantColor}
         note={note}

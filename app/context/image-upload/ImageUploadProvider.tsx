@@ -39,6 +39,7 @@ export const ImageUploadProvider = ({ children }: Props) => {
   }
 
   useEffect(() => {
+    if (window.location.pathname !== "/") return;
     const body = document.body;
     body.addEventListener("dragover", handleDragOver);
 
@@ -53,6 +54,7 @@ export const ImageUploadProvider = ({ children }: Props) => {
   }, []);
 
   useEffect(() => {
+    if (window.location.pathname !== "/") return;
     const body = document.body;
     body.addEventListener("drop", handleDrop);
 
@@ -92,6 +94,7 @@ export const ImageUploadProvider = ({ children }: Props) => {
   }, []);
 
   useEffect(() => {
+    if (window.location.pathname !== "/") return;
     const dragShadow = document.querySelector(".drag-shadow") as HTMLDivElement;
     if (!dragShadow) return;
 

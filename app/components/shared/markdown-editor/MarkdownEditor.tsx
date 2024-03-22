@@ -150,6 +150,7 @@ const MarkdownEditor = ({
         class: `${styles.editor} ${className}`,
       },
     },
+
     onUpdate: ({ editor }) => {
       const richText = editor.getHTML();
       onChange && onChange(richText);

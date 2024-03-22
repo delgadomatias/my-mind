@@ -30,7 +30,7 @@ export const NoteListMasonry = ({ notes }: Props) => {
       >
         <Masonry gutter="10px 20px">
           {notes.map((note) => {
-            return <NoteItem note={note} key={note.id + note.content} />;
+            return <NoteItem note={note} key={note.id} />;
           })}
         </Masonry>
       </ResponsiveMasonry>

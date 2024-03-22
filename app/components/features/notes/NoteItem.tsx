@@ -16,12 +16,14 @@ export const NoteItem = ({ note }: Props) => {
   return (
     <Link
       className={`group border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid z-10  max-w-full sm:max-w-[800px] relative note-item`}
+      draggable={false}
       href={id}
-      key={id + content}
     >
       <HoverNote />
       {isImage && <NoteImage content={content} />}
-      {!isImage && <NoteText content={content} />}
+      {!isImage && (
+        <NoteText content={content} noteId={note.id} title={note.title || ""} />
+      )}
     </Link>
   );
 };
