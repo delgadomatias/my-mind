@@ -23,7 +23,6 @@ export const NoteTextModal = ({ note }: Props) => {
     const { content } = updatedNote;
 
     if (note.content === content && note.title === updatedNote.title) {
-      console.log("no se actualiza");
       return;
     }
 

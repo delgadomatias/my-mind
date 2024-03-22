@@ -10,13 +10,6 @@ interface Props {
 }
 
 export const NoteListMasonry = ({ notes }: Props) => {
-  // useEffect(() => {
-  //   const masonry = new MiniMasonry({
-  //     container: document.querySelector("#note-list") as HTMLDivElement,
-  //     baseWidth: 350,
-  //   });
-  // }, []);
-
   return (
     <MotionDiv
       className="relative"
@@ -25,8 +18,17 @@ export const NoteListMasonry = ({ notes }: Props) => {
       initial={{ opacity: 0, y: 5 }}
       transition={{ duration: 0.5, delay: 0.6 }}
     >
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 5 }}>
-        <Masonry gutter="0px 20px">
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{
+          350: 1,
+          640: 2,
+          768: 3,
+          1024: 4,
+          1280: 5,
+          1536: 6,
+        }}
+      >
+        <Masonry gutter="10px 20px">
           {notes.map((note) => {
             return <NoteItem note={note} key={note.id + note.content} />;
           })}

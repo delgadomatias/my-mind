@@ -84,7 +84,7 @@ export const ModalTextDetail = ({ note, setUpdatedNote }: Props) => {
               placeholder="Title goes here"
               className="text-[#505864] bg-transparent w-full text-ellipsis border-none text-3xl font-light focus:outline-none focus:text-black"
               onChange={(e) => handleNoteTitleChange(e.target.value)}
-              value={note.title}
+              value={note.title || ""}
             />
           </header>
 

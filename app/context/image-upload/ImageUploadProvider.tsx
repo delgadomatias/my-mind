@@ -1,7 +1,6 @@
 import { checkValidFiles } from "@/app/utils/checkValidFiles";
 import { uploadFiles } from "@/components/features/drag-and-drop/uploadFiles";
 import { imageUploadReducer } from "@/context/image-upload/imageUploadReducer";
-import { useNoteContext } from "@/context/notes";
 import { ImageUploadState } from "@/interfaces/image-upload-context.interface";
 import React, { useEffect, useReducer } from "react";
 import { ImageUploadContext } from "./ImageUploadContext";
@@ -18,7 +17,6 @@ export const IMAGE_UPLOAD_INITIAL_STATE: ImageUploadState = {
 };
 
 export const ImageUploadProvider = ({ children }: Props) => {
-  const { addNote } = useNoteContext();
   const [state, dispatch] = useReducer(
     imageUploadReducer,
     IMAGE_UPLOAD_INITIAL_STATE
@@ -91,7 +89,7 @@ export const ImageUploadProvider = ({ children }: Props) => {
     return () => {
       body.removeEventListener("drop", handleDrop);
     };
-  }, [addNote]);
+  }, []);
 
   useEffect(() => {
     const dragShadow = document.querySelector(".drag-shadow") as HTMLDivElement;
