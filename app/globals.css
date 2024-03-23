@@ -18,7 +18,7 @@
 
 #command-key::before {
   content: "Press CTRL + Enter to save";
-  @apply text-white uppercase;
+  @apply uppercase text-white;
 }
 
 /* Placeholder of MarkdownEditor (at the top) */
@@ -50,9 +50,19 @@
 
 /* For the NoteDetails */
 #backdrop-shadow:hover + #backdrop-container #backdrop-item {
-  @apply !scale-[0.99] !translate-y-2;
+  @apply !translate-y-2 !scale-[0.99];
 }
 
 #backdrop-shadow:hover #backdrop-button-close {
   display: block;
+}
+
+.focus-tooltip::after {
+  content: "";
+  border-width: 7px;
+  border-style: solid;
+  border-color: #f0f2f5;
+  transform: rotate(45deg) translate(-50%, 0);
+  border-radius: 5px;
+  @apply absolute -bottom-2 left-[50%];
 }

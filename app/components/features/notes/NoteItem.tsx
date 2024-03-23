@@ -14,16 +14,22 @@ export const NoteItem = ({ note }: Props) => {
   const isImage = isImageInContent(content);
 
   return (
-    <Link
-      className={`group border-4 border-transparent transition-all duration-50 ease-linear h-fit break-inside-avoid z-10  max-w-full sm:max-w-[800px] relative note-item`}
-      draggable={false}
-      href={id}
-    >
-      <HoverNote />
-      {isImage && <NoteImage content={content} />}
-      {!isImage && (
-        <NoteText content={content} noteId={note.id} title={note.title || ""} />
+    <div className="flex flex-col gap-1">
+      <Link
+        className="duration-50 note-item group relative z-10 h-fit min-w-fit max-w-full break-inside-avoid border-transparent transition-all ease-linear sm:max-w-[800px]"
+        draggable={false}
+        href={id}
+      >
+        <HoverNote />
+        {isImage && <NoteImage content={content} />}
+        {!isImage && <NoteText note={note} />}
+      </Link>
+
+      {note.title && (
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-[#748297]">
+          {note.title}
+        </p>
       )}
-    </Link>
+    </div>
   );
 };
