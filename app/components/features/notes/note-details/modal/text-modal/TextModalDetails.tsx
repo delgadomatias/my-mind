@@ -56,6 +56,13 @@ export const TextModalDetails = ({ note }: Props) => {
     };
   }, [note.id, router]);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <>
       <BackdropShadow onUpdateNote={handleUpdateNote} closeOnEscape />
@@ -111,11 +118,7 @@ export const TextModalDetails = ({ note }: Props) => {
           </div>
 
           {/* Right side */}
-          <SidebarModal
-            noteId={note.id}
-            setUpdatedNote={setUpdatedNote}
-            title={note.title || ""}
-          />
+          <SidebarModal setUpdatedNote={setUpdatedNote} note={updatedNote} />
         </div>
       </motion.div>
     </>

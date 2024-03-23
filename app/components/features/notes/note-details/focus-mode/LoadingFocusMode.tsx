@@ -7,20 +7,14 @@ export const LoadingFocusMode = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 500);
   }, []);
 
   if (!loading) return;
 
   return (
-    <motion.div
-      className="absolute inset-0 w-screen h-screen bg-[#F0F2F5] z-[999] flex items-center justify-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.1 }}
-    >
-      <p className="text-6xl font-medium font-louize">
+    <motion.div className="absolute inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-[#F0F2F5]">
+      <p className="font-louize text-6xl font-medium">
         Focusing <span className="animate-pulse">...</span>
       </p>
     </motion.div>

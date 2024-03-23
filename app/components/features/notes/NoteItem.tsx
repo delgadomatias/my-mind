@@ -12,11 +12,12 @@ interface Props {
 export const NoteItem = ({ note }: Props) => {
   const { id, content } = note;
   const isImage = isImageInContent(content);
+  const { length } = content;
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       <Link
-        className="duration-50 note-item group relative z-10 h-fit min-w-fit max-w-full break-inside-avoid border-transparent transition-all ease-linear sm:max-w-[800px]"
+        className={`duration-50 note-item group relative z-10 h-fit min-w-fit max-w-full break-inside-avoid border-transparent transition-all ease-linear sm:max-w-[800px]`}
         draggable={false}
         href={id}
       >
@@ -26,7 +27,7 @@ export const NoteItem = ({ note }: Props) => {
       </Link>
 
       {note.title && (
-        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-[#748297]">
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap pl-[2px] text-sm text-[#748297]">
           {note.title}
         </p>
       )}

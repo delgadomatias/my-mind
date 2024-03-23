@@ -6,9 +6,9 @@ interface Props {
 
 export const CardActions = ({ onDeleteNote }: Props) => {
   return (
-    <div className="flex items-center justify-center w-full p-5">
+    <div className="flex w-full items-center justify-center p-5">
       <button
-        className="p-3 bg-white rounded-full hover:bg-[#748297] group transition-all ease-linear"
+        className="group rounded-full bg-white p-3 transition-all ease-linear hover:bg-[#748297]"
         onClick={onDeleteNote}
         title="Delete card"
       >

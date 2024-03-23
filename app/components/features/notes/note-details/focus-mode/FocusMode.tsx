@@ -62,6 +62,13 @@ export const FocusMode = ({ note }: Props) => {
     }
   }, [textAreaRef.current?.scrollHeight]);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   function onTextAreaInput() {
     if (textAreaRef.current) {
       const height = textAreaRef.current.scrollHeight;
@@ -77,26 +84,20 @@ export const FocusMode = ({ note }: Props) => {
 
   return (
     <>
-      <MotionDiv
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        initial={{ opacity: 0 }}
-        transition={{ duration: 0.5, ease: "backInOut" }}
-        className="absolute top-0 z-50 w-full h-full"
-      >
+      <MotionDiv className="absolute top-0 z-50 h-full w-full">
         <Image
           src="/media/expanded-note-bg.jpg"
           alt="Hola"
           height={100}
           width={100}
-          className="inset-0 w-full h-screen opacity-100"
+          className="inset-0 h-screen w-full opacity-100"
           classNames={{
             wrapper: "!max-w-full w-full h-full absolute",
           }}
         />
-        <section className="relative z-50 flex flex-col items-start justify-start w-full h-full max-w-screen-md py-20 mx-auto">
+        <section className="relative z-50 mx-auto flex h-full w-full max-w-screen-md flex-col items-start justify-start overflow-y-auto py-20">
           <textarea
-            className="text-[#232a35] bg-transparent outline-none focus-none text-5xl mb-4 h-auto font-louize tracking-[-.03em] w-full overflow-hidden resize-none"
+            className="focus-none mb-4 h-auto w-full resize-none overflow-hidden bg-transparent pb-12 font-louize text-5xl tracking-[-.03em] text-[#232a35] outline-none"
             placeholder={"Type your headline here..."}
             onChange={(e) => handleNoteTitleChange(e.target.value)}
             defaultValue={note.title || ""}
@@ -112,8 +113,21 @@ export const FocusMode = ({ note }: Props) => {
           </div>
         </section>
       </MotionDiv>
-      <button className="absolute top-0 right-0 z-50 p-6" onClick={handleBack}>
-        Volver
+      <button
+        className="absolute right-0 top-0 z-50 cursor-pointer p-6"
+        onClick={handleBack}
+      >
+        <span className="flex h-full w-full items-center justify-center rounded-full bg-white p-1 hover:animate-appearance-in">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="#000000"
+            viewBox="0 0 256 256"
+          >
+            <path d="M197.66,69.66,83.31,184H168a8,8,0,0,1,0,16H64a8,8,0,0,1-8-8V88a8,8,0,0,1,16,0v84.69L186.34,58.34a8,8,0,0,1,11.32,11.32Z"></path>
+          </svg>
+        </span>
       </button>
     </>
   );

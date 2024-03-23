@@ -1,4 +1,4 @@
-import { Image } from "@nextui-org/react";
+import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
 import { LoadingCard } from "./LoadingCard";
@@ -17,13 +17,13 @@ export const FileLoading = ({ files }: Props) => {
   return (
     <motion.div
       animate={{ opacity: 1 }}
-      className="flex h-full gap-1 bg-white shadow-xl rounded-xl"
+      className="flex h-full gap-1 rounded-xl bg-white shadow-xl"
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div
-        className="grid auto-rows-auto max-w-32 rounded-xl"
+        className="grid max-w-32 auto-rows-auto rounded-xl"
         style={{
           gridTemplateColumns: "repeat(auto-fill, minmax(50px, 1fr))",
           gridAutoFlow: "row",

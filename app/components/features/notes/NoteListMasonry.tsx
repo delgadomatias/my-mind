@@ -1,6 +1,8 @@
 "use client";
 
 import { Note } from "@/app/interfaces";
+import { filterNoteByQuery } from "@/app/utils/filterNoteByQuery";
+import { useSearchParams } from "next/navigation";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { MotionDiv } from "../../shared/MotionDiv";
 import { NoteItem } from "./NoteItem";
@@ -10,6 +12,12 @@ interface Props {
 }
 
 export const NoteListMasonry = ({ notes }: Props) => {
+  const searchQuery = useSearchParams().get("search");
+
+  if (searchQuery) {
+    notes = filterNoteByQuery(notes, searchQuery);
+  }
+
   return (
     <MotionDiv
       animate={{ opacity: 1, y: 0 }}

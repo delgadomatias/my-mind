@@ -7,27 +7,27 @@
 }
 
 .editor a {
-  @apply text-blue-500 cursor-pointer;
+  @apply cursor-pointer text-blue-500;
 }
 
 .editor img {
-  @apply object-cover w-full h-full max-w-full rounded-md aspect-auto sm:max-w-96;
+  @apply aspect-auto h-full w-full max-w-full rounded-md object-cover sm:max-w-96;
 }
 
 .editor p {
-  @apply text-lg text-pretty !leading-[1.5];
+  @apply text-pretty text-lg !leading-[1.5];
 }
 
 .editor h1 {
-  @apply mt-4 mb-6 text-3xl font-bold md:text-4xl text-pretty !leading-[1.5];
+  @apply mt-4  text-pretty text-3xl font-bold !leading-[1.5] md:text-4xl;
 }
 
 .editor h2 {
-  @apply my-4 text-2xl font-bold md:text-3xl text-pretty !leading-[1.5];
+  @apply my-2 text-pretty text-2xl font-bold !leading-[1.5] md:text-3xl;
 }
 
 .editor h3 {
-  @apply my-2 text-xl font-semibold md:text-xl text-pretty !leading-[1.5];
+  @apply my-2 text-pretty text-xl font-semibold !leading-[1.5] md:text-xl;
 }
 
 .editor h3:first-child,

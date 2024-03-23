@@ -41,11 +41,15 @@
 }
 
 .note-long p {
-  @apply text-lg;
+  @apply !text-sm;
 }
 
 .note-long h1 {
-  @apply text-3xl;
+  @apply !text-xl;
+}
+
+.note-long h2 {
+  @apply !text-lg;
 }
 
 /* For the NoteDetails */
@@ -64,5 +68,5 @@
   border-color: #f0f2f5;
   transform: rotate(45deg) translate(-50%, 0);
   border-radius: 5px;
-  @apply absolute -bottom-2 left-[50%];
+  @apply absolute -bottom-[10px] left-[47%];
 }

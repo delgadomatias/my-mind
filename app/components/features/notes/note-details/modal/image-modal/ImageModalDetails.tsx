@@ -33,20 +33,20 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
         transition={{ duration: 0.5 }}
       >
         <div
-          className="relative flex w-full h-full p-2 transition-all duration-100 bg-white rounded-xl"
+          className="relative flex h-full w-full rounded-xl bg-white p-2 transition-all duration-100"
           id="backdrop-item"
           style={{
             backgroundColor: dominantColor,
           }}
         >
           {/* Left side */}
-          <div className="flex flex-col items-center justify-center flex-1 h-full overflow-x-hidden overflow-y-auto overscroll-behavior-y-contain scrollbar-gutter-stable">
+          <div className="overscroll-behavior-y-contain scrollbar-gutter-stable flex h-full flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden">
             <Image
               alt="Image"
               height={800}
               src={src}
               width={800}
-              className="object-cover w-full h-full max-w-full max-h-full opacity-100 aspect-square"
+              className="aspect-square h-full max-h-full w-full max-w-full object-cover opacity-100"
               classNames={{
                 wrapper: "h-[80%]",
               }}
@@ -54,11 +54,7 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
           </div>
 
           {/* Right side */}
-          <SidebarModal
-            noteId={note.id}
-            title={note.title || ""}
-            setUpdatedNote={setUpdatedNote}
-          />
+          <SidebarModal note={updatedNote} setUpdatedNote={setUpdatedNote} />
         </div>
       </motion.div>
     </>

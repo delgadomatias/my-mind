@@ -3,7 +3,7 @@ import { NoteList } from "../features/notes/NoteList";
 
 export const NoteSection = () => {
   return (
-    <div className="container p-6 mx-auto">
+    <div className="container mx-auto p-6">
       <NoteContainer />
       <NoteList />
     </div>

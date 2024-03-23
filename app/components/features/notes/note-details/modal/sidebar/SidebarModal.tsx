@@ -1,17 +1,20 @@
 import { NoteActions } from "@/app/actions";
 import { Note } from "@/app/interfaces";
+import { formatDistanceToNow } from "date-fns";
 import { Dispatch, SetStateAction } from "react";
 import { CardActions } from "./CardActions";
 
 interface Props {
   setUpdatedNote: Dispatch<SetStateAction<Note>>;
-  noteId: string;
-  title: string;
+  note: Note;
 }
 
-export const SidebarModal = ({ setUpdatedNote, noteId, title }: Props) => {
+export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
+  const { id, content, created_at, title } = note;
+  const formatDistance = formatDistanceToNow(new Date(created_at));
+
   async function onDeleteNote() {
-    await NoteActions.deleteNote(noteId);
+    await NoteActions.deleteNote(id);
   }
 
   function onTitleChange(title: string) {
@@ -22,9 +25,9 @@ export const SidebarModal = ({ setUpdatedNote, noteId, title }: Props) => {
   }
 
   return (
-    <div className="bg-[#F0F2F5] h-full w-[400px] rounded-lg flex flex-col justify-between">
+    <div className="flex h-full w-[400px] flex-col justify-between rounded-lg bg-[#F0F2F5]">
       <header
-        className="h-24 py-5 rounded-lg rounded-bl-none rounded-br-none px-7"
+        className="h-24 rounded-lg rounded-bl-none rounded-br-none px-7 py-5"
         style={{
           background:
             "linear-gradient(180deg, #D1D9E6 0%, #EAEDF1 105%, #EAEDF1 105%)",
@@ -33,10 +36,16 @@ export const SidebarModal = ({ setUpdatedNote, noteId, title }: Props) => {
         <input
           type="text"
           placeholder="Title goes here"
-          className="text-[#505864] bg-transparent w-full text-ellipsis border-none text-3xl font-light focus:outline-none focus:text-black"
+          className="w-full text-ellipsis border-none bg-transparent text-3xl font-light text-[#505864] focus:text-black focus:outline-none"
           onChange={(e) => onTitleChange(e.target.value)}
           defaultValue={title || ""}
         />
+
+        <time dateTime={created_at.toString()}>
+          <span className="select-none font-normal  text-[#8E9DB4]">
+            {formatDistance[0].toUpperCase() + formatDistance.slice(1)} ago
+          </span>
+        </time>
       </header>
 
       <CardActions onDeleteNote={onDeleteNote} />

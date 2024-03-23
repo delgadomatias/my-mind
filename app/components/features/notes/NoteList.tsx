@@ -1,8 +1,12 @@
 import { getAllNotes } from "@/app/actions/notes.action";
+import { Suspense } from "react";
 import { NoteListMasonry } from "./NoteListMasonry";
 
 export const NoteList = async () => {
   const notes = await getAllNotes();
-
-  return <NoteListMasonry notes={notes} />;
+  return (
+    <Suspense>
+      <NoteListMasonry notes={notes} />
+    </Suspense>
+  );
 };

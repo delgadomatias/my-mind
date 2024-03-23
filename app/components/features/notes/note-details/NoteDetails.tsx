@@ -1,5 +1,6 @@
 import { isImageInContent } from "@/app/utils/isImageInContent";
 import { Note } from "@/interfaces/note.interface";
+import { Suspense } from "react";
 import { ImageModal } from "./modal/image-modal/ImageModal";
 import { TextModal } from "./modal/text-modal/TextModal";
 
@@ -11,5 +12,9 @@ export const NoteDetails = async ({ note }: Props) => {
   const isImage = isImageInContent(note.content);
 
   if (isImage) return <ImageModal note={note} />;
-  return <TextModal note={note} />;
+  return (
+    <Suspense>
+      <TextModal note={note} />;
+    </Suspense>
+  );
 };
