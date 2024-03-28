@@ -36,7 +36,7 @@ export const SearchNote = () => {
         type="text"
         onChange={onChangeSearch}
         placeholder="Search my mind..."
-        className="focus-none w-full bg-transparent font-louize text-7xl italic outline-none hover:placeholder:opacity-50"
+        className="focus-none w-full bg-transparent font-louize text-7xl italic outline-none placeholder:opacity-70 hover:placeholder:opacity-50"
         defaultValue={search || ""}
       />
       <hr className="mb-6 mt-4 bg-red-500" />

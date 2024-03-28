@@ -80,7 +80,7 @@ export const TextModalDetails = ({ note }: Props) => {
         >
           <div className="absolute left-0 top-0 inline-flex gap-4 p-6">
             <Link
-              href={`/${note.id}?focus=true`}
+              href={`/notes/${note.id}?focus=true`}
               className="group inline-flex items-center gap-2"
             >
               <Image

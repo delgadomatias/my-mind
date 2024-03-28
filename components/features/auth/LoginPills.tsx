@@ -4,9 +4,8 @@ import { getDbOnClient } from "@/database/client";
 
 export const LoginPills = () => {
   async function loginWithGithub() {
-    console.log("login with github");
     const supabase = getDbOnClient();
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
         redirectTo: `${location.origin}/api/auth/callback`,

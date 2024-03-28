@@ -1,6 +1,6 @@
 "use server";
 
-import { getDbOnAction } from "@/database/supabase";
+import { getDbOnServerActions } from "@/database/server";
 import { Note } from "@/interfaces";
 import { NoteDTO } from "@/interfaces/dto/note.dto";
 import { getUser } from "@/utils/getUser";
@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function getAllNotes(): Promise<Note[]> {
-  const supabase = await getDbOnAction();
+  const supabase = await getDbOnServerActions();
   const user = await getUser();
   const { id } = user!;
 
@@ -21,7 +21,7 @@ export async function getAllNotes(): Promise<Note[]> {
 }
 
 export async function createNote(note: NoteDTO): Promise<NoteDTO[]> {
-  const supabase = await getDbOnAction();
+  const supabase = await getDbOnServerActions();
   const user = await getUser();
 
   if (!user) {
@@ -41,7 +41,7 @@ export async function createNote(note: NoteDTO): Promise<NoteDTO[]> {
 }
 
 export async function getNoteById(id: string): Promise<Note> {
-  const supabase = await getDbOnAction();
+  const supabase = await getDbOnServerActions();
   const { data } = await supabase.from("Notes").select("*").eq("id", id);
 
   if (!data || data.length === 0) {
@@ -52,7 +52,7 @@ export async function getNoteById(id: string): Promise<Note> {
 }
 
 export async function updateNote(note: Note): Promise<NoteDTO[]> {
-  const supabase = await getDbOnAction();
+  const supabase = await getDbOnServerActions();
   const { data } = await supabase
     .from("Notes")
     .update({ ...note })
@@ -65,7 +65,7 @@ export async function updateNote(note: Note): Promise<NoteDTO[]> {
 }
 
 export async function deleteNote(id: string): Promise<NoteDTO[]> {
-  const supabase = await getDbOnAction();
+  const supabase = await getDbOnServerActions();
   const { data } = await supabase
     .from("Notes")
     .delete()

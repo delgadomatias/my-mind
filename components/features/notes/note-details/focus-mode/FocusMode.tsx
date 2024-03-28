@@ -84,13 +84,13 @@ export const FocusMode = ({ note }: Props) => {
 
   return (
     <>
-      <MotionDiv className="absolute top-0 z-50 h-full w-full">
+      <MotionDiv className="absolute top-0 z-50 h-full w-full border-t-3 border-t-[#ff5924]">
         <Image
           src="/media/expanded-note-bg.jpg"
           alt="Hola"
           height={100}
           width={100}
-          className="inset-0 h-screen w-full opacity-100"
+          className="inset-0 h-screen w-full rounded-none opacity-100"
           classNames={{
             wrapper: "!max-w-full w-full h-full absolute",
           }}
