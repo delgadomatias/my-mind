@@ -17,6 +17,22 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
+  const supabase = createMiddlewareClient(
+    { req, res },
+    {
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
+      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
+    },
+  );
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return NextResponse.redirect(new URL("/auth/login", req.url));
+  }
+
   if (pathname.startsWith("/notes/")) {
     const noteId: string = pathname.split("/")[2];
 
@@ -32,22 +48,6 @@ export async function middleware(req: NextRequest) {
     }
 
     return res;
-  }
-
-  const supabase = createMiddlewareClient(
-    { req, res },
-    {
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
-    },
-  );
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session) {
-    return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
   return res;
