@@ -20,14 +20,14 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["./app/components/*"],
-      "@/styles/*": ["./app/styles/*"],
-      "@/types/*": ["./app/types/*"],
-      "@/interfaces/*": ["./app/interfaces/*"],
-      "@/hooks/*": ["./app/hooks/*"],
-      "@/context/*": ["./app/context/*"],
-      "@/utils/*": ["./app/utils/*"],
-      "@/database/*": ["./app/database/*"]
+      "@/components/*": ["./components/*"],
+      "@/styles/*": ["./styles/*"],
+      "@/types/*": ["./types/*"],
+      "@/interfaces/*": ["./interfaces/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/context/*": ["./context/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/database/*": ["./database/*"]
     }
   },
   "include": [
