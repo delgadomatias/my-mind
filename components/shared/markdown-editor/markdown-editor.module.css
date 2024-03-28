@@ -1,0 +1,99 @@
+.editor {
+  @apply outline-none;
+}
+
+.editableMarkdownEditor {
+  @apply py-3;
+}
+
+.editor a {
+  @apply cursor-pointer text-blue-500;
+}
+
+.editor img {
+  @apply aspect-auto h-full w-full max-w-full rounded-md object-cover sm:max-w-96;
+}
+
+.editor p {
+  @apply text-pretty text-lg !leading-[1.5];
+}
+
+.editor h1 {
+  @apply mt-4  text-pretty text-3xl font-bold !leading-[1.5] md:text-4xl;
+}
+
+.editor h2 {
+  @apply my-2 text-pretty text-2xl font-bold !leading-[1.5] md:text-3xl;
+}
+
+.editor h3 {
+  @apply my-2 text-pretty text-xl font-semibold !leading-[1.5] md:text-xl;
+}
+
+.editor h3:first-child,
+.editor h1:first-child,
+.editor h2:first-child,
+.editor h4:first-child,
+.editor h5:first-child,
+.editor h6:first-child {
+  margin-top: 0;
+}
+
+.editor ul li {
+  padding-left: 25px;
+  margin-top: 0px;
+  font-size: 16px;
+  line-height: 24px;
+  list-style-type: none;
+  position: relative;
+  word-break: break-all;
+}
+
+.editor ul li::before {
+  width: 12px;
+  height: 1px;
+  background-color: #748297;
+  /* border-radius: 375px; */
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  display: flex;
+}
+
+.editor ol {
+  counter-reset: li;
+}
+
+.editor ol li {
+  padding-left: 25px;
+  margin-top: 0;
+  font-size: 16px;
+  line-height: 24px;
+  list-style-type: none;
+  position: relative;
+  word-break: break-all;
+  position: relative;
+}
+
+.editor ol li::before {
+  content: counter(li) ".";
+  counter-increment: li;
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #748297;
+  @apply text-lg;
+}
+
+.editor code {
+  @apply font-monoLisa;
+}
+
+.editor em {
+  @apply font-louize;
+}

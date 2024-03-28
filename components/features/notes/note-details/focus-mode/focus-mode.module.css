@@ -1,0 +1,7 @@
+.editorFocusMode p {
+  @apply !text-2xl;
+}
+
+.editorFocusMode h1 {
+  @apply !text-5xl;
+}
