@@ -15,7 +15,7 @@
 }
 
 .editor p {
-  @apply text-pretty text-lg !leading-[1.5];
+  @apply text-pretty text-sm !leading-[1.5] lg:text-lg;
 }
 
 .editor h1 {

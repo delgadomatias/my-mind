@@ -70,3 +70,7 @@
   border-radius: 5px;
   @apply absolute -bottom-[10px] left-[47%];
 }
+
+.masonry > div {
+  @apply !gap-[10px] lg:!gap-[12px_20px];
+}

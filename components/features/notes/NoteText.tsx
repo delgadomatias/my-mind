@@ -23,7 +23,7 @@ export const NoteText = ({ note }: Props) => {
 
   return (
     <div
-      className={`w-full ${length > 500 ? "note-long" : ""} rounded-lg bg-white px-6 py-4 shadow-xl`}
+      className={`w-full ${length > 500 ? "note-long" : ""} rounded-lg bg-white px-3 py-2 shadow-xl lg:px-6 lg:py-4`}
       style={
         length > 500
           ? {

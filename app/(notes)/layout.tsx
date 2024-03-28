@@ -19,7 +19,7 @@ interface NotesLayoutProps {
 
 export default function NotesLayout({ children }: NotesLayoutProps) {
   return (
-    <main>
+    <main className="overflow-hidden">
       <MainAside />
       <NoteSection />
       <DragAndDrop />

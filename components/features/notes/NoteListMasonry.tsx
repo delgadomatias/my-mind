@@ -28,7 +28,7 @@ export const NoteListMasonry = ({ notes }: Props) => {
     >
       <ResponsiveMasonry
         columnsCountBreakPoints={{
-          350: 1,
+          350: 2,
           640: 2,
           768: 3,
           1024: 4,
@@ -36,7 +36,7 @@ export const NoteListMasonry = ({ notes }: Props) => {
           1536: 5,
         }}
       >
-        <Masonry gutter="15px 20px">
+        <Masonry className="masonry !gap-[10px] lg:!gap-[12px_20px]">
           {notes.map((note) => {
             return <NoteItem note={note} key={note.id} />;
           })}

@@ -38,7 +38,7 @@ export const SearchNote = () => {
         type="text"
         onChange={onChangeSearch}
         placeholder="Search my mind..."
-        className="focus-none w-full bg-transparent font-louize text-7xl italic outline-none placeholder:opacity-70 hover:placeholder:opacity-50"
+        className="focus-none w-full bg-transparent text-2xl italic outline-none placeholder:opacity-70 hover:placeholder:opacity-50 lg:font-louize lg:text-7xl"
         defaultValue={search || ""}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -47,8 +47,8 @@ export const SearchNote = () => {
       <motion.div
         className="absolute bottom-0 h-[0.05rem] w-full bg-black/40"
         initial={{ width: 0 }}
-        animate={{ width: isHovered && !searchValue ? "100%" : 0 }}
-        transition={{ duration: 0.5 }}
+        animate={{ width: isHovered ? "100%" : 0 }}
+        transition={{ duration: 0.6 }}
       ></motion.div>
     </div>
   );

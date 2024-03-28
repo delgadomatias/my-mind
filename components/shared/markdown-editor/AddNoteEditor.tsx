@@ -97,7 +97,7 @@ const AddNoteEditor = ({
     <>
       <EditorContent editor={editor} className="w-full" />
       <motion.button
-        className="duration-800 absolute right-0 top-0 h-full w-40 p-2 text-center transition-all ease-in"
+        className="duration-800 absolute right-0 top-0 hidden h-full w-40 p-2 text-center transition-all ease-in lg:block"
         style={{
           pointerEvents: isTyping ? "auto" : "none",
           zIndex: 999,
