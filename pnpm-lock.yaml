@@ -53,6 +53,9 @@ dependencies:
   '@tiptap/starter-kit':
     specifier: ^2.2.4
     version: 2.2.4(@tiptap/pm@2.2.4)
+  canvas:
+    specifier: ^2.11.2
+    version: 2.11.2
   color-thief-node:
     specifier: ^1.0.4
     version: 1.0.4
