@@ -9,7 +9,7 @@ export const MainAside = async () => {
 
   return (
     <aside className="fixed hidden h-screen w-20 flex-col items-center justify-between lg:flex ">
-      <div className="mt-[100px]">
+      <div className="mt-[calc(100px_+_2rem)]">
         <h1
           className="text-2xl text-[#748297]"
           style={{
@@ -27,6 +27,9 @@ export const MainAside = async () => {
           src={avatar_url}
           width={45}
           className="object-cover"
+          classNames={{
+            wrapper: "opacity-100",
+          }}
         />
         <Logout />
       </div>

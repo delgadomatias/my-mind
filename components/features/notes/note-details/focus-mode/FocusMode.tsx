@@ -1,6 +1,7 @@
 import { NoteActions } from "@/actions";
 import { MotionDiv } from "@/components/shared/MotionDiv";
 import EditableMarkdownEditor from "@/components/shared/markdown-editor/EditableMarkdownEditor";
+import { Tooltip } from "@/components/shared/ui/Tooltip";
 import { useKey } from "@/hooks";
 import { Note } from "@/interfaces";
 import { DEFAULT_NOTE_CONTENT } from "@/utils/constants";
@@ -113,21 +114,24 @@ export const FocusMode = ({ note }: Props) => {
           </div>
         </section>
       </MotionDiv>
+
       <button
-        className="absolute right-0 top-0 z-50 cursor-pointer p-6"
+        className="group absolute right-0 top-0 z-50 cursor-pointer p-6"
         onClick={handleBack}
       >
-        <span className="flex h-full w-full items-center justify-center rounded-full bg-white p-1 hover:animate-appearance-in">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="#000000"
-            viewBox="0 0 256 256"
-          >
-            <path d="M197.66,69.66,83.31,184H168a8,8,0,0,1,0,16H64a8,8,0,0,1-8-8V88a8,8,0,0,1,16,0v84.69L186.34,58.34a8,8,0,0,1,11.32,11.32Z"></path>
-          </svg>
-        </span>
+        <Tooltip text="Close focus mode" position="left">
+          <span className="flex h-full w-full items-center justify-center rounded-full bg-white p-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="#000000"
+              viewBox="0 0 256 256"
+            >
+              <path d="M197.66,69.66,83.31,184H168a8,8,0,0,1,0,16H64a8,8,0,0,1-8-8V88a8,8,0,0,1,16,0v84.69L186.34,58.34a8,8,0,0,1,11.32,11.32Z"></path>
+            </svg>
+          </span>
+        </Tooltip>
       </button>
     </>
   );

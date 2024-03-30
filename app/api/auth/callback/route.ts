@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
       return NextResponse.redirect(
-        `https://g0wwj7rl-3000.brs.devtunnels.ms/${next}`,
+        `${origin}${next}`,
       );
     }
   }
