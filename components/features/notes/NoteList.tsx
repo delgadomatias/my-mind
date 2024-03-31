@@ -4,6 +4,7 @@ import { NoteListMasonry } from "./NoteListMasonry";
 
 export const NoteList = async () => {
   const notes = await getAllNotes();
+
   return (
     <Suspense>
       <NoteListMasonry notes={notes} />
