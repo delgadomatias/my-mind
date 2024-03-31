@@ -14,9 +14,9 @@ export const LoginPills = () => {
   }
 
   return (
-    <div className="mt-5 w-full">
+    <div className="mt-2 w-full">
       <button
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-white p-4 text-xl shadow-2xl"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-white p-4 text-lg shadow-2xl"
         onClick={loginWithGithub}
       >
         <svg

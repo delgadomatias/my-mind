@@ -4,11 +4,13 @@ import { NextResponse } from "next/server";
 import { getNoteById } from "./actions/notes.action";
 import { getUser } from "./utils/getUser";
 
+const AUTH_ROUTES = ["/auth/signup", "/auth/signin"];
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/auth/login")) {
+  if (AUTH_ROUTES.includes(pathname)) {
     const user = await getUser();
     if (user) {
       return NextResponse.redirect(new URL("/", req.url));
@@ -30,20 +32,19 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession();
 
   if (!session) {
-    return NextResponse.redirect(new URL("/auth/login", req.url));
+    return NextResponse.redirect(new URL("/auth/signin", req.url));
   }
 
   if (pathname.startsWith("/notes/")) {
     const noteId: string = pathname.split("/")[2];
 
     if (!noteId) {
-      return res;
+      return NextResponse.redirect(new URL("/", req.url));
     }
 
-    const user = await getUser();
     const note = await getNoteById(noteId);
 
-    if (note.user_id !== user?.id) {
+    if (!note) {
       return NextResponse.redirect(new URL("/", req.url));
     }
 
