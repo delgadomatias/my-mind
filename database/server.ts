@@ -6,11 +6,9 @@ import {
 import { cookies } from "next/headers";
 
 export const getDbOnServerComponent = async () => {
-  const cookieStore = cookies();
-
   return createServerComponentClient(
     {
-      cookies: () => cookieStore,
+      cookies,
     },
     {
       supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
@@ -20,10 +18,10 @@ export const getDbOnServerComponent = async () => {
 };
 
 export const getDbOnServerActions = async () => {
-  const cookieStore = cookies();
+  "use server";
   return createServerActionClient(
     {
-      cookies: () => cookieStore,
+      cookies,
     },
     {
       supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
@@ -33,10 +31,9 @@ export const getDbOnServerActions = async () => {
 };
 
 export const getDbOnRouteHandler = async () => {
-  const cookieStore = cookies();
   return createRouteHandlerClient(
     {
-      cookies: () => cookieStore,
+      cookies,
     },
     {
       supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,

@@ -14,6 +14,8 @@ interface Props {
 export const NoteListMasonry = ({ notes }: Props) => {
   const searchQuery = useSearchParams().get("search");
 
+  if (!notes) return;
+
   if (searchQuery) {
     notes = filterNoteByQuery(notes, searchQuery);
   }
