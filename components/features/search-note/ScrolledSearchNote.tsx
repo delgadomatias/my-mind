@@ -1,13 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export const SearchNote = () => {
+export const ScrolledSearchNote = () => {
   const [searchValue, setsSearchValue] = useState("");
   const [hasTyped, setHasTyped] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
   const search = useSearchParams().get("search");
 
@@ -17,9 +15,7 @@ export const SearchNote = () => {
   }
 
   useEffect(() => {
-    if (search) {
-      setsSearchValue(search);
-    }
+    setsSearchValue(search || "");
   }, [search]);
 
   useEffect(() => {
@@ -39,23 +35,14 @@ export const SearchNote = () => {
   }, [searchValue, router, hasTyped]);
 
   return (
-    <div className="relative mt-8">
+    <div className="relative mt-8 rounded-lg bg-white p-2 lg:p-4">
       <input
         type="text"
         onChange={onChangeSearch}
         placeholder="Search my mind..."
-        className="focus-none w-full bg-transparent text-2xl italic outline-none placeholder:opacity-70 hover:placeholder:opacity-50 lg:font-louize lg:text-7xl"
+        className="focus-none w-full  bg-transparent text-lg italic outline-none placeholder:opacity-70 hover:placeholder:opacity-50 lg:font-louize lg:text-3xl"
         value={searchValue}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       />
-      <hr className="mb-6 mt-4 border-black/10" />
-      <motion.div
-        className="absolute bottom-0 h-[0.05rem] w-full bg-black/40"
-        initial={{ width: 0 }}
-        animate={{ width: isHovered ? "100%" : 0 }}
-        transition={{ duration: 0.6 }}
-      ></motion.div>
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
-import { SearchNote } from "../search-note/SearchNote";
 
 const AddNoteEditor = dynamic(
   () => import("@/components/shared/markdown-editor/AddNoteEditor"),
@@ -32,10 +30,7 @@ export const AddNoteDesktop = (props: Props) => {
   } = props;
 
   return (
-    <div className="relative hidden lg:block">
-      <Suspense>
-        <SearchNote />
-      </Suspense>
+    <div className="relative mt-8 hidden lg:block">
       {/* Change this padding on Mobile */}
       {!isSearching && (
         <div className="zpr-40 relative z-10 mb-5 py-2 pl-6 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">

@@ -2,7 +2,8 @@
 
 import { DEFAULT_NOTE_CONTENT } from "@/utils/constants";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { SearchNoteContainer } from "../search-note/SearchNoteContainer";
 import { AddNoteDesktop } from "./AddNoteDesktop";
 import { AddNoteMobile } from "./AddNoteMobile";
 
@@ -46,6 +47,9 @@ export const NoteContainer = () => {
 
   return (
     <>
+      <Suspense>
+        <SearchNoteContainer />
+      </Suspense>
       <AddNoteDesktop
         handleOnChange={handleOnChange}
         isSaving={isSaving}

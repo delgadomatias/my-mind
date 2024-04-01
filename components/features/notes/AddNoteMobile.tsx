@@ -2,8 +2,7 @@
 
 import AddNoteEditor from "@/components/shared/markdown-editor/AddNoteEditor";
 import { motion } from "framer-motion";
-import { Suspense, useEffect, useRef, useState } from "react";
-import { SearchNote } from "../search-note/SearchNote";
+import { useEffect, useRef, useState } from "react";
 
 export const AddNoteMobile = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -42,9 +41,9 @@ export const AddNoteMobile = () => {
 
   return (
     <>
-      <div className="lg:hidden">
+      <div className="z-50 bg-[#F0F2F5] lg:hidden">
         <motion.div
-          className="absolute inset-0 z-50  h-full w-full bg-black/70"
+          className="absolute inset-0 h-full w-full bg-black/70"
           onClick={() => setIsOpen(false)}
           style={{
             display: isOpen ? "block" : "none",
@@ -58,11 +57,9 @@ export const AddNoteMobile = () => {
             </button>
           </div>
         </motion.div>
-        <Suspense>
-          <SearchNote />
-        </Suspense>
+
         <motion.div
-          className="fixed z-50 mx-auto min-h-24 w-[calc(100%_-_2rem)]  bg-white px-4 py-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
+          className="fixed z-50 mx-auto min-h-20 w-[calc(100%_-_2rem)]  bg-white px-4 py-2 shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
           style={{
             bottom: isOpen ? "0" : "-8px",
             marginBottom: isOpen ? "1rem" : "0",

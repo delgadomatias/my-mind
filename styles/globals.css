@@ -74,3 +74,18 @@
 .masonry > div {
   @apply !gap-[10px] lg:!gap-[12px_20px];
 }
+
+#search-bar::before {
+  background: linear-gradient(
+    180deg,
+    rgb(240 242 245 / 80%) 16%,
+    rgb(255 255 255 / 0%) 100%
+  );
+  position: absolute;
+  width: 100%;
+  content: "";
+  height: 110px;
+  transition: opacity 0.2s ease;
+  top: 0;
+  left: 0;
+}

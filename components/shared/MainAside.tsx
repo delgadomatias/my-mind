@@ -1,5 +1,4 @@
 import { getUser } from "@/utils/getUser";
-import { Image } from "@nextui-org/image";
 import { Logout } from "../features/auth/Logout";
 
 export const MainAside = async () => {
@@ -21,16 +20,6 @@ export const MainAside = async () => {
       </div>
 
       <div className="mb-16 flex flex-col items-center gap-4">
-        <Image
-          alt={`Image of ${user?.user_metadata.name}`}
-          height={45}
-          src={avatar_url}
-          width={45}
-          className="object-cover"
-          classNames={{
-            wrapper: "opacity-100",
-          }}
-        />
         <Logout />
       </div>
     </aside>
