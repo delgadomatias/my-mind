@@ -43,7 +43,7 @@ export const AddNoteMobile = () => {
     <>
       <div className="z-50 bg-[#F0F2F5] lg:hidden">
         <motion.div
-          className="absolute inset-0 h-full w-full bg-black/70"
+          className="absolute inset-0 z-50 h-full w-full bg-black/70"
           onClick={() => setIsOpen(false)}
           style={{
             display: isOpen ? "block" : "none",
