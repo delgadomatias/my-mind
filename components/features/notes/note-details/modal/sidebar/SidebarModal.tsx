@@ -25,7 +25,7 @@ export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
   }
 
   return (
-    <div className="flex h-full w-[400px] flex-col justify-between rounded-lg bg-[#F0F2F5]">
+    <div className=" hidden h-full w-[400px] flex-col justify-between rounded-lg bg-[#F0F2F5] lg:flex">
       <header
         className="h-24 rounded-lg rounded-bl-none rounded-br-none px-7 py-5"
         style={{
