@@ -3,12 +3,10 @@ import { Logout } from "../features/auth/Logout";
 
 export const MainAside = async () => {
   const user = await getUser();
-  if (!user) return;
-  const { avatar_url } = user.user_metadata as { avatar_url: string };
 
   return (
     <aside className="fixed hidden h-screen w-20 flex-col items-center justify-between lg:flex ">
-      <div className="mt-[calc(100px_+_2rem)]">
+      <div className="mt-[100px]">
         <h1
           className="text-2xl text-[#748297]"
           style={{
