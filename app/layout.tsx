@@ -17,8 +17,8 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className="bg-[#F0F2F5] light">
-      <body className={nunito.className}>
+    <html lang="en" className="h-full w-full bg-[#F0F2F5] light">
+      <body className={`${nunito.className} min-h-[calc(100%_-_2rem)] w-full`}>
         <Providers>{children}</Providers>
       </body>
     </html>
