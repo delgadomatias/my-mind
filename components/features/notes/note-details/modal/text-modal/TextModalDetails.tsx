@@ -139,7 +139,6 @@ export const TextModalDetails = ({ note }: Props) => {
           </div>
           <div
             className="overscroll-behavior-y-contain scrollbar-gutter-stable mt-20 flex h-full flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden lg:mt-0"
-            className="overscroll-behavior-y-contain scrollbar-gutter-stable mt-4 flex h-full flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden"
             style={{
               scrollbarColor: "#D0D8E5 transparent",
               marginRight: noteLength > 200 ? "0.5rem" : "0",
