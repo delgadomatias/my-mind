@@ -87,7 +87,6 @@ export const TextModalDetails = ({ note }: Props) => {
       >
         <div
           className="flex h-[60vh] w-full flex-col bg-white p-2 transition-all duration-100 lg:h-full lg:flex-row lg:rounded-xl"
-          className="flex h-[70vh] w-full flex-col bg-white p-2 transition-all duration-100 lg:h-full lg:flex-row lg:rounded-xl"
           id="backdrop-item"
         >
           <div className="absolute left-0 top-0 hidden gap-4  p-6 lg:inline-flex">
