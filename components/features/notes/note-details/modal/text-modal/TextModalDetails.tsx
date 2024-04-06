@@ -157,7 +157,7 @@ export const TextModalDetails = ({ note }: Props) => {
           {/* Right side */}
           <SidebarModal setUpdatedNote={setUpdatedNote} note={updatedNote} />
         </div>
-        <div className="h-[30vh] bg-[#F0F2F5]">
+        <div className="h-[30vh] bg-[#F0F2F5] lg:hidden">
           <CardActions onDeleteNote={onDeleteNode} />
         </div>
       </motion.div>
