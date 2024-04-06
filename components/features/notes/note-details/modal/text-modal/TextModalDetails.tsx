@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BackdropShadow } from "../../BackdropShadow";
+import { CardActions } from "../sidebar/CardActions";
 import { SidebarModal } from "../sidebar/SidebarModal";
 
 interface Props {
@@ -18,6 +19,11 @@ export const TextModalDetails = ({ note }: Props) => {
   const [updatedNote, setUpdatedNote] = useState(note);
   const noteLength = note.content.length;
   const router = useRouter();
+
+  function onDeleteNode() {
+    NoteActions.deleteNote(note.id);
+    router.back();
+  }
 
   function handleNoteContentChange(richText: string) {
     setUpdatedNote((prev) => ({
@@ -80,7 +86,7 @@ export const TextModalDetails = ({ note }: Props) => {
         key={note.id + note.content + note.title}
       >
         <div
-          className="flex h-full w-full flex-col bg-white p-2 transition-all duration-100 lg:flex-row lg:rounded-xl"
+          className="flex h-[70vh] w-full flex-col bg-white p-2 transition-all duration-100 lg:h-full lg:flex-row lg:rounded-xl"
           id="backdrop-item"
         >
           <div className="absolute left-0 top-0 hidden gap-4  p-6 lg:inline-flex">
@@ -105,7 +111,7 @@ export const TextModalDetails = ({ note }: Props) => {
               </div>
             </Link>
           </div>
-          <div className="absolute left-0 top-0 inline-flex h-20 w-full justify-between gap-4 p-6 lg:hidden">
+          <div className="absolute left-0 top-0 z-50 inline-flex h-20 w-full justify-between gap-4 bg-white p-6 lg:hidden">
             <button onClick={handleCloseOnMobile}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +138,7 @@ export const TextModalDetails = ({ note }: Props) => {
             />
           </div>
           <div
-            className="overscroll-behavior-y-contain scrollbar-gutter-stable flex h-full flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden"
+            className="overscroll-behavior-y-contain scrollbar-gutter-stable mt-4 flex h-full flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden"
             style={{
               scrollbarColor: "#D0D8E5 transparent",
               marginRight: noteLength > 200 ? "0.5rem" : "0",
@@ -150,6 +156,9 @@ export const TextModalDetails = ({ note }: Props) => {
 
           {/* Right side */}
           <SidebarModal setUpdatedNote={setUpdatedNote} note={updatedNote} />
+        </div>
+        <div className="h-[30vh] bg-[#F0F2F5]">
+          <CardActions onDeleteNote={onDeleteNode} />
         </div>
       </motion.div>
     </>

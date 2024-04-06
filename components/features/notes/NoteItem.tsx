@@ -16,7 +16,7 @@ export const NoteItem = ({ note }: Props) => {
   return (
     <div className="flex flex-col gap-1 lg:gap-2">
       <Link
-        className={`duration-50 note-item group relative z-10 h-fit min-w-fit max-w-full break-inside-avoid border-transparent transition-all ease-linear sm:max-w-[800px]`}
+        className={`duration-50 note-item group relative z-10 max-w-full border-transparent transition-all ease-linear sm:max-w-[800px]`}
         draggable={false}
         href={`/notes/${id}`}
       >
