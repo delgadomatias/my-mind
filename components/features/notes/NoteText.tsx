@@ -23,7 +23,7 @@ export const NoteText = ({ note }: Props) => {
 
   return (
     <div
-      className={`w-full ${length > 500 ? "note-long" : ""} rounded-lg bg-white px-3 py-2 shadow-xl lg:px-6 lg:py-4`}
+      className={`w-full  ${length > 500 ? "note-long" : ""} rounded-lg bg-white px-3 py-2 shadow-xl lg:px-6 lg:py-4`}
       style={
         length > 500
           ? {
@@ -39,7 +39,7 @@ export const NoteText = ({ note }: Props) => {
         key={id + content + title}
       />
       <span
-        className="group absolute right-2 top-2 z-50 flex flex-col items-center gap-2"
+        className="group absolute right-2 top-2 z-50 hidden flex-col  items-center gap-2 lg:flex"
         onClick={handleFocusMode}
       >
         <Image

@@ -19,7 +19,7 @@
 }
 
 .editor h1 {
-  @apply mt-4  text-pretty text-3xl font-bold !leading-[1.5] md:text-4xl;
+  @apply mt-4 text-ellipsis text-wrap text-xl font-bold !leading-[1.5] sm:text-2xl md:text-4xl;
 }
 
 .editor h2 {

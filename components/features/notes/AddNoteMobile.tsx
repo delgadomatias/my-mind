@@ -1,12 +1,27 @@
 "use client";
 
+import { NoteActions } from "@/actions";
 import AddNoteEditor from "@/components/shared/markdown-editor/AddNoteEditor";
+import { NoteDTO } from "@/interfaces/dto/note.dto";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export const AddNoteMobile = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [noteToAdd, setNoteToAdd] = useState("");
+
+  function onNoteChange(value: string) {
+    setNoteToAdd(value);
+  }
+
+  function onSaveNote() {
+    const newNote = {
+      content: noteToAdd,
+    } as NoteDTO;
+    setNoteToAdd("");
+    NoteActions.createNote(newNote);
+  }
 
   useEffect(() => {
     if (window.innerWidth >= 1024) return;
@@ -39,6 +54,10 @@ export const AddNoteMobile = () => {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    console.log(noteToAdd);
+  }, [noteToAdd]);
+
   return (
     <>
       <div className="z-50 bg-[#F0F2F5] lg:hidden">
@@ -52,7 +71,10 @@ export const AddNoteMobile = () => {
           animate={{ opacity: isOpen ? 1 : 0 }}
         >
           <div className="flex h-[10%] items-center justify-end px-4">
-            <button className="rounded-xl bg-[#ff5924] px-6 py-2 font-semibold text-white">
+            <button
+              onClick={onSaveNote}
+              className="rounded-xl bg-[#ff5924] px-6 py-2 font-semibold text-white"
+            >
               Save
             </button>
           </div>
@@ -70,7 +92,11 @@ export const AddNoteMobile = () => {
           ref={ref}
           onClick={() => setIsOpen(true)}
         >
-          <AddNoteEditor isTyping={false} />
+          <AddNoteEditor
+            content={noteToAdd}
+            onChange={onNoteChange}
+            isTyping={false}
+          />
         </motion.div>
       </div>
     </>
