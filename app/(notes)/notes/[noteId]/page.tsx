@@ -7,6 +7,8 @@ interface Props {
   };
 }
 
+export const dynamic = "auto";
+
 const NoteDetail = async ({ params }: Props) => {
   const note = await NoteActions.getNoteById(params.noteId);
   return <NoteDetails note={note} />;

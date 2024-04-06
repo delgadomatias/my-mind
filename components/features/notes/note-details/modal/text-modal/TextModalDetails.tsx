@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BackdropShadow } from "../../BackdropShadow";
+import { CardActions } from "../sidebar/CardActions";
+import { CardTags } from "../sidebar/CardTags";
 import { SidebarModal } from "../sidebar/SidebarModal";
 
 interface Props {
@@ -80,7 +82,7 @@ export const TextModalDetails = ({ note }: Props) => {
         key={note.id + note.content + note.title}
       >
         <div
-          className="flex h-full w-full flex-col bg-white p-2 transition-all duration-100 lg:flex-row lg:rounded-xl"
+          className="flex h-[60vh] w-full flex-col bg-white p-2 transition-all duration-100 lg:h-full lg:flex-row lg:rounded-xl"
           id="backdrop-item"
         >
           <div className="absolute left-0 top-0 hidden gap-4  p-6 lg:inline-flex">
@@ -119,7 +121,7 @@ export const TextModalDetails = ({ note }: Props) => {
             </button>
             <input
               type="text"
-              className="m-0 flex-1 overflow-hidden text-ellipsis border-none bg-transparent text-center text-lg font-normal text-[#000] "
+              className="z-50 m-0 flex-1 overflow-hidden text-ellipsis border-none bg-transparent bg-white text-center text-lg font-normal text-[#000]"
               placeholder="Untitled"
               maxLength={100}
               defaultValue={note.title || "Untitled"}
@@ -132,7 +134,7 @@ export const TextModalDetails = ({ note }: Props) => {
             />
           </div>
           <div
-            className="overscroll-behavior-y-contain scrollbar-gutter-stable flex h-full flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden"
+            className="overscroll-behavior-y-contain scrollbar-gutter-stable mt-20 flex h-full flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden lg:mt-0"
             style={{
               scrollbarColor: "#D0D8E5 transparent",
               marginRight: noteLength > 200 ? "0.5rem" : "0",
@@ -143,13 +145,30 @@ export const TextModalDetails = ({ note }: Props) => {
                 <EditableMarkdownEditor
                   content={note.content}
                   onChange={handleNoteContentChange}
+                  className={note.tags?.includes("quote") ? "quote" : ""}
                 />
               </div>
             </div>
           </div>
 
           {/* Right side */}
-          <SidebarModal setUpdatedNote={setUpdatedNote} note={updatedNote} />
+          <SidebarModal
+            setUpdatedNote={setUpdatedNote}
+            note={updatedNote}
+            key={updatedNote.tags}
+          />
+        </div>
+
+        <div
+          className="flex min-h-[40vh] flex-col justify-between px-6 py-4 lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, #D1D9E6 0%, #EAEDF1 105%, #EAEDF1 105%)",
+          }}
+        >
+          <CardTags note={note} />
+          <div></div>
+          <CardActions onDeleteNote={() => {}} />
         </div>
       </motion.div>
     </>

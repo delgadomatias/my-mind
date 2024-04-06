@@ -89,3 +89,21 @@
   top: 0;
   left: 0;
 }
+
+.quote::before {
+  content: "“";
+  @apply block pb-2 pt-6 text-center font-louize text-4xl font-medium leading-[0];
+}
+
+.quote::after {
+  content: "”";
+  @apply block pt-8 text-center font-louize text-4xl font-medium leading-[0];
+}
+
+.quote p {
+  @apply text-center font-louize !text-2xl;
+}
+
+.quote {
+  @apply !text-center !font-louize;
+}

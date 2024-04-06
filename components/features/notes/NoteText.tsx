@@ -35,7 +35,7 @@ export const NoteText = ({ note }: Props) => {
     >
       <MarkdownEditor
         content={content}
-        className="w-full py-2"
+        className={`w-full py-2 ${note.tags?.includes("quote") ? "quote" : ""}`}
         key={id + content + title}
       />
       <span
@@ -45,8 +45,8 @@ export const NoteText = ({ note }: Props) => {
         <Image
           src="https://static.accelerator.net/134/0.27.1/icons/focus-circle-light.png"
           alt="Toggle Focus Mode"
-          height={18}
-          width={18}
+          height={14}
+          width={14}
           className="!opacity-0 blur-[2px] transition-all duration-150 ease-linear hover:animate-spin hover:blur-0 group-hover:!opacity-100"
           onMouseEnter={() => setIsOnFocus(true)}
           onMouseLeave={() => setIsOnFocus(false)}

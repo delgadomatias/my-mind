@@ -4,6 +4,7 @@ export interface Note {
   created_at: Date;
   title?: string;
   user_id: string;
+  tags: string | null;
 }
 
 export type NoteId = string;

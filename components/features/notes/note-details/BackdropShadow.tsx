@@ -24,7 +24,7 @@ export const BackdropShadow = ({
 
   return (
     <div
-      className="fixed inset-0 z-40 h-screen w-full bg-black/80 transition-all duration-100 ease-linear hover:bg-black/70"
+      className="fixed inset-0  z-50 h-screen w-full bg-black/80 transition-all duration-100 ease-linear hover:bg-black/70"
       id="backdrop-shadow"
     >
       <button className="relative h-full w-full" onClick={handleBackdropClose}>

@@ -48,7 +48,7 @@ const MarkdownEditor = ({
                 }
 
                 const images = Array.from(event.dataTransfer.files).filter(
-                  (file) => /image/i.test(file.type)
+                  (file) => /image/i.test(file.type),
                 );
 
                 if (images.length === 0) {
@@ -92,7 +92,7 @@ const MarkdownEditor = ({
                 }
 
                 const images = Array.from(event.clipboardData.files).filter(
-                  (file) => /image/i.test(file.type)
+                  (file) => /image/i.test(file.type),
                 );
 
                 if (images.length === 0) {
@@ -147,7 +147,7 @@ const MarkdownEditor = ({
     autofocus: autoFocus,
     editorProps: {
       attributes: {
-        class: `${styles.editor} ${className}`,
+        class: `${styles.editor} ${styles.quote} ${className}`,
       },
     },
 

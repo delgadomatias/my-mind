@@ -73,6 +73,24 @@ export async function deleteNote(id: string): Promise<NoteDTO[]> {
 
   revalidatePath("/");
   redirect("/");
+}
+
+export async function addTagToNote(
+  noteId: string,
+  tag: string,
+): Promise<NoteDTO[]> {
+  const supabase = await getDbOnServerActions();
+  const previousTags = await getNoteById(noteId);
+  const tags = previousTags.tags ? `${previousTags.tags},${tag}` : tag;
+
+  const { data } = await supabase
+    .from("Notes")
+    .update({ tags })
+    .eq("id", noteId)
+    .select("*");
+
+  revalidatePath(`/notes/${noteId}`);
+  revalidatePath("/");
 
   return data as NoteDTO[];
 }
