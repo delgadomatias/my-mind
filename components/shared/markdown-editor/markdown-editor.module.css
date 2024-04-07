@@ -1,5 +1,5 @@
 .editor {
-  @apply outline-none;
+  @apply p-0 outline-none;
 }
 
 .editableMarkdownEditor {
