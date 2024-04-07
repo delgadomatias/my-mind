@@ -22,8 +22,8 @@ export const TextModalDetails = ({ note }: Props) => {
   const classesByTagToApply = getClassesByTags(note.tags);
 
   function onDeleteNode() {
-    NoteActions.deleteNote(note.id);
-    router.back();
+    const noteDeleted = NoteActions.deleteNote(note.id);
+    window.location.hash = "";
   }
 
   function handleNoteContentChange(richText: string) {

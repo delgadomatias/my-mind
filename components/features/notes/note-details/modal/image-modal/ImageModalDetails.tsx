@@ -27,11 +27,12 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
 
   function handleCloseOnMobile() {
     handleUpdateNote();
-    router.back();
+    router.push(`/`);
   }
 
   async function onDeleteNote() {
-    await NoteActions.deleteNote(note.id);
+    const noteDeleted = NoteActions.deleteNote(note.id);
+    window.location.hash = "";
   }
 
   useEffect(() => {

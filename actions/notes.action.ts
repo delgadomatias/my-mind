@@ -8,7 +8,6 @@ import { Note } from "@/interfaces";
 import { NoteDTO } from "@/interfaces/dto/note.dto";
 import { getUser } from "@/utils/getUser";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function getAllNotes(): Promise<Note[]> {
   const supabase = await getDbOnServerComponent();
@@ -72,7 +71,7 @@ export async function deleteNote(id: string): Promise<NoteDTO[]> {
     .select("*");
 
   revalidatePath("/");
-  redirect("/");
+  return data as NoteDTO[];
 }
 
 export async function addTagToNote(
