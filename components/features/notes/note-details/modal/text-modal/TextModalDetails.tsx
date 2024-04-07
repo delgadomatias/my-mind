@@ -4,7 +4,6 @@ import { Note } from "@/interfaces";
 import { DEFAULT_NOTE_CONTENT } from "@/utils/constants";
 import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BackdropShadow } from "../../BackdropShadow";
@@ -50,7 +49,7 @@ export const TextModalDetails = ({ note }: Props) => {
 
   function handleCloseOnMobile() {
     handleUpdateNote();
-    router.back();
+    window.location.hash = "";
   }
 
   useEffect(() => {
@@ -68,9 +67,11 @@ export const TextModalDetails = ({ note }: Props) => {
   }, [note.id, router]);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
+    document.body.classList.add("lg:overflow-hidden");
+
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("lg:overflow-hidden");
     };
   }, []);
 
@@ -81,8 +82,8 @@ export const TextModalDetails = ({ note }: Props) => {
         animate={{ opacity: 1, y: 0 }}
         className="absolute inset-0 z-50 m-0 lg:m-12"
         id="backdrop-container"
-        initial={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 30 }}
+        transition={{ duration: 0.3 }}
         key={note.id + note.content + note.title}
       >
         <div
@@ -90,9 +91,11 @@ export const TextModalDetails = ({ note }: Props) => {
           id="backdrop-item"
         >
           <div className="absolute left-0 top-0 hidden gap-4  p-6 lg:inline-flex">
-            <Link
-              href={`/notes/${note.id}?focus=true`}
-              className="group inline-flex items-center gap-2"
+            <div
+              onClick={() => {
+                window.location.hash = `${note.id}?focus=true`;
+              }}
+              className="group inline-flex cursor-pointer items-center gap-2"
             >
               <Image
                 src="https://static.accelerator.net/134/0.27.1/icons/focus-circle-light.png"
@@ -109,7 +112,7 @@ export const TextModalDetails = ({ note }: Props) => {
               >
                 Focus (Ctrl + F)
               </div>
-            </Link>
+            </div>
           </div>
           <div className="absolute left-0 top-0 z-50 inline-flex h-20 w-full justify-between gap-4 bg-white p-6 lg:hidden">
             <button onClick={handleCloseOnMobile}>
@@ -158,7 +161,7 @@ export const TextModalDetails = ({ note }: Props) => {
           {/* Right side */}
           <SidebarModal setUpdatedNote={setUpdatedNote} note={updatedNote} />
         </div>
-        <div className="h-[30vh] bg-[#F0F2F5] lg:hidden">
+        <div className="h-full bg-[#F0F2F5] lg:hidden">
           <CardActions onDeleteNote={onDeleteNode} />
         </div>
       </motion.div>

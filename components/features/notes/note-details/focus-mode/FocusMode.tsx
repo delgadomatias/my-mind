@@ -37,12 +37,12 @@ export const FocusMode = ({ note }: Props) => {
     const { content } = updatedNote;
 
     if (note.content === content && note.title === updatedNote.title) {
-      router.push("/");
+      window.location.hash = "";
       return;
     }
 
     if (DEFAULT_NOTE_CONTENT === content) {
-      router.push("/");
+      window.location.hash = "";
       NoteActions.deleteNote(note.id);
       return;
     }
@@ -64,9 +64,9 @@ export const FocusMode = ({ note }: Props) => {
   }, [textAreaRef.current?.scrollHeight]);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("overflow-hidden");
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("overflow-hidden");
     };
   }, []);
 

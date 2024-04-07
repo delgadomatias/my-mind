@@ -1,7 +1,7 @@
 "use client";
 
+import { useHash } from "@/hooks/useHash";
 import { Note } from "@/interfaces";
-import { useSearchParams } from "next/navigation";
 import { FocusModeContainer } from "../../focus-mode/FocusModeContainer";
 import { TextModalDetails } from "./TextModalDetails";
 
@@ -10,10 +10,12 @@ interface Props {
 }
 
 export const TextModal = ({ note }: Props) => {
-  const focusMode = useSearchParams().get("focus");
+  const { queryParams } = useHash();
+  const focusMode = queryParams.focus || false;
 
   if (focusMode) {
     return <FocusModeContainer note={note} />;
   }
+
   return <TextModalDetails note={note} />;
 };

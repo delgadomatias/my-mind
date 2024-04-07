@@ -27,7 +27,7 @@ export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
 
   return (
     <div className="hidden h-full w-[400px] flex-col justify-between rounded-lg bg-[#F0F2F5] lg:flex">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 overflow-auto">
         <header
           className="h-24 rounded-lg rounded-bl-none rounded-br-none px-7 py-5"
           style={{
@@ -50,7 +50,14 @@ export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
           </time>
         </header>
 
-        <div className="px-7">
+        <div
+          className="overflow-y-scroll px-7"
+          style={{
+            scrollbarColor: "#D0D8E5 transparent",
+            scrollbarWidth: "thin",
+            marginRight: "0.5rem",
+          }}
+        >
           <CardTags note={note} key={note.tags} />
         </div>
       </div>

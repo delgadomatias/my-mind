@@ -1,6 +1,5 @@
 import { Note } from "@/interfaces/note.interface";
 import { isImageInContent } from "@/utils/isImageInContent";
-import Link from "next/link";
 import { HoverNote } from "./HoverNote";
 import { NoteImage } from "./NoteImage";
 import { NoteText } from "./NoteText";
@@ -15,15 +14,17 @@ export const NoteItem = ({ note }: Props) => {
 
   return (
     <div className="flex flex-col gap-1 lg:gap-2">
-      <Link
-        className={`duration-50 note-item group relative z-10 max-w-full border-transparent transition-all ease-linear sm:max-w-[800px]`}
+      <div
+        className={`duration-50 note-item group relative z-10 max-w-full cursor-pointer border-transparent transition-all ease-linear sm:max-w-[800px]`}
         draggable={false}
-        href={`/notes/${id}`}
+        onClick={() => {
+          window.location.hash = id;
+        }}
       >
         <HoverNote />
         {isImage && <NoteImage content={content} />}
         {!isImage && <NoteText note={note} />}
-      </Link>
+      </div>
 
       {note.title && (
         <p className="overflow-hidden text-ellipsis whitespace-nowrap pl-[2px] text-sm text-[#748297]">

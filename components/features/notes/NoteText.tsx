@@ -16,11 +16,6 @@ export const NoteText = ({ note }: Props) => {
   const { length } = content;
   const router = useRouter();
 
-  function handleFocusMode(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
-    e.preventDefault();
-    return router.push(`/notes/${id}?focus=true`);
-  }
-
   return (
     <div
       className={`w-full  ${length > 500 ? "note-long" : ""} rounded-lg bg-white px-3 py-2 shadow-xl lg:px-6 lg:py-4`}
@@ -40,7 +35,9 @@ export const NoteText = ({ note }: Props) => {
       />
       <span
         className="group absolute right-2 top-2 z-50 hidden flex-col  items-center gap-2 lg:flex"
-        onClick={handleFocusMode}
+        onClick={() => {
+          router.push(`#${id}?focus=true`);
+        }}
       >
         <Image
           src="https://static.accelerator.net/134/0.27.1/icons/focus-circle-light.png"

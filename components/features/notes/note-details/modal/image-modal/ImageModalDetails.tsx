@@ -5,7 +5,7 @@ import { Note } from "@/interfaces";
 import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BackdropShadow } from "../../BackdropShadow";
 import { CardActions } from "../sidebar/CardActions";
 import { SidebarModal } from "../sidebar/SidebarModal";
@@ -34,6 +34,15 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
     await NoteActions.deleteNote(note.id);
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.classList.add("lg:overflow-hidden");
+
+    return () => {
+      document.body.classList.remove("lg:overflow-hidden");
+    };
+  }, []);
+
   return (
     <>
       <BackdropShadow onUpdateNote={handleUpdateNote} closeOnEscape />
@@ -45,7 +54,7 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
         transition={{ duration: 0.5 }}
       >
         <div
-          className="relative flex h-[450px] w-full flex-col bg-white transition-all duration-100 sm:h-[600px] lg:h-full lg:flex-row lg:rounded-xl lg:p-2 lg:pb-2"
+          className="relative flex h-[430px] w-full flex-col bg-white transition-all duration-100 sm:h-[600px] lg:h-full lg:flex-row lg:rounded-xl lg:p-2 lg:pb-2"
           id="backdrop-item"
           style={{
             backgroundColor: dominantColor,
@@ -94,7 +103,8 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
           {/* Right side */}
           <SidebarModal note={updatedNote} setUpdatedNote={setUpdatedNote} />
         </div>
-        <div className="block min-h-[calc(100vh_-_450px)] w-full bg-[#F0F2F5] sm:min-h-[calc(100vh_-_600px)] lg:hidden">
+
+        <div className="block h-full w-full bg-[#F0F2F5] lg:hidden">
           <CardActions onDeleteNote={onDeleteNote} />
         </div>
       </motion.div>

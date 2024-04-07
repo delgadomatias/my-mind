@@ -1,3 +1,4 @@
+import { ShowNote } from "@/components/ShowNote";
 import { DragAndDrop } from "@/components/features/drag-and-drop/DragAndDrop";
 import { MainAside } from "@/components/shared/MainAside";
 import { NoteSection } from "@/components/shared/NoteSection";
@@ -22,6 +23,7 @@ export default function NotesLayout({ children }: NotesLayoutProps) {
     <main>
       <MainAside />
       <NoteSection />
+      <ShowNote />
       <DragAndDrop />
       {children}
     </main>
