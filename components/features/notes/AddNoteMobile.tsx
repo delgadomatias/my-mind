@@ -54,10 +54,6 @@ export const AddNoteMobile = () => {
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    console.log(noteToAdd);
-  }, [noteToAdd]);
-
   return (
     <>
       <div className="z-50 bg-[#F0F2F5] lg:hidden">

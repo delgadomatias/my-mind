@@ -51,7 +51,7 @@ export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
         </header>
 
         <div
-          className="overflow-y-scroll px-7"
+          className="overflow-y-scroll px-7 py-4"
           style={{
             scrollbarColor: "#D0D8E5 transparent",
             scrollbarWidth: "thin",

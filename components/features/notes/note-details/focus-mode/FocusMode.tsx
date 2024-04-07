@@ -37,18 +37,18 @@ export const FocusMode = ({ note }: Props) => {
     const { content } = updatedNote;
 
     if (note.content === content && note.title === updatedNote.title) {
-      window.location.hash = "";
+      window.location.hash = `${note.id}?focus=false`;
       return;
     }
 
     if (DEFAULT_NOTE_CONTENT === content) {
-      window.location.hash = "";
+      window.location.hash = `${note.id}?focus=false`;
       NoteActions.deleteNote(note.id);
       return;
     }
 
     NoteActions.updateNote({ ...updatedNote });
-    router.push("/");
+    window.location.hash = `${note.id}?focus=false`;
   }
 
   useKey({

@@ -89,7 +89,29 @@ export async function addTagToNote(
     .eq("id", noteId)
     .select("*");
 
-  revalidatePath(`/notes/${noteId}`);
+  revalidatePath(`/#${noteId}`);
+  revalidatePath("/");
+
+  return data as NoteDTO[];
+}
+
+export async function deleteTagFromNote(noteId: string, tag: string) {
+  const supabase = await getDbOnServerActions();
+  const previousTags = await getNoteById(noteId);
+  const tags = previousTags.tags
+    ? previousTags.tags
+        .split(",")
+        .filter((t) => t !== tag)
+        .join(",")
+    : "";
+
+  const { data } = await supabase
+    .from("Notes")
+    .update({ tags })
+    .eq("id", noteId)
+    .select("*");
+
+  revalidatePath(`/#${noteId}`);
   revalidatePath("/");
 
   return data as NoteDTO[];

@@ -2,6 +2,7 @@ import { NoteActions } from "@/actions";
 import EditableMarkdownEditor from "@/components/shared/markdown-editor/EditableMarkdownEditor";
 import { Note } from "@/interfaces";
 import { DEFAULT_NOTE_CONTENT } from "@/utils/constants";
+import { getClassesByTags } from "@/utils/getClassesByTags";
 import { Image } from "@nextui-org/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -18,6 +19,7 @@ export const TextModalDetails = ({ note }: Props) => {
   const [updatedNote, setUpdatedNote] = useState(note);
   const noteLength = note.content.length;
   const router = useRouter();
+  const classesByTagToApply = getClassesByTags(note.tags);
 
   function onDeleteNode() {
     NoteActions.deleteNote(note.id);
@@ -56,7 +58,7 @@ export const TextModalDetails = ({ note }: Props) => {
     function handleFocusModeWithKeys(e: KeyboardEvent) {
       if (e.ctrlKey && e.key === "f") {
         e.preventDefault();
-        router.push(`/notes/${note.id}?focus=true`);
+        window.location.hash = `${note.id}?focus=true`;
       }
     }
     document.addEventListener("keydown", handleFocusModeWithKeys);
@@ -152,7 +154,7 @@ export const TextModalDetails = ({ note }: Props) => {
                 <EditableMarkdownEditor
                   content={note.content}
                   onChange={handleNoteContentChange}
-                  className={note.tags?.includes("quote") ? "quote" : ""}
+                  className={`${classesByTagToApply}`}
                 />
               </div>
             </div>

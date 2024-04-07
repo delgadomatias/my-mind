@@ -2,6 +2,7 @@
 
 import MarkdownEditor from "@/components/shared/markdown-editor/MarkdownEditor";
 import { Note } from "@/interfaces";
+import { getClassesByTags } from "@/utils/getClassesByTags";
 import { Image } from "@nextui-org/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -15,6 +16,7 @@ export const NoteText = ({ note }: Props) => {
   const { content, id, title } = note;
   const { length } = content;
   const router = useRouter();
+  const classesByTagToApply = getClassesByTags(note.tags);
 
   return (
     <div
@@ -30,7 +32,7 @@ export const NoteText = ({ note }: Props) => {
     >
       <MarkdownEditor
         content={content}
-        className={`w-full py-2 ${note.tags?.includes("quote") ? "quote" : ""}`}
+        className={`w-full py-2 ${classesByTagToApply}`}
         key={id + content + title}
       />
       <span

@@ -107,3 +107,7 @@
 .quote {
   @apply !text-center !font-louize;
 }
+
+.code {
+  @apply font-monoLisa;
+}

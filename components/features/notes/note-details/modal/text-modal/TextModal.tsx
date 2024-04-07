@@ -11,7 +11,12 @@ interface Props {
 
 export const TextModal = ({ note }: Props) => {
   const { queryParams } = useHash();
-  const focusMode = queryParams.focus || false;
+  let focusMode = queryParams.focus || false;
+  if (focusMode === "true") {
+    focusMode = true;
+  } else {
+    focusMode = false;
+  }
 
   if (focusMode) {
     return <FocusModeContainer note={note} />;
