@@ -88,9 +88,6 @@ export async function addTagToNote(
     .eq("id", noteId)
     .select("*");
 
-  revalidatePath(`/#${noteId}`);
-  revalidatePath("/");
-
   return data as NoteDTO[];
 }
 
@@ -109,9 +106,6 @@ export async function deleteTagFromNote(noteId: string, tag: string) {
     .update({ tags })
     .eq("id", noteId)
     .select("*");
-
-  revalidatePath(`/#${noteId}`);
-  revalidatePath("/");
 
   return data as NoteDTO[];
 }

@@ -1,6 +1,27 @@
+import { Logout } from "@/components/features/auth/Logout";
+import { MotionDiv } from "@/components/shared/MotionDiv";
+import { GithubIcon } from "@/components/shared/ui/icons/GithubIcon";
+import { GoogleIcon } from "@/components/shared/ui/icons/GoogleIcon";
+import { getUser } from "@/utils/getUser";
 import Link from "next/link";
 
-const SettingsPage = () => {
+const SettingsPage = async () => {
+  const user = await getUser();
+  const nameToShow = user?.user_metadata.name
+    ? `, ${user?.user_metadata.name}`
+    : null;
+
+  console.log(user?.app_metadata.provider);
+  const isLoggedWithProvider = user?.app_metadata.provider !== "email";
+  const provider = user?.app_metadata.provider!;
+
+  const MAP_PROVIDER: {
+    [key: string]: JSX.Element;
+  } = {
+    github: <GithubIcon />,
+    google: <GoogleIcon />,
+  };
+
   return (
     <section className="relative min-h-screen w-full">
       <Link
@@ -23,17 +44,37 @@ const SettingsPage = () => {
         </p>
       </Link>
 
-      <div className="mx-auto flex min-h-[calc(100vh_-_5rem)] max-w-screen-lg flex-col justify-center gap-8 px-6 pt-20">
-        <h1 className="font-louize text-6xl tracking-[-0.05em] md:text-7xl">
+      <MotionDiv
+        className="mx-auto flex min-h-[calc(100vh_-_5rem)] max-w-screen-lg flex-col justify-center gap-4 px-6 pt-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="mb-4 font-louize text-5xl tracking-[-0.05em] md:text-6xl">
           You have a beautiful mind
+          <span className="text-[#748297]">{nameToShow ? nameToShow : ""}</span>
         </h1>
 
-        <div className="rounded-md bg-white px-6 py-4">
-          <h2 className="border-b-1 border-[#DFE5EE] pb-2 text-2xl font-normal tracking-[-0.02em] text-[#30435F]">
-            Your account info
+        <div className="flex flex-col gap-2 rounded-md bg-white px-6 py-4">
+          <h2 className="mb-2 border-b-1 border-[#DFE5EE] pb-2 text-2xl font-normal tracking-[-0.02em] text-[#30435F]">
+            Email
           </h2>
+          <div className="inline-flex items-center gap-2">
+            {isLoggedWithProvider && <>{MAP_PROVIDER[provider]}</>}
+            <p className="text-[#748297]">{user?.email}</p>
+          </div>
         </div>
-      </div>
+
+        {!isLoggedWithProvider && (
+          <div className="rounded-md bg-white px-6 py-4">
+            <h2 className="mb-2 border-b-1 border-[#DFE5EE] pb-2 text-2xl font-normal tracking-[-0.02em] text-[#30435F]">
+              Change password
+            </h2>
+            <p className="text-[#748297]">{user?.email}</p>
+          </div>
+        )}
+        <Logout />
+      </MotionDiv>
     </section>
   );
 };

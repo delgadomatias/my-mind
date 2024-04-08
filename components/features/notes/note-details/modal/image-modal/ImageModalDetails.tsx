@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BackdropShadow } from "../../BackdropShadow";
 import { CardActions } from "../sidebar/CardActions";
+import { CardTags } from "../sidebar/CardTags";
 import { SidebarModal } from "../sidebar/SidebarModal";
 
 interface Props {
@@ -27,7 +28,7 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
 
   function handleCloseOnMobile() {
     handleUpdateNote();
-    router.push(`/`);
+    window.location.hash = "";
   }
 
   async function onDeleteNote() {
@@ -106,6 +107,9 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
         </div>
 
         <div className="block h-full w-full bg-[#F0F2F5] lg:hidden">
+          <div className="p-6">
+            <CardTags note={note} />
+          </div>
           <CardActions onDeleteNote={onDeleteNote} />
         </div>
       </motion.div>

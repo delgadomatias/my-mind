@@ -6,37 +6,19 @@ import {
 import { cookies } from "next/headers";
 
 export const getDbOnServerComponent = async () => {
-  return createServerComponentClient(
-    {
-      cookies,
-    },
-    {
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
-    },
-  );
+  return createServerComponentClient({
+    cookies,
+  });
 };
 
 export const getDbOnServerActions = async () => {
-  return createServerActionClient(
-    {
-      cookies,
-    },
-    {
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
-    },
-  );
+  return createServerActionClient({
+    cookies,
+  });
 };
 
 export const getDbOnRouteHandler = async () => {
-  return createRouteHandlerClient(
-    {
-      cookies,
-    },
-    {
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
-    },
-  );
+  return createRouteHandlerClient({
+    cookies,
+  });
 };

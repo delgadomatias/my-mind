@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BackdropShadow } from "../../BackdropShadow";
 import { CardActions } from "../sidebar/CardActions";
+import { CardTags } from "../sidebar/CardTags";
 import { SidebarModal } from "../sidebar/SidebarModal";
 
 interface Props {
@@ -130,7 +131,7 @@ export const TextModalDetails = ({ note }: Props) => {
             </button>
             <input
               type="text"
-              className="z-50 m-0 flex-1 overflow-hidden text-ellipsis border-none bg-transparent bg-white text-center text-lg font-normal text-[#000]"
+              className="z-50 m-0 flex-1 overflow-hidden text-ellipsis border-none bg-transparent bg-white text-center text-lg font-normal text-[#000] opacity-70"
               placeholder="Untitled"
               maxLength={100}
               defaultValue={note.title || "Untitled"}
@@ -164,6 +165,9 @@ export const TextModalDetails = ({ note }: Props) => {
           <SidebarModal setUpdatedNote={setUpdatedNote} note={updatedNote} />
         </div>
         <div className="h-full bg-[#F0F2F5] lg:hidden">
+          <div className="p-6">
+            <CardTags note={note} />
+          </div>
           <CardActions onDeleteNote={onDeleteNode} />
         </div>
       </motion.div>
