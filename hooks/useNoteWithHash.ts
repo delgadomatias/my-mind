@@ -3,6 +3,10 @@ import { Note } from "@/interfaces";
 import { useEffect, useState } from "react";
 import { useHash } from "./useHash";
 
+/**
+ * Custom hook that fetches a note based on the provided hash.
+ * @returns An object containing the fetched note and a loading indicator.
+ */
 export const useNoteWithHash = () => {
   const [note, setNote] = useState<Note | null>(null);
   const { hash } = useHash();

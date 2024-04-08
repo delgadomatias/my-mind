@@ -23,10 +23,16 @@ const SettingsPage = () => {
         </p>
       </Link>
 
-      <div className="mx-auto flex min-h-[calc(100vh_-_5rem)] max-w-screen-lg items-center  px-6 pt-20">
-        <h1 className="font-louize text-6xl tracking-[-0.05em]">
+      <div className="mx-auto flex min-h-[calc(100vh_-_5rem)] max-w-screen-lg flex-col justify-center gap-8 px-6 pt-20">
+        <h1 className="font-louize text-6xl tracking-[-0.05em] md:text-7xl">
           You have a beautiful mind
         </h1>
+
+        <div className="rounded-md bg-white px-6 py-4">
+          <h2 className="border-b-1 border-[#DFE5EE] pb-2 text-2xl font-normal tracking-[-0.02em] text-[#30435F]">
+            Your account info
+          </h2>
+        </div>
       </div>
     </section>
   );

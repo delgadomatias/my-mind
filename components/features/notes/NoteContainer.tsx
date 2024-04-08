@@ -1,11 +1,11 @@
 "use client";
 
-import { DEFAULT_NOTE_CONTENT } from "@/utils/constants";
+import { DEFAULT_NOTE_CONTENT } from "@/utils";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { SearchNoteContainer } from "../search-note/SearchNoteContainer";
-import { AddNoteDesktop } from "./AddNoteDesktop";
-import { AddNoteMobile } from "./AddNoteMobile";
+import { AddNoteDesktop } from "./add-note/AddNoteDesktop";
+import { AddNoteMobile } from "./add-note/AddNoteMobile";
 
 export const NoteContainer = () => {
   const [noteContent, setNoteContent] = useState("");

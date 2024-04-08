@@ -18,7 +18,6 @@ export const getDbOnServerComponent = async () => {
 };
 
 export const getDbOnServerActions = async () => {
-  "use server";
   return createServerActionClient(
     {
       cookies,

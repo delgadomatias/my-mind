@@ -1,9 +1,6 @@
-import { getUser } from "@/utils/getUser";
 import Link from "next/link";
 
-export const MainAside = async () => {
-  const user = await getUser();
-
+export const MainAside = () => {
   return (
     <aside className="fixed hidden h-screen w-20 flex-col items-center justify-between lg:flex ">
       <div className="mt-[100px]">

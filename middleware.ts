@@ -1,54 +1,26 @@
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { getNoteById } from "./actions/notes.action";
-import { getUser } from "./utils/getUser";
-
-const AUTH_ROUTES = ["/auth/signup", "/auth/signin"];
+import { AUTH_ROUTES, PRIVATE_ROUTES, SIGN_IN_ROUTE } from "./utils";
+import { isAuthenticated } from "./utils/isAuthenticated";
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const { pathname } = req.nextUrl;
 
+  // First, handle auth routes
   if (AUTH_ROUTES.includes(pathname)) {
-    const user = await getUser();
-    if (user) {
-      return NextResponse.redirect(new URL("/", req.url));
-    }
-
-    return res;
+    const isLogged = await isAuthenticated();
+    if (!isLogged) return res;
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  const supabase = createMiddlewareClient(
-    { req, res },
-    {
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
-    },
-  );
+  const supabase = createMiddlewareClient({ req, res });
+  const { data } = await supabase.auth.getSession();
+  const { session } = data;
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session) {
-    return NextResponse.redirect(new URL("/auth/signin", req.url));
-  }
-
-  if (pathname.startsWith("/notes/")) {
-    const noteId: string = pathname.split("/")[2];
-
-    if (!noteId) {
-      return NextResponse.redirect(new URL("/", req.url));
-    }
-
-    const note = await getNoteById(noteId);
-
-    if (!note) {
-      return NextResponse.redirect(new URL("/", req.url));
-    }
-
-    return res;
+  if (PRIVATE_ROUTES.includes(pathname) && !session) {
+    return NextResponse.redirect(new URL(SIGN_IN_ROUTE, req.url));
   }
 
   return res;

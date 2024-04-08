@@ -8,6 +8,7 @@ const AddNoteEditor = dynamic(
     loading: () => <div className="h-[54px] w-full"></div>,
   },
 );
+
 interface Props {
   handleOnChange: (richText: string) => void;
   isSaving: boolean;

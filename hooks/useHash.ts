@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+/**
+ * Custom hook that extracts the hash and query parameters from the current URL.
+ * @returns An object containing the hash and query parameters.
+ */
 export const useHash = () => {
   const [hash, setHash] = useState<string | null>(null);
   const [queryParams, setQueryParams] = useState<any>({});

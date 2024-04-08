@@ -1,7 +1,3 @@
-import { ShowNote } from "@/components/ShowNote";
-import { DragAndDrop } from "@/components/features/drag-and-drop/DragAndDrop";
-import { MainAside } from "@/components/shared/MainAside";
-import { NoteSection } from "@/components/shared/NoteSection";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
@@ -19,13 +15,5 @@ interface NotesLayoutProps {
 }
 
 export default function NotesLayout({ children }: NotesLayoutProps) {
-  return (
-    <main>
-      <MainAside />
-      <NoteSection />
-      <ShowNote />
-      <DragAndDrop />
-      {children}
-    </main>
-  );
+  return <main>{children}</main>;
 }

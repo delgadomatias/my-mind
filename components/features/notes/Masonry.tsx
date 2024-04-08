@@ -1,17 +1,17 @@
 "use client";
 
 import { Note } from "@/interfaces";
-import { filterNoteByQuery } from "@/utils/filterNoteByQuery";
+import { MotionDiv } from "@/shared/MotionDiv";
+import { filterNoteByQuery } from "@/utils";
 import { useSearchParams } from "next/navigation";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { MotionDiv } from "../../shared/MotionDiv";
-import { NoteItem } from "./NoteItem";
+import ReactMasonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { NoteItem } from "./note-item/NoteItem";
 
 interface Props {
   notes: Note[];
 }
 
-export const NoteListMasonry = ({ notes }: Props) => {
+export const Masonry = ({ notes }: Props) => {
   const searchQuery = useSearchParams().get("search");
 
   if (!notes) return;
@@ -38,11 +38,11 @@ export const NoteListMasonry = ({ notes }: Props) => {
           1536: 5,
         }}
       >
-        <Masonry className="masonry !gap-[10px] lg:!gap-[12px_20px]">
+        <ReactMasonry className="masonry !gap-[10px] lg:!gap-[12px_20px]">
           {notes.map((note) => {
             return <NoteItem note={note} key={note.id} />;
           })}
-        </Masonry>
+        </ReactMasonry>
       </ResponsiveMasonry>
     </MotionDiv>
   );

@@ -1,15 +1,10 @@
-export const getClassesByTags = (tags: string | null) => {
-  const classesByTag: {
-    [key: string]: string;
-  } = {
-    quote: "quote",
-    code: "code",
-  };
+import { VALID_CLASSES_BY_TAG } from "./constants";
 
+export const getClassesByTags = (tags: string | null) => {
   return tags
     ?.split(",")
     .filter((tag) => {
-      return classesByTag[tag] ?? false;
+      return VALID_CLASSES_BY_TAG[tag] ?? false;
     })
     .join(" ");
 };

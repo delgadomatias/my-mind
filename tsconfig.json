@@ -27,7 +27,9 @@
       "@/hooks/*": ["./hooks/*"],
       "@/context/*": ["./context/*"],
       "@/utils/*": ["./utils/*"],
-      "@/database/*": ["./database/*"]
+      "@/database/*": ["./database/*"],
+      "@/features/*": ["./components/features/*"],
+      "@/shared/*": ["./components/shared/*"]
     }
   },
   "include": [
