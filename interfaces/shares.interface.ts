@@ -5,5 +5,5 @@ export interface ShareResponse {
   created_at: string;
   expiration_date: string;
   note_id: string;
-  Notes: Note;
+  Note: Note;
 }

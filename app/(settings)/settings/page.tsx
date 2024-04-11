@@ -11,7 +11,6 @@ const SettingsPage = async () => {
     ? `, ${user?.user_metadata.name}`
     : null;
 
-  console.log(user?.app_metadata.provider);
   const isLoggedWithProvider = user?.app_metadata.provider !== "email";
   const provider = user?.app_metadata.provider!;
 

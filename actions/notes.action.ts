@@ -15,7 +15,7 @@ export async function getAllNotes(): Promise<Note[]> {
   const { id } = user!;
 
   const { data: notesFromUser } = await supabase
-    .from("Notes")
+    .from("Note")
     .select("*")
     .eq("user_id", id)
     .order("created_at", { ascending: false });
@@ -33,7 +33,7 @@ export async function createNote(note: NoteDTO): Promise<NoteDTO[]> {
   const noteToAdd = { ...note, user_id: user.id };
 
   const { data } = await supabase
-    .from("Notes")
+    .from("Note")
     .insert({ ...noteToAdd })
     .select("*");
 
@@ -44,7 +44,7 @@ export async function createNote(note: NoteDTO): Promise<NoteDTO[]> {
 
 export async function getNoteById(id: string): Promise<Note> {
   const supabase = await getDbOnServerActions();
-  const { data } = await supabase.from("Notes").select("*").eq("id", id);
+  const { data } = await supabase.from("Note").select("*").eq("id", id);
 
   return data![0] as Note;
 }
@@ -52,7 +52,7 @@ export async function getNoteById(id: string): Promise<Note> {
 export async function updateNote(note: Note): Promise<NoteDTO[]> {
   const supabase = await getDbOnServerActions();
   const { data } = await supabase
-    .from("Notes")
+    .from("Note")
     .update({ ...note })
     .eq("id", note.id)
     .select("*");
@@ -65,7 +65,7 @@ export async function updateNote(note: Note): Promise<NoteDTO[]> {
 export async function deleteNote(id: string): Promise<NoteDTO[]> {
   const supabase = await getDbOnServerActions();
   const { data } = await supabase
-    .from("Notes")
+    .from("Note")
     .delete()
     .eq("id", id)
     .select("*");
@@ -83,7 +83,7 @@ export async function addTagToNote(
   const tags = previousTags.tags ? `${previousTags.tags},${tag}` : tag;
 
   const { data } = await supabase
-    .from("Notes")
+    .from("Note")
     .update({ tags })
     .eq("id", noteId)
     .select("*");
@@ -102,7 +102,7 @@ export async function deleteTagFromNote(noteId: string, tag: string) {
     : "";
 
   const { data } = await supabase
-    .from("Notes")
+    .from("Note")
     .update({ tags })
     .eq("id", noteId)
     .select("*");

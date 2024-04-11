@@ -16,8 +16,18 @@ export const useNoteWithHash = () => {
 
     async function fetchNote() {
       const supabaseClient = getDbOnClient();
+      const { data: userLogged } = await supabaseClient.auth.getUser();
+      const { data: userNotes } = await supabaseClient
+        .from("Note")
+        .select("*")
+        .eq("user_id", userLogged.user?.id);
+
+      if (!userNotes?.some((note: Note) => note.id === hash)) {
+        return (window.location.hash = "");
+      }
+
       const { data: foundedNote } = await supabaseClient
-        .from("Notes")
+        .from("Note")
         .select("*")
         .eq("id", hash)
         .single();
