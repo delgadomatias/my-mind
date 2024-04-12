@@ -57,10 +57,15 @@ export const ShareButton = ({
         .filter("active", "is", true)
         .single();
 
-      const { hours = 0 } = intervalToDuration({
+      const { hours = 0, minutes = 0 } = intervalToDuration({
         end: new Date(data?.data.expiration_date),
         start: new Date(),
       });
+
+      if (minutes > 30) {
+        setHoursUntilDisabled(`${zeroPad(hours + 1)}h`);
+        return;
+      }
 
       setHoursUntilDisabled(`${zeroPad(hours)}h`);
     }
