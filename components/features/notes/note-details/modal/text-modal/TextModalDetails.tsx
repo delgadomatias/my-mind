@@ -168,7 +168,7 @@ export const TextModalDetails = ({ note }: Props) => {
           <div className="p-6">
             <CardTags note={note} />
           </div>
-          <CardActions onDeleteNote={onDeleteNode} />
+          <CardActions onDeleteNote={onDeleteNode} note={note} />
         </div>
       </motion.div>
     </>

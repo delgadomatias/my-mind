@@ -1,6 +1,7 @@
 import { ExpiredShare } from "@/components/features/shares/ExpiredShare";
 import { ShareFooter } from "@/components/features/shares/ShareFooter";
 import { ShareSpinner } from "@/components/features/shares/ShareSpinner";
+import { ShareSave } from "@/components/features/shares/share-save/ShareSave";
 import { MotionDiv } from "@/components/shared/MotionDiv";
 import ReadonlyMarkdownEditor from "@/components/shared/markdown-editor/ReadonlyMarkdownEditor";
 import { getDbOnServerComponent } from "@/database/server";
@@ -32,7 +33,7 @@ const ShareDetailsPage = async ({ params }: Props) => {
   const sharedExpirationDate = new Date(data.expiration_date);
   const sharedIsExpired = isExpiredDate(sharedExpirationDate);
 
-  if (sharedIsExpired) {
+  if (sharedIsExpired || !data.active) {
     return <ExpiredShare />;
   }
 
@@ -40,7 +41,7 @@ const ShareDetailsPage = async ({ params }: Props) => {
   const classesByTagToApply = getClassesByTags(foundNote.tags);
   const { data: noteUser } = await supabase
     .from("User")
-    .select("name")
+    .select("name, id")
     .eq("id", foundNote.user_id)
     .single();
 
@@ -69,6 +70,7 @@ const ShareDetailsPage = async ({ params }: Props) => {
             <p className="text-center font-normal tracking-[-0.02em] text-[#748297] lg:text-start lg:text-lg">
               Shared from the mind of {noteUser?.name}
             </p>
+            <ShareSave note={foundNote} />
           </div>
 
           <div className="flex flex-col items-center gap-3 text-[#748297]">

@@ -109,3 +109,67 @@ export async function deleteTagFromNote(noteId: string, tag: string) {
 
   return data as NoteDTO[];
 }
+
+export async function saveSharedNote(note: Note, userId: string) {
+  const newNote = {
+    title: note.title,
+    tags: note.tags,
+    content: note.content,
+    original_id: note.id,
+  };
+
+  const supabase = await getDbOnServerActions();
+  const { data } = await supabase
+    .from("Note")
+    .insert({ ...newNote, user_id: userId });
+}
+
+export async function createShareLink(noteId: string) {
+  const supabase = await getDbOnServerActions();
+
+  const { data: sharesFromNote } = await supabase
+    .from("Share")
+    .select("*")
+    .eq("note_id", noteId);
+
+  const disabledShareAndNonExpired = sharesFromNote?.filter((share) => {
+    return !share.active && new Date(share.expiration_date) > new Date();
+  });
+
+  if (!disabledShareAndNonExpired) {
+    const { data, error } = await supabase
+      .from("Share")
+      .insert({ note_id: noteId })
+      .select("id")
+      .single();
+
+    await supabase
+      .from("Note")
+      .update({ is_shared: true, shared_id: data?.id })
+      .eq("id", noteId);
+
+    return data as {
+      id: string;
+    };
+  }
+
+  const data = disabledShareAndNonExpired[0];
+  await supabase.from("Share").update({ active: true }).eq("id", data.id);
+  await supabase
+    .from("Note")
+    .update({ is_shared: true, shared_id: data.id })
+    .eq("id", noteId);
+
+  return data as {
+    id: string;
+  };
+}
+
+export async function disableShareLink(noteId: string) {
+  const supabase = await getDbOnServerActions();
+  await supabase.from("Note").update({ is_shared: false }).eq("id", noteId);
+  const { data, error } = await supabase
+    .from("Share")
+    .update({ active: false })
+    .eq("note_id", noteId);
+}

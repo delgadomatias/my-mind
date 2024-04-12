@@ -6,4 +6,5 @@ export interface ShareResponse {
   expiration_date: string;
   note_id: string;
   Note: Note;
+  active: boolean;
 }

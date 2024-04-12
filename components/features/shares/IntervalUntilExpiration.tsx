@@ -8,48 +8,59 @@ interface Props {
   expirationDate: Date;
 }
 
+type State = {
+  hours: number;
+  minutes: number;
+  seconds: number;
+  timeFormatted: string;
+};
+
 export const IntervalUntilExpiration = ({ expirationDate }: Props) => {
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-  const [timeFormatted, setTimeFormatted] = useState("24h 00min 00sec");
+  const [state, setState] = useState<State>({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    timeFormatted: "",
+  });
   const router = useRouter();
 
   useEffect(() => {
-    function handleInterval() {
-      const { hours, minutes, seconds } = intervalToDuration({
+    function changeTime() {
+      const {
+        hours = 0,
+        minutes = 0,
+        seconds = 0,
+      } = intervalToDuration({
         start: new Date(),
         end: expirationDate,
       });
 
-      setHours(hours || 0);
-      setMinutes(minutes || 0);
-      setSeconds(seconds || 0);
-
       const zeroPad = (num: number) => String(num).padStart(2, "0");
-      const timeFormatted = `${zeroPad(hours || 0)}h ${zeroPad(minutes || 0)}min ${zeroPad(seconds || 0)}sec`;
+      const timeFormatted = `${zeroPad(hours)}h ${zeroPad(minutes)}min ${zeroPad(seconds)}sec`;
 
-      setTimeFormatted(timeFormatted);
+      setState({ hours, minutes, seconds, timeFormatted });
     }
 
-    const interval = setInterval(handleInterval, 1000);
+    changeTime();
+    const interval = setInterval(changeTime, 1000);
     return () => {
       clearInterval(interval);
     };
   }, [expirationDate]);
 
   useEffect(() => {
-    if (hours === 0 && minutes === 0 && seconds === 0) {
-      router.refresh();
-    }
-  }, [hours, seconds, minutes, router]);
+    const { hours, minutes, seconds } = state;
+    const isExpired = hours === 0 && minutes === 0 && seconds === 0;
+
+    if (isExpired) router.refresh();
+  }, [state, router]);
 
   return (
     <time
       dateTime={expirationDate.toString()}
       className="font-semibold  underline"
     >
-      {timeFormatted}
+      {state.timeFormatted}
     </time>
   );
 };
