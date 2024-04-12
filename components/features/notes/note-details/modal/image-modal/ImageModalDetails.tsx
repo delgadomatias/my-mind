@@ -110,7 +110,7 @@ export const ImageModalDetails = ({ note, dominantColor, src }: Props) => {
           <div className="p-6">
             <CardTags note={note} />
           </div>
-          <CardActions onDeleteNote={onDeleteNote} />
+          <CardActions onDeleteNote={onDeleteNote} note={note} />
         </div>
       </motion.div>
     </>

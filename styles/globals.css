@@ -1,7 +1,16 @@
 @import url(https://fonts.cdnfonts.com/css/monolisa);
+@import url("https://fonts.googleapis.com/css2?family=Armata&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Atrament";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/atrament.otf") format("opentype");
+}
 
 @font-face {
   font-family: "Louize";
@@ -110,4 +119,12 @@
 
 .code {
   @apply font-monoLisa;
+}
+
+.armata {
+  @apply font-armata;
+}
+
+.atrament {
+  @apply font-atrament;
 }

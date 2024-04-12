@@ -1,7 +1,9 @@
 "use server";
 
 import { getDbOnServerActions } from "@/database/server";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { CookiesActions } from ".";
 
 export async function signUpWithEmailAndPassword(
   prevState: any,
@@ -35,6 +37,9 @@ export async function signInWithEmailAndPassword(
     email,
     password,
   });
+  const cookieStore = cookies();
+  const next = cookieStore.get("next")?.value || "/";
+  await CookiesActions.deleteCookie("next");
 
   if (error) {
     return {
@@ -42,5 +47,5 @@ export async function signInWithEmailAndPassword(
     };
   }
 
-  redirect("/");
+  redirect(next);
 }

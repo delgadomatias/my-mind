@@ -62,7 +62,7 @@ export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
           <CardTags note={note} key={note.tags} />
         </div>
       </div>
-      <CardActions onDeleteNote={onDeleteNote} />
+      <CardActions onDeleteNote={onDeleteNote} note={note} />
     </div>
   );
 };

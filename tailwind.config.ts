@@ -18,9 +18,15 @@ const config: Config = {
       "3xl": "1900px",
     },
     extend: {
+      backgroundImage: {
+        "save-gradient":
+          "linear-gradient(90deg, #ED9EC0 0%, #F5BB79 51.04%, #FF3B21 100%)",
+      },
       fontFamily: {
         monoLisa: ["MonoLisa"],
         louize: ["Louize"],
+        armata: ["Armata"],
+        atrament: ["Atrament"],
       },
       container: {
         center: true,

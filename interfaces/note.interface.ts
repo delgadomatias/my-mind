@@ -5,6 +5,9 @@ export interface Note {
   title?: string;
   user_id: string;
   tags: string | null;
+  original_id: string | null;
+  is_shared: boolean;
+  shared_id: string | null;
 }
 
 export type NoteId = string;
