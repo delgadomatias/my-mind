@@ -1,5 +1,6 @@
 import { ExpiredShare } from "@/components/features/shares/ExpiredShare";
-import { IntervalUntilExpiration } from "@/components/features/shares/IntervalUntilExpiration";
+import { ShareFooter } from "@/components/features/shares/ShareFooter";
+import { ShareSpinner } from "@/components/features/shares/ShareSpinner";
 import { MotionDiv } from "@/components/shared/MotionDiv";
 import ReadonlyMarkdownEditor from "@/components/shared/markdown-editor/ReadonlyMarkdownEditor";
 import { getDbOnServerComponent } from "@/database/server";
@@ -45,10 +46,8 @@ const ShareDetailsPage = async ({ params }: Props) => {
 
   return (
     <article
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden
-    after:absolute after:bottom-[-80px] after:left-0 after:h-[350px] after:w-full after:bg-[url('https://static.accelerator.net/134/0.28.7/shares/images/bottom-gradient-mobile.png')] after:bg-cover after:bg-center after:bg-no-repeat after:content-['']
-    md:after:bg-none
-    
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden after:absolute after:bottom-[-80px] after:left-0 after:h-[350px] after:w-full after:bg-[url('https://static.accelerator.net/134/0.28.7/shares/images/bottom-gradient-mobile.png')] after:bg-cover after:bg-center after:bg-no-repeat after:content-['']
+    md:after:bg-none    
     "
     >
       <MotionDiv
@@ -62,7 +61,7 @@ const ShareDetailsPage = async ({ params }: Props) => {
         >
           <ReadonlyMarkdownEditor content={foundNote.content} />
         </div>
-        <div className="my-4 flex w-full flex-col items-center justify-center gap-8 rounded-md rounded-bl-none rounded-tl-none md:col-span-7 lg:bg-[#e7ecf4]">
+        <div className="my-6 flex w-full flex-col items-center justify-center gap-8 rounded-md rounded-bl-none rounded-tl-none md:col-span-7 md:bg-[#e7ecf4]">
           <div className="flex flex-col items-center">
             <h1 className="line-clamp-3 font-louize text-4xl tracking-[-0.01em] text-black">
               {foundNote.title}
@@ -71,9 +70,10 @@ const ShareDetailsPage = async ({ params }: Props) => {
               Shared from the mind of {noteUser?.name}
             </p>
           </div>
-          <div className="inline-flex items-center gap-1 text-sm text-[#748297] lg:text-base">
-            <span>This memory goes private in</span>
-            <IntervalUntilExpiration expirationDate={sharedExpirationDate} />
+
+          <div className="flex flex-col items-center gap-3 text-[#748297]">
+            <ShareSpinner />
+            <ShareFooter expirationDate={sharedExpirationDate} />
           </div>
         </div>
       </MotionDiv>
