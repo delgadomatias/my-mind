@@ -22,7 +22,7 @@ export const ShareSaveButton = ({ user, note }: Props) => {
   async function handleClick() {
     if (!user) {
       setCookieViaAction();
-      router.push("auth/signin");
+      router.push("/auth/signin");
       return;
     }
 
