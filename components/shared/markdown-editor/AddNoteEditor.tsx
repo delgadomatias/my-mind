@@ -95,9 +95,9 @@ const AddNoteEditor = ({
 
   return (
     <>
-      <EditorContent editor={editor} className="w-full" />
+      <EditorContent editor={editor} className="h-full w-full pb-2" />
       <motion.button
-        className="duration-800 absolute right-0 top-0 hidden h-full w-40 p-2 text-center transition-all ease-in lg:block"
+        className="duration-800 absolute bottom-0 left-0 right-0 hidden w-full text-center transition-all ease-in lg:block"
         style={{
           pointerEvents: isTyping ? "auto" : "none",
           zIndex: 999,
@@ -108,7 +108,7 @@ const AddNoteEditor = ({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
       >
-        <div className="flex h-full w-full items-center justify-center rounded-md bg-[#ff5924] px-4">
+        <div className="flex h-full w-full items-center justify-center rounded-md rounded-tl-none rounded-tr-none bg-[#ff5924] px-4 py-1 text-sm">
           <span className="text-sm" id="command-key"></span>
         </div>
       </motion.button>

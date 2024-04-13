@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { ScrolledSearchNote } from "./ScrolledSearchNote";
 import { SearchNote } from "./SearchNote";
@@ -33,6 +34,7 @@ export const SearchNoteContainer = () => {
       >
         <ScrolledSearchNote />
       </div>
+
       <div ref={normalInputRef}>
         <SearchNote />
       </div>
