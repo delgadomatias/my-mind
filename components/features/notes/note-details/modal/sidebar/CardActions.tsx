@@ -5,6 +5,7 @@ import { Tooltip } from "@/components/shared/ui/Tooltip";
 import { Note } from "@/interfaces";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import Swal from "sweetalert2";
 import { ShareButton } from "./ShareButton";
 
 interface Props {
@@ -23,13 +24,34 @@ export const CardActions = ({ onDeleteNote, note }: Props) => {
     sharedUrl: `${window.location.origin}/shares/${note.shared_id}`,
   });
 
+  async function handleOnDeleteNote() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onDeleteNote();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  }
+
   return (
     <div className="flex w-full flex-col items-center justify-center gap-3 p-5">
       <div className="inline-flex gap-3">
         <Tooltip text="Delete card">
           <button
             className="group relative flex items-center justify-center rounded-full bg-white p-3 transition-all ease-linear hover:bg-[#748297]"
-            onClick={onDeleteNote}
+            onClick={handleOnDeleteNote}
           >
             <TrashIcon className="group-hover:fill-white" />
           </button>
