@@ -35,7 +35,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-responsive-masonry": "^2.2.0",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.2",
+    "sweetalert2": "^11.10.8"
   },
   "devDependencies": {
     "@types/color-thief-node": "^1.0.4",
