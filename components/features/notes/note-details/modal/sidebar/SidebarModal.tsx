@@ -16,8 +16,7 @@ export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
 
   async function onDeleteNote() {
     window.location.hash = "";
-    const noteDeleted = await NoteActions.deleteNote(note.id);
-    return noteDeleted;
+    await NoteActions.deleteNote(note.id);
   }
 
   function onTitleChange(title: string) {
