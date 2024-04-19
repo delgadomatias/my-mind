@@ -38,7 +38,7 @@ const SettingsPage = async () => {
             <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
           </svg>
         </span>
-        <p className="text-xl leading-[24px] text-[#748297] duration-150 ease-linear group-hover:text-[#ff5924]">
+        <p className="text-xl leading-[24px] text-[#748297] duration-150 ease-linear group-hover:text-[#301934]">
           back to my mind
         </p>
       </Link>

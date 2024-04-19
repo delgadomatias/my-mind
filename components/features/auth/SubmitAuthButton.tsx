@@ -11,7 +11,7 @@ export const SubmitAuthButton = ({ text }: Props) => {
 
   return (
     <button
-      className={`rounded-xl bg-[#ff5924] p-4 text-xl text-white ${pending ? "animate-pulse" : ""}`}
+      className={`rounded-xl bg-[#301934] p-4 text-xl text-white ${pending ? "animate-pulse" : ""}`}
       disabled={pending}
       type="submit"
     >

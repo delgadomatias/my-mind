@@ -100,7 +100,7 @@ const AddNoteEditor = ({
         className="duration-800 absolute bottom-0 left-0 right-0 hidden w-full text-center transition-all ease-in lg:block"
         style={{
           pointerEvents: isTyping ? "auto" : "none",
-          zIndex: 999,
+          zIndex: 50,
         }}
         onClick={handleAddNoteViaClick}
         initial={{ opacity: 0 }}
@@ -108,7 +108,7 @@ const AddNoteEditor = ({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
       >
-        <div className="flex h-full w-full items-center justify-center rounded-md rounded-tl-none rounded-tr-none bg-[#ff5924] px-4 py-1 text-sm">
+        <div className="flex h-full w-full items-center justify-center rounded-md rounded-tl-none rounded-tr-none bg-[#301934] px-4 py-1 text-sm">
           <span className="text-sm" id="command-key"></span>
         </div>
       </motion.button>

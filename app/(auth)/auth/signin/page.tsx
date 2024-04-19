@@ -26,7 +26,7 @@ const SignInPage = () => {
       <footer className="mt-12">
         <p className="text-lg font-light sm:text-xl md:text-2xl">
           Don&apos;t have an account yet?{" "}
-          <Link className="text-[#ff5924] underline" href="/auth/signup">
+          <Link className="text-[#301934] underline" href="/auth/signup">
             Sign up here.
           </Link>
         </p>

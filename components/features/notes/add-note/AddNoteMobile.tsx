@@ -69,7 +69,7 @@ export const AddNoteMobile = () => {
           <div className="flex h-[10%] items-center justify-end px-4">
             <button
               onClick={onSaveNote}
-              className="rounded-xl bg-[#ff5924] px-6 py-2 font-semibold text-white"
+              className="rounded-xl bg-[#301934] px-6 py-2 font-semibold text-white"
             >
               Save
             </button>

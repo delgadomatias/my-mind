@@ -85,7 +85,7 @@ export const FocusMode = ({ note }: Props) => {
 
   return (
     <>
-      <MotionDiv className="absolute top-0 z-50 h-full w-full border-t-3 border-t-[#ff5924]">
+      <MotionDiv className="absolute top-0 z-50 h-full w-full border-t-3 border-t-[#301934]">
         <Image
           src="/media/expanded-note-bg.jpg"
           alt="Hola"

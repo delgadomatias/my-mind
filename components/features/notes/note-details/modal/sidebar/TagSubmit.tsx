@@ -4,7 +4,7 @@ export const TagSubmit = () => {
   const { pending } = useFormStatus();
   return (
     <button
-      className="col-span-2 flex items-center justify-center rounded-lg rounded-bl-none rounded-tl-none bg-[#FF5924] text-3xl text-white"
+      className="col-span-2 flex items-center justify-center rounded-lg rounded-bl-none rounded-tl-none bg-[#301934] text-3xl text-white"
       type="submit"
     >
       {pending ? (
