@@ -36,6 +36,7 @@
     "react-dom": "^18",
     "react-responsive-masonry": "^2.2.0",
     "sharp": "^0.33.2",
+    "sonner": "^1.4.41",
     "sweetalert2": "^11.10.8"
   },
   "devDependencies": {
