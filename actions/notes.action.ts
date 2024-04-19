@@ -132,9 +132,7 @@ export async function createShareLink(noteId: string) {
     .select("*")
     .eq("note_id", noteId);
 
-  if (!sharesFromNote) return;
-
-  const disabledShareAndNonExpired = sharesFromNote.filter((share) => {
+  const disabledShareAndNonExpired = sharesFromNote!.filter((share) => {
     return !share.active && new Date(share.expiration_date) > new Date();
   });
 
