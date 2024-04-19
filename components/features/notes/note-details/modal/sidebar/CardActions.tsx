@@ -1,15 +1,15 @@
 import { MotionDiv } from "@/components/shared/MotionDiv";
+import { Alerts } from "@/components/shared/adapters/alerts";
 import { PaperclipIcon } from "@/components/shared/icons/PaperclipIcon";
 import { TrashIcon } from "@/components/shared/icons/TrashIcon";
 import { Tooltip } from "@/components/shared/ui/Tooltip";
 import { Note } from "@/interfaces";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import Swal from "sweetalert2";
 import { ShareButton } from "./ShareButton";
 
 interface Props {
-  onDeleteNote: () => void;
+  onDeleteNote: () => Promise<void>;
   note: Note;
 }
 
@@ -25,23 +25,17 @@ export const CardActions = ({ onDeleteNote, note }: Props) => {
   });
 
   async function handleOnDeleteNote() {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        onDeleteNote();
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
+    Alerts.askOrCancel({
+      options: {
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      },
+      callback: onDeleteNote,
     });
   }
 
@@ -75,7 +69,7 @@ export const CardActions = ({ onDeleteNote, note }: Props) => {
             <p className="inline-block max-w-full overflow-clip text-ellipsis text-nowrap pr-9 font-normal text-[#ADB7C8]">
               Share with a friend:{" "}
               <a
-                className="text-[#ff5924]"
+                className="text-[#301934]"
                 href={actionsState.sharedUrl!}
                 target="_blank"
               >
