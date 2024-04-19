@@ -132,11 +132,13 @@ export async function createShareLink(noteId: string) {
     .select("*")
     .eq("note_id", noteId);
 
-  const disabledShareAndNonExpired = sharesFromNote?.filter((share) => {
+  if (!sharesFromNote) return;
+
+  const disabledShareAndNonExpired = sharesFromNote.filter((share) => {
     return !share.active && new Date(share.expiration_date) > new Date();
   });
 
-  if (!disabledShareAndNonExpired) {
+  if (disabledShareAndNonExpired?.length === 0) {
     const { data, error } = await supabase
       .from("Share")
       .insert({ note_id: noteId })
