@@ -9,7 +9,7 @@ import { useState } from "react";
 import { ShareButton } from "./ShareButton";
 
 interface Props {
-  onDeleteNote: () => Promise<void>;
+  onDeleteNote: () => void;
   note: Note;
 }
 
