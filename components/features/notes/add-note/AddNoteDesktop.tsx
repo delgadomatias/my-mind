@@ -14,7 +14,7 @@ export const AddNoteDesktop = (props: Props) => {
 
   return (
     <div className="relative hidden min-h-52 rounded-md bg-white px-6 py-4 shadow-xl transition-shadow duration-75 ease-linear hover:shadow-[20px_20px_40px_#BABFC2] lg:block">
-      <label className="select-none text-[clamp(8px,8cqw,12px)] font-medium uppercase leading-[1] tracking-[0.1em] text-[#301934]">
+      <label className="select-none text-[clamp(8px,8cqw,12px)]  font-bold uppercase leading-[1] tracking-[0.1em] text-[#301934]">
         Add a new note
       </label>
       <AddNoteEditor

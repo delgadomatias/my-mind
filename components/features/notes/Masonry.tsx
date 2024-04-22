@@ -54,31 +54,57 @@ export const Masonry = ({ notes }: Props) => {
 
       <AnimatePresence>
         {!isSearching && (
-          <MotionDiv
-            animate={{ opacity: 1, y: 0 }}
-            className="relative"
-            id="note-list"
-            initial={{ opacity: 0, y: 5 }}
-            transition={{ duration: 0.2, delay: 0.2 }}
-          >
-            <ResponsiveMasonry
-              columnsCountBreakPoints={{
-                350: 2,
-                640: 2,
-                768: 3,
-                1024: 3,
-                1280: 4,
-                1536: 5,
-              }}
+          <>
+            <MotionDiv
+              animate={{ opacity: 1, y: 0 }}
+              className="relative block lg:hidden"
+              id="note-list"
+              initial={{ opacity: 0, y: 5 }}
+              transition={{ duration: 0.2, delay: 0.2 }}
             >
-              <ReactMasonry className="masonry !gap-[10px] lg:!gap-[12px_20px]">
-                <NoteContainer />
-                {notes.map((note) => {
-                  return <NoteItem note={note} key={note.id} />;
-                })}
-              </ReactMasonry>
-            </ResponsiveMasonry>
-          </MotionDiv>
+              <ResponsiveMasonry
+                columnsCountBreakPoints={{
+                  350: 2,
+                  640: 2,
+                  768: 3,
+                  1024: 3,
+                  1280: 4,
+                  1536: 5,
+                }}
+              >
+                <ReactMasonry className="masonry !gap-[10px] lg:!gap-[12px_20px]">
+                  {notes.map((note) => {
+                    return <NoteItem note={note} key={note.id} />;
+                  })}
+                </ReactMasonry>
+              </ResponsiveMasonry>
+            </MotionDiv>
+            <MotionDiv
+              animate={{ opacity: 1, y: 0 }}
+              className="relative hidden lg:block"
+              id="note-list"
+              initial={{ opacity: 0, y: 5 }}
+              transition={{ duration: 0.2, delay: 0.2 }}
+            >
+              <ResponsiveMasonry
+                columnsCountBreakPoints={{
+                  350: 2,
+                  640: 2,
+                  768: 3,
+                  1024: 3,
+                  1280: 4,
+                  1536: 5,
+                }}
+              >
+                <ReactMasonry className="masonry !gap-[10px] lg:!gap-[12px_20px]">
+                  <NoteContainer />
+                  {notes.map((note) => {
+                    return <NoteItem note={note} key={note.id} />;
+                  })}
+                </ReactMasonry>
+              </ResponsiveMasonry>
+            </MotionDiv>
+          </>
         )}
       </AnimatePresence>
     </MotionDiv>
