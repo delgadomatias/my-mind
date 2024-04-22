@@ -11,7 +11,9 @@ export class Alerts {
     const askOrCancelAlert = await Swal.fire(options);
     if (askOrCancelAlert.isConfirmed) {
       callback();
-      toast.success("Note deleted successfully");
+      toast.success("Note deleted successfully", {
+        duration: 1000,
+      });
     }
   }
 }
