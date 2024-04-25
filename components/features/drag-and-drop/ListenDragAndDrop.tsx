@@ -14,7 +14,6 @@ export const ListenDragAndDrop = () => {
         <AnimatePresence>
           {isUploading && !isError && <FileLoading files={files} />}
         </AnimatePresence>
-        {/* <AnimatePresence>{isError && <DragError />}</AnimatePresence> */}
       </div>
       <DragShadow />
     </>
