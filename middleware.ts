@@ -1,7 +1,12 @@
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { AUTH_ROUTES, PRIVATE_ROUTES, SIGN_IN_ROUTE } from "./utils";
+import {
+  AUTH_ROUTES,
+  PRIVATE_ROUTES,
+  RESET_PASSWORD_ROUTE,
+  SIGN_IN_ROUTE,
+} from "./utils";
 import { isAuthenticated } from "./utils/isAuthenticated";
 
 export async function middleware(req: NextRequest) {
@@ -21,6 +26,12 @@ export async function middleware(req: NextRequest) {
 
   if (PRIVATE_ROUTES.includes(pathname) && !session) {
     return NextResponse.redirect(new URL(SIGN_IN_ROUTE, req.url));
+  }
+
+  if (pathname === RESET_PASSWORD_ROUTE && session) {
+    if (session.user.app_metadata.provider !== "email") {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
   }
 
   return res;
