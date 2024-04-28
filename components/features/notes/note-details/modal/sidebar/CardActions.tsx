@@ -6,6 +6,7 @@ import { Tooltip } from "@/components/shared/ui/Tooltip";
 import { Note } from "@/interfaces";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useCopyToClipboard } from "react-use";
 import { ShareButton } from "./ShareButton";
 
 interface Props {
@@ -23,6 +24,7 @@ export const CardActions = ({ onDeleteNote, note }: Props) => {
     isShared: note.is_shared,
     sharedUrl: `${window.location.origin}/shares/${note.shared_id}`,
   });
+  const [isCopied, copy] = useCopyToClipboard();
 
   async function handleOnDeleteNote() {
     Alerts.askOrCancel({
@@ -76,9 +78,14 @@ export const CardActions = ({ onDeleteNote, note }: Props) => {
                 {actionsState.sharedUrl}
               </a>
             </p>
-            <div className="absolute bottom-0 right-3 top-0 flex items-center justify-center">
+            <button
+              className="absolute bottom-0 right-3 top-0 flex cursor-pointer items-center justify-center"
+              onClick={() => {
+                copy(actionsState.sharedUrl!);
+              }}
+            >
               <PaperclipIcon />
-            </div>
+            </button>
           </MotionDiv>
         )}
       </AnimatePresence>
