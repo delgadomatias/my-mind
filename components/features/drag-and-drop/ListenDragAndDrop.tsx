@@ -3,7 +3,6 @@
 import { useImageUploadContext } from "@/context/image-upload/useImageUploadContext";
 import { AnimatePresence } from "framer-motion";
 import { DragShadow } from "./DragShadow";
-import { DragError } from "./drag-error/DragError";
 import { FileLoading } from "./file-loading/FileLoading";
 
 export const ListenDragAndDrop = () => {
@@ -15,7 +14,6 @@ export const ListenDragAndDrop = () => {
         <AnimatePresence>
           {isUploading && !isError && <FileLoading files={files} />}
         </AnimatePresence>
-        <AnimatePresence>{isError && <DragError />}</AnimatePresence>
       </div>
       <DragShadow />
     </>

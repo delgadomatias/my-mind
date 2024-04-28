@@ -1,11 +1,14 @@
-interface Props extends React.HTMLAttributes<SVGElement> {}
+interface Props extends React.HTMLAttributes<SVGElement> {
+  width?: string;
+  height?: string;
+}
 
-export const TrashIcon = ({ className, ...rest }: Props) => {
+export const TrashIcon = ({ className, width, height, ...rest }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width={width || "20"}
+      height={height || "20"}
       fill="#748297"
       viewBox="0 0 256 256"
       className={className}

@@ -40,6 +40,7 @@ export const ImageUploadProvider = ({ children }: Props) => {
 
   useEffect(() => {
     if (window.location.pathname !== "/") return;
+    console.log(window.location.hash);
     const body = document.body;
     body.addEventListener("dragover", handleDragOver);
 

@@ -1,16 +1,7 @@
 @import url(https://fonts.cdnfonts.com/css/monolisa);
-@import url("https://fonts.googleapis.com/css2?family=Armata&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: "Atrament";
-  font-weight: 400;
-  font-style: normal;
-  src: url("/fonts/atrament.otf") format("opentype");
-}
 
 @font-face {
   font-family: "Louize";
@@ -121,10 +112,37 @@
   @apply font-monoLisa;
 }
 
-.armata {
-  @apply font-armata;
+#noteDiv {
+  --contexify-menu-bgColor: #fff;
+  --contexify-separator-color: #eee;
+  --contexify-item-color: #000000;
+  --contexify-activeItem-color: #000000;
+  --contexify-activeItem-bgColor: #ebeff3;
+  --contexify-rightSlot-color: #6f6e77;
+  --contexify-activeRightSlot-color: #000000;
+  --contexify-arrow-color: #000000;
+  --contexify-activeArrow-color: #fff;
+  --contexify-menu-shadow: -5px -5px 22px rgb(0 0 0 / 11%),
+    11px 11px 22px rgb(0 0 0 / 20%);
+  --contexify-menu-padding: 12px;
 }
 
-.atrament {
-  @apply font-atrament;
+#previewNoteItem p {
+  @apply !text-xs;
+}
+
+#previewNoteItem h1 {
+  @apply !text-lg;
+}
+
+#previewNoteItem h2 {
+  @apply !text-base;
+}
+
+#previewNoteItem h3 {
+  @apply !text-sm;
+}
+
+#previewNoteItem hr {
+  @apply my-2;
 }

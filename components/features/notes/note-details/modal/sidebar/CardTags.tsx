@@ -68,7 +68,7 @@ export const CardTags = ({ note }: Props) => {
       </MotionDiv>
       <div className="flex flex-wrap items-stretch gap-2">
         <button
-          className="h-9 select-none rounded-2xl border-1 border-[#ff5924] bg-[#ff5924] px-4  font-semibold tracking-[-0.45px] text-white hover:bg-white hover:text-[#ff5924]"
+          className="h-9 select-none rounded-2xl border-1 border-[#301934] bg-[#301934] px-4  font-semibold tracking-[-0.45px] text-white hover:bg-white hover:text-[#301934]"
           type="button"
           onClick={toggleInput}
         >

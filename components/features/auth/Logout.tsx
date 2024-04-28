@@ -14,7 +14,7 @@ export const Logout = () => {
   return (
     <div className="flex justify-end">
       <button
-        className="cursor-pointer text-xl tracking-[-0.02em] text-[#30435F] duration-150 ease-linear hover:text-[#ff5924]"
+        className="cursor-pointer text-xl tracking-[-0.02em] text-[#30435F] duration-150 ease-linear hover:text-[#301934]"
         onClick={onLogout}
       >
         → Sign out of my mind

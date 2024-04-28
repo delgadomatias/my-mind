@@ -19,4 +19,5 @@ export const VALID_CLASSES_BY_TAG: {
 export const AUTH_ROUTES = ["/auth/signup", "/auth/signin"];
 export const SIGN_IN_ROUTE = "/auth/signin";
 export const SIGN_UP_ROUTE = "/auth/signup";
-export const PRIVATE_ROUTES = ["/", "/settings"];
+export const RESET_PASSWORD_ROUTE = "/auth/reset-password";
+export const PRIVATE_ROUTES = ["/", "/settings", RESET_PASSWORD_ROUTE];

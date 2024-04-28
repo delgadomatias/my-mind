@@ -1,18 +1,13 @@
 "use client";
 
 import { DEFAULT_NOTE_CONTENT } from "@/utils";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
-import { SearchNoteContainer } from "../search-note/SearchNoteContainer";
+import { useState } from "react";
 import { AddNoteDesktop } from "./add-note/AddNoteDesktop";
-import { AddNoteMobile } from "./add-note/AddNoteMobile";
 
 export const NoteContainer = () => {
   const [noteContent, setNoteContent] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const searchQuery = useSearchParams().get("search");
-  const isSearching = searchQuery !== null && searchQuery.length > 0;
 
   function handleOnChange(richText: string) {
     setNoteContent(richText);
@@ -47,19 +42,13 @@ export const NoteContainer = () => {
 
   return (
     <>
-      <Suspense>
-        <SearchNoteContainer />
-      </Suspense>
       <AddNoteDesktop
         handleOnChange={handleOnChange}
         isSaving={isSaving}
-        isSearching={isSearching}
         isTyping={isTyping}
-        noteContent={noteContent}
         onAddNote={onAddNote}
         onFocus={onFocus}
       />
-      <AddNoteMobile />
     </>
   );
 };

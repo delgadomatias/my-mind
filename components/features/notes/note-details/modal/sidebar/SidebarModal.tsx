@@ -15,8 +15,8 @@ export const SidebarModal = ({ setUpdatedNote, note }: Props) => {
   const formatDistance = formatDistanceToNow(new Date(created_at));
 
   async function onDeleteNote() {
-    const noteDeleted = NoteActions.deleteNote(note.id);
     window.location.hash = "";
+    await NoteActions.deleteNote(note.id);
   }
 
   function onTitleChange(title: string) {

@@ -37,18 +37,18 @@ export const FocusMode = ({ note }: Props) => {
     const { content } = updatedNote;
 
     if (note.content === content && note.title === updatedNote.title) {
-      window.location.hash = `${note.id}?focus=false`;
+      window.location.hash = ``;
       return;
     }
 
     if (DEFAULT_NOTE_CONTENT === content) {
-      window.location.hash = `${note.id}?focus=false`;
+      window.location.hash = ``;
       NoteActions.deleteNote(note.id);
       return;
     }
 
     NoteActions.updateNote({ ...updatedNote });
-    window.location.hash = `${note.id}?focus=false`;
+    window.location.hash = ``;
   }
 
   useKey({
@@ -85,7 +85,7 @@ export const FocusMode = ({ note }: Props) => {
 
   return (
     <>
-      <MotionDiv className="absolute top-0 z-50 h-full w-full border-t-3 border-t-[#ff5924]">
+      <MotionDiv className="absolute top-0 z-50 h-full w-full border-t-3 border-t-[#301934]">
         <Image
           src="/media/expanded-note-bg.jpg"
           alt="Hola"

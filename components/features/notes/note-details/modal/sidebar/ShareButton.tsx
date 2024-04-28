@@ -57,13 +57,19 @@ export const ShareButton = ({
         .filter("active", "is", true)
         .single();
 
-      const { hours = 0, minutes = 0 } = intervalToDuration({
+      const { hours = 0 } = intervalToDuration({
         end: new Date(data?.data.expiration_date),
         start: new Date(),
       });
 
-      if (minutes > 30) {
-        setHoursUntilDisabled(`${zeroPad(hours + 1)}h`);
+      if (hours <= 0) {
+        await NoteActions.disableShareLink(noteId);
+
+        setActionsState((prev) => ({
+          ...prev,
+          isShared: false,
+        }));
+
         return;
       }
 
@@ -71,16 +77,16 @@ export const ShareButton = ({
     }
 
     getHoursUntilDisabled();
-  }, [isShared, noteId]);
+  }, [isShared, noteId, setActionsState]);
 
   if (isShared) {
     return (
       <Tooltip text="Disable private share link">
         <button
-          className="group relative z-50 flex items-center justify-center  rounded-full bg-white p-3 text-sm text-[#ff5924]"
+          className="group relative z-50 flex items-center justify-center  rounded-full bg-white p-3 text-sm text-[#301934]"
           onClick={handleDisableShareLink}
         >
-          <div className="absolute inset-0 z-10  rounded-full border-2 border-[#ff5924]"></div>
+          <div className="absolute inset-0 z-10  rounded-full border-2 border-[#301934]"></div>
           {hoursUntilDisabled}
         </button>
       </Tooltip>

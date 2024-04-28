@@ -1,4 +1,5 @@
 import { MotionDiv } from "@/components/shared/MotionDiv";
+import { Alerts } from "@/components/shared/adapters/alerts";
 import { PaperclipIcon } from "@/components/shared/icons/PaperclipIcon";
 import { TrashIcon } from "@/components/shared/icons/TrashIcon";
 import { Tooltip } from "@/components/shared/ui/Tooltip";
@@ -25,13 +26,28 @@ export const CardActions = ({ onDeleteNote, note }: Props) => {
   });
   const [isCopied, copy] = useCopyToClipboard();
 
+  async function handleOnDeleteNote() {
+    Alerts.askOrCancel({
+      options: {
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#301934",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      },
+      callback: onDeleteNote,
+    });
+  }
+
   return (
     <div className="flex w-full flex-col items-center justify-center gap-3 p-5">
       <div className="inline-flex gap-3">
         <Tooltip text="Delete card">
           <button
             className="group relative flex items-center justify-center rounded-full bg-white p-3 transition-all ease-linear hover:bg-[#748297]"
-            onClick={onDeleteNote}
+            onClick={handleOnDeleteNote}
           >
             <TrashIcon className="group-hover:fill-white" />
           </button>
@@ -55,7 +71,7 @@ export const CardActions = ({ onDeleteNote, note }: Props) => {
             <p className="inline-block max-w-full overflow-clip text-ellipsis text-nowrap pr-9 font-normal text-[#ADB7C8]">
               Share with a friend:{" "}
               <a
-                className="text-[#ff5924]"
+                className="text-[#301934]"
                 href={actionsState.sharedUrl!}
                 target="_blank"
               >
