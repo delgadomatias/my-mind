@@ -2,11 +2,11 @@ export const GoogleIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="26"
-      height="26"
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
       strokeWidth="1.5"
-      stroke="#748297"
+      stroke="#301934"
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
