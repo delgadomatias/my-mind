@@ -9,16 +9,18 @@ export const SearchNoteContainer = () => {
 
   useEffect(() => {
     function handleScroll() {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 30) {
         normalInputRef.current?.classList.add("hidden");
         inputScrolled.current?.classList.remove("hidden");
+        return;
       } else {
         normalInputRef.current?.classList.remove("hidden");
         inputScrolled.current?.classList.add("hidden");
+        return;
       }
     }
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scrollend", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
