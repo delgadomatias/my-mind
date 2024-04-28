@@ -1,21 +1,26 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
+import { BarLoader } from "@/components/shared/ui/loaders/BarLoader";
 
 interface Props {
   text: string;
+  isSubmitting: boolean;
 }
 
-export const SubmitAuthButton = ({ text }: Props) => {
-  const { pending } = useFormStatus();
-
+export const SubmitAuthButton = ({ text, isSubmitting }: Props) => {
   return (
     <button
-      className={`rounded-xl bg-[#301934] p-4 text-xl text-white ${pending ? "animate-pulse" : ""}`}
-      disabled={pending}
+      className={`w-full rounded-lg bg-[#301934] p-3 text-lg text-white ${isSubmitting ? "cursor-not-allowed" : "cursor-pointer"}`}
+      disabled={isSubmitting}
       type="submit"
     >
-      {text}
+      {isSubmitting ? (
+        <div className="flex w-full items-center justify-center">
+          <BarLoader />
+        </div>
+      ) : (
+        text
+      )}
     </button>
   );
 };
