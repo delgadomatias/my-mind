@@ -7,12 +7,9 @@ import Link from "next/link";
 
 const SettingsPage = async () => {
   const user = await getUser();
-  const nameToShow = user?.user_metadata.name
-    ? `, ${user?.user_metadata.name}`
-    : null;
-
-  const isLoggedWithProvider = user?.app_metadata.provider !== "email";
-  const provider = user?.app_metadata.provider!;
+  const nameToShow = `, ${user.name}`;
+  const isLoggedWithProvider = user.provider !== "email";
+  const provider = user.provider!;
 
   const MAP_PROVIDER: {
     [key: string]: JSX.Element;
@@ -44,12 +41,12 @@ const SettingsPage = async () => {
       </Link>
 
       <MotionDiv
-        className="mx-auto flex min-h-[calc(100vh_-_5rem)] max-w-screen-lg flex-col justify-center gap-4 px-6 pt-20"
+        className="mx-auto flex min-h-[calc(100vh_-_4rem)] max-w-screen-lg flex-col justify-center gap-4 px-6 pt-20"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="mb-4 font-louize text-5xl tracking-[-0.05em] md:text-6xl">
+        <h1 className="mb-4 font-louize text-5xl tracking-[-0.05em] sm:text-5xl md:text-6xl">
           You have a beautiful mind
           <span className="text-[#748297]">{nameToShow ? nameToShow : ""}</span>
         </h1>

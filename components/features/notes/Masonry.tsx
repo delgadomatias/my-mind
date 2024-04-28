@@ -35,6 +35,7 @@ export const Masonry = ({ notes }: Props) => {
         {isSearching && (
           <ResponsiveMasonry
             columnsCountBreakPoints={{
+              100: 1,
               350: 2,
               640: 2,
               768: 3,
@@ -64,6 +65,7 @@ export const Masonry = ({ notes }: Props) => {
             >
               <ResponsiveMasonry
                 columnsCountBreakPoints={{
+                  100: 1,
                   350: 2,
                   640: 2,
                   768: 3,
@@ -88,6 +90,7 @@ export const Masonry = ({ notes }: Props) => {
             >
               <ResponsiveMasonry
                 columnsCountBreakPoints={{
+                  100: 1,
                   350: 2,
                   640: 2,
                   768: 3,

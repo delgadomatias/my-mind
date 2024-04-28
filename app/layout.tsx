@@ -2,6 +2,7 @@ import { Providers } from "@/Providers";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
+import "react-contexify/dist/ReactContexify.css";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
