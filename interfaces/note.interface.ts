@@ -8,6 +8,7 @@ export interface Note {
   original_id: string | null;
   is_shared: boolean;
   shared_id: string | null;
+  is_on_top: boolean;
 }
 
 export type NoteId = string;
