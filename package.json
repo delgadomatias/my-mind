@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@nextui-org/image": "^2.0.24",
     "@nextui-org/system": "^2.0.15",
     "@nextui-org/theme": "^2.1.18",
@@ -33,11 +34,14 @@
     "npm": "^10.5.0",
     "prosemirror-state": "^1.4.3",
     "react": "^18",
+    "react-contexify": "^6.0.0",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.3",
     "react-responsive-masonry": "^2.2.0",
     "sharp": "^0.33.2",
     "sonner": "^1.4.41",
-    "sweetalert2": "^11.10.8"
+    "sweetalert2": "^11.10.8",
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@types/color-thief-node": "^1.0.4",
