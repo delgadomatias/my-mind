@@ -25,6 +25,8 @@ const config: Config = {
       fontFamily: {
         monoLisa: ["MonoLisa"],
         louize: ["Louize"],
+        armata: ["Armata"],
+        atrament: ["Atrament"],
       },
       container: {
         center: true,

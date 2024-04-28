@@ -12,6 +12,8 @@ export const VALID_CLASSES_BY_TAG: {
 } = {
   quote: "quote",
   code: "code",
+  armata: "armata",
+  atrament: "atrament",
 };
 
 export const AUTH_ROUTES = ["/auth/signup", "/auth/signin"];

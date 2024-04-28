@@ -4,7 +4,7 @@ import { NoteActions } from "@/actions";
 import { MotionDiv } from "@/components/shared/MotionDiv";
 import { Note } from "@/interfaces";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { TagSubmit } from "./TagSubmit";
 
 interface Props {
@@ -36,7 +36,8 @@ export const CardTags = ({ note }: Props) => {
     }
   }
 
-  function handleDeleteTag(tag: string) {
+  function handleDeleteTag(event: any, tag: string) {
+    event.stopPropagation();
     const newTags = noteTags.filter((t) => t !== tag);
     setNoteTags(newTags);
     NoteActions.deleteTagFromNote(note.id, tag);
@@ -75,21 +76,24 @@ export const CardTags = ({ note }: Props) => {
         </button>
         {noteTags?.map((tag) => {
           return (
-            <span
-              key={tag}
-              className="group relative flex h-9 cursor-pointer items-center justify-center gap-[2px]  rounded-2xl bg-[#E3E7EE] px-3 text-[#748297] hover:bg-white hover:shadow-[5px_5px_22px_rgb(0_0_0_/_11%)]"
-              onClick={() => searchTag(tag)}
-            >
-              <span
-                className="absolute -right-[2px] -top-1 h-4 w-4 cursor-pointer bg-[url(https://static.accelerator.net/134/0.28.3/icons/remove-orange-alt.svg)] opacity-0 hover:bg-[url(https://static.accelerator.net/134/0.28.3/icons/remove-orange.svg)] group-hover:opacity-100"
-                onClick={() => handleDeleteTag(tag)}
-                style={{
-                  content: "",
-                }}
-              ></span>
-              <span>#</span>
-              {tag}
-            </span>
+            <Fragment key={tag}>
+              {tag !== "" && (
+                <span
+                  className="group relative flex h-9 cursor-pointer items-center justify-center gap-[2px]  rounded-2xl bg-[#E3E7EE] px-3 text-[#748297] hover:bg-white hover:shadow-[5px_5px_22px_rgb(0_0_0_/_11%)]"
+                  onClick={() => searchTag(tag)}
+                >
+                  <span
+                    className="absolute -right-[2px] -top-1 h-4 w-4 cursor-pointer bg-[url(https://static.accelerator.net/134/0.28.3/icons/remove-orange-alt.svg)] opacity-0 hover:bg-[url(https://static.accelerator.net/134/0.28.3/icons/remove-orange.svg)] group-hover:opacity-100"
+                    onClick={(event) => handleDeleteTag(event, tag)}
+                    style={{
+                      content: "",
+                    }}
+                  ></span>
+                  <span>#</span>
+                  {tag}
+                </span>
+              )}
+            </Fragment>
           );
         })}
       </div>
