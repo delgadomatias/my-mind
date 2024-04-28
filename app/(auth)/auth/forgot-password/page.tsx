@@ -1,18 +1,23 @@
-import { SignUp } from "@/components/features/auth/SignUp";
+import { ForgotPassword } from "@/components/features/auth/forgot-password/ForgotPassword";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Sign Up | My Mind",
+  title: "Forgot Password | My Mind",
 };
 
-const SignUpPage = () => {
+const ForgotPasswordPage = () => {
   return (
     <div className="flex flex-col items-center gap-4 p-6">
       <h1 className="text-center font-louize text-6xl font-medium tracking-[-0.05em] text-black sm:text-7xl md:text-7xl">
-        Create a new <br /> account
+        Reset Your <br /> Password
       </h1>
 
-      <SignUp />
+      <p>
+        Type in your email and we&apos;ll send you a link to reset your
+        password.
+      </p>
+
+      <ForgotPassword />
 
       <footer className="mt-4">
         <p className="font-medium text-[#301934] sm:text-lg">
@@ -26,4 +31,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default ForgotPasswordPage;
