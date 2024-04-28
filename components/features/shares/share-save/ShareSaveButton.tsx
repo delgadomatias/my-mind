@@ -1,13 +1,12 @@
 "use client";
 
 import { CookiesActions, NoteActions } from "@/actions";
-import { Note } from "@/interfaces";
-import { User } from "@supabase/auth-helpers-nextjs";
+import { Note, PublicUser } from "@/interfaces";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface Props {
-  user: User | null | undefined;
+  user: PublicUser;
   note: Note;
 }
 
