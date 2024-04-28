@@ -173,3 +173,55 @@ export async function disableShareLink(noteId: string) {
     .update({ active: false })
     .eq("note_id", noteId);
 }
+
+export async function setNoteOnTopOfMind(noteId: string) {
+  const supabase = await getDbOnServerActions();
+  const { data } = await supabase
+    .from("Note")
+    .update({ is_on_top: true })
+    .eq("id", noteId)
+    .select("*");
+
+  revalidatePath("/");
+
+  return data as NoteDTO[];
+}
+
+export async function removeNoteFromTopOfMind(noteId: string) {
+  const supabase = await getDbOnServerActions();
+  const { data } = await supabase
+    .from("Note")
+    .update({ is_on_top: false })
+    .eq("id", noteId)
+    .select("*");
+
+  revalidatePath("/");
+
+  return data as NoteDTO[];
+}
+
+export async function getTopOfMindNotes(): Promise<Note[]> {
+  const supabase = await getDbOnServerComponent();
+  const user = await getUser();
+  const { id } = user!;
+
+  const { data: notesFromUser } = await supabase
+    .from("Note")
+    .select("*")
+    .eq("user_id", id)
+    .eq("is_on_top", true)
+    .order("created_at", { ascending: false });
+
+  return notesFromUser as Note[];
+}
+
+export async function isNoteOnTopOfMind(noteId: string): Promise<boolean> {
+  const supabase = await getDbOnServerComponent();
+  const { data } = await supabase
+    .from("Note")
+    .select("is_on_top")
+    .eq("id", noteId)
+    .single();
+
+  return data?.is_on_top;
+}
