@@ -1,5 +1,6 @@
 import { ResetPassword } from "@/components/features/auth/forgot-password/ResetPassword";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const ResetPasswordPage = () => {
   return (
@@ -11,7 +12,9 @@ const ResetPasswordPage = () => {
       <p>
         Type in a new secure password and press save to update your password.
       </p>
-      <ResetPassword />
+      <Suspense>
+        <ResetPassword />
+      </Suspense>
 
       <footer className="mt-4">
         <p className="font-medium text-[#301934] sm:text-lg">

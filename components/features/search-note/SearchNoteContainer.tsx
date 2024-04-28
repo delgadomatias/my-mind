@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { ScrolledSearchNote } from "./ScrolledSearchNote";
 import { SearchNote } from "./SearchNote";
 
@@ -34,11 +34,15 @@ export const SearchNoteContainer = () => {
         className="sticky top-2 z-50 hidden"
         id="search-bar"
       >
-        <ScrolledSearchNote />
+        <Suspense>
+          <ScrolledSearchNote />
+        </Suspense>
       </div>
 
       <div ref={normalInputRef}>
-        <SearchNote />
+        <Suspense>
+          <SearchNote />
+        </Suspense>
       </div>
     </>
   );
