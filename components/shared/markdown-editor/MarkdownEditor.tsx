@@ -147,7 +147,7 @@ const MarkdownEditor = ({
     autofocus: autoFocus,
     editorProps: {
       attributes: {
-        class: `${styles.editor} ${styles.quote} ${className}`,
+        class: `${styles.editor} ${styles.quote} ${className} h-full`,
       },
     },
 
@@ -167,7 +167,7 @@ const MarkdownEditor = ({
     return null;
   }
 
-  return <EditorContent editor={editor} className="w-full" />;
+  return <EditorContent editor={editor} className="h-full w-full" />;
 };
 
 export default MarkdownEditor;
