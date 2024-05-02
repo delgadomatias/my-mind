@@ -16,6 +16,11 @@
   src: url("/fonts/Louize/Italic.woff2") format("woff2");
 }
 
+html {
+  scrollbar-color: #d0d8e5 transparent;
+  scrollbar-width: thin;
+}
+
 #command-key::before {
   content: "Press CTRL + Enter to save";
   @apply uppercase text-white;
