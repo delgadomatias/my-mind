@@ -26,12 +26,6 @@ export const PreviewNoteItem = ({ note }: Props) => {
         {isImage && <NoteImage content={content} />}
         {!isImage && <NoteText note={note} />}
       </div>
-
-      {note.title && (
-        <p className="overflow-hidden text-ellipsis whitespace-nowrap pl-[2px] text-sm text-[#748297]">
-          {note.title}
-        </p>
-      )}
     </div>
   );
 };
